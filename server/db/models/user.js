@@ -16,6 +16,21 @@ const User = db.define('user', {
   },
   googleId: {
     type: Sequelize.STRING
+  },
+  animalPreferences: {
+    type: Sequelize.ARRAY
+  },
+  hasYoungChildren: {
+    type: Sequelize.BOOLEAN
+  },
+  otherPetTypes: {
+    type: Sequelize.ARRAY
+  },
+  zipCode: {
+    type: Sequelize.INTEGER
+  },
+  phoneNumber: {
+    type: Sequelize.INTEGER
   }
 })
 
