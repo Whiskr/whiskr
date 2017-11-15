@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {withRouter, Link} from 'react-router-dom'
@@ -10,12 +10,29 @@ import {logout} from './store'
  *  else common to our entire app. The 'picture' inside the frame is the space
  *  rendered out by the component's `children`.
  */
-const Main = (props) => {
-  const {children, handleClick, isLoggedIn} = props
+class Main extends Component {
+  state = {check: []};
 
+  componentDidMount() {
+    fetch('/api/check')
+    .then(res => {
+      res.json();
+      console.log(res);
+    })
+    .then(check => this.setState({ check }));
+  }
+
+render(){
+  const {children, handleClick, isLoggedIn} = this.props
+  console.log("local state check: ", this.state);
   return (
     <div>
-      <h1>BOILERMAKER</h1>
+      <h1>USERS</h1>
+      <div>
+      {this.state.check.map(user =>
+        <div key={user.id}>{user.username}</div>
+      )}
+      </div>
       <nav>
         {
           isLoggedIn
@@ -35,6 +52,7 @@ const Main = (props) => {
       {children}
     </div>
   )
+}
 }
 
 /**
