@@ -18,19 +18,22 @@ const User = db.define('user', {
     type: Sequelize.STRING
   },
   animalPreferences: {
-    type: Sequelize.ARRAY
+    type: Sequelize.ARRAY(Sequelize.STRING)
   },
   hasYoungChildren: {
     type: Sequelize.BOOLEAN
   },
   otherPetTypes: {
-    type: Sequelize.ARRAY
+    type: Sequelize.ARRAY(Sequelize.STRING)
   },
   zipCode: {
     type: Sequelize.INTEGER
   },
   phoneNumber: {
     type: Sequelize.INTEGER
+  },
+  petHistory: {
+    type: Sequelize.TEXT
   }
 })
 

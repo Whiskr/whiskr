@@ -1,7 +1,9 @@
 const router = require('express').Router()
 module.exports = router
 
-router.use('/users', require('./users'))
+router.use('/user', require('./user'))
+
+router.use('/match', require('./match'))
 
 router.use('/check', require('./check'))
 
