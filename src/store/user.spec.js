@@ -6,7 +6,7 @@ import axios from 'axios'
 import MockAdapter from 'axios-mock-adapter'
 import configureMockStore from 'redux-mock-store'
 import thunkMiddleware from 'redux-thunk'
-import history from '../history'
+
 
 const middlewares = [thunkMiddleware]
 const mockStore = configureMockStore(middlewares)
@@ -47,7 +47,7 @@ describe('thunk creators', () => {
         .then(() => {
           const actions = store.getActions()
           expect(actions[0].type).to.be.equal('REMOVE_USER')
-          expect(history.location.pathname).to.be.equal('/login')
+        
         })
     })
   })

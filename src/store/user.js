@@ -1,5 +1,5 @@
 import axios from 'axios'
-import history from '../history'
+
 
 /**
  * ACTION TYPES
@@ -33,7 +33,7 @@ export const auth = (email, password, method) =>
     axios.post(`/auth/${method}`, { email, password })
       .then(res => {
         dispatch(getUser(res.data))
-        history.push('/home')
+      
       })
       .catch(error =>
         dispatch(getUser({error})))
@@ -43,7 +43,7 @@ export const logout = () =>
     axios.post('/auth/logout')
       .then(_ => {
         dispatch(removeUser())
-        history.push('/login')
+      
       })
       .catch(err => console.log(err))
 

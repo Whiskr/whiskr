@@ -1,9 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {Router} from 'react-router'
-import {Route, Switch} from 'react-router-dom'
+import {Route, Switch, BrowserRouter as Router} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import history from './history'
 import { Login, Signup, UserHome } from './components'
 import App from './App';
 import { me } from './store'
@@ -20,7 +18,7 @@ class Routes extends Component {
     const {isLoggedIn} = this.props
 
     return (
-      <Router history={history}>
+      <Router>
         <App>
           <Switch>
             {/* Routes placed here are available to all visitors */}
