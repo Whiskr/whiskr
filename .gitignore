@@ -6,6 +6,10 @@
 # testing
 /coverage
 
+
+/client/build
+/client/node_modules
+
 # production
 /build
 
@@ -19,3 +23,5 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+.secrets
