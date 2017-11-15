@@ -6,10 +6,12 @@ const User = db.define('user', {
   email: {
     type: Sequelize.STRING,
     unique: true,
-    allowNull: false
+    allowNull: false,
+    isEmail: true
   },
   password: {
-    type: Sequelize.STRING
+    type: Sequelize.STRING,
+    allowNull: false
   },
   salt: {
     type: Sequelize.STRING
@@ -18,22 +20,28 @@ const User = db.define('user', {
     type: Sequelize.STRING
   },
   animalPreferences: {
-    type: Sequelize.ARRAY(Sequelize.STRING)
+    type: Sequelize.ARRAY(Sequelize.STRING),
+    defaultValue: []
   },
   hasYoungChildren: {
-    type: Sequelize.BOOLEAN
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
+
   },
   otherPetTypes: {
-    type: Sequelize.ARRAY(Sequelize.STRING)
+    type: Sequelize.ARRAY(Sequelize.STRING),
+    defaultValue: []
   },
   zipCode: {
     type: Sequelize.INTEGER
   },
   phoneNumber: {
-    type: Sequelize.INTEGER
+    type: Sequelize.STRING,
+    allowNull: false
   },
   petHistory: {
-    type: Sequelize.TEXT
+    type: Sequelize.TEXT,
+    allowNull: false
   }
 })
 
