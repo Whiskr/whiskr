@@ -4,7 +4,8 @@
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).",
   "main": "secrets.js",
   "scripts": {
-    "start": "nodemon server",
+    "sync": "concurrently \"yarn \" \"cd client && yarn \"",
+    "start": "concurrently \"nodemon server\" \"cd client && yarn start\" ",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -20,6 +21,7 @@
   "homepage": "https://github.com/Whiskr/whiskr#readme",
   "dependencies": {
     "compression": "^1.7.1",
+    "concurrently": "^3.5.0",
     "connect-session-sequelize": "^5.0.1",
     "express": "^4.16.2",
     "express-session": "^1.15.6",
