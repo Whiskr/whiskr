@@ -6,7 +6,6 @@ import {connect} from 'react-redux'
  * COMPONENT
  */
 export const UserHome = (props) => {
-  //const {email} = props
   const {user} = props
 
   return (
@@ -29,21 +28,21 @@ export const UserHome = (props) => {
           <h4>Types of Animals You Prefer to Match With:</h4>
           {!user.animalPreferences.length
           ? <p>None</p>
-          : <ul>{user.animalPreferences.map((animal, index) => {
+          : <ul>{user.animalPreferences.map((animal, index) =>
               <li key={index}>{animal}</li>
-            })}</ul> }
+            )}</ul> }
         </div>
         <div>
           <h4>Types of Animals You Currently Own:</h4>
           {!user.otherPetTypes.length 
           ? <p>None</p>
-          : <ul>{user.otherPetTypes.map((animal, index) => {
+          : <ul>{user.otherPetTypes.map((animal, index) =>
               <li key={index}>{animal}</li>
-            })}</ul>}
+            )}</ul>}
         </div>
         <div>
           <h4>You Have Young Children:</h4>
-          <p>{user.hasYoungChildren}</p> 
+          <p>{user.hasYoungChildren ? 'True' : 'False'}</p> 
         </div>
         <div>
           <h4>Your Pet Owning History:</h4>
@@ -61,7 +60,8 @@ export const UserHome = (props) => {
 /**
  * CONTAINER
  */
-const mapState = ({currentUser}) => { currentUser }
+const mapState = (state) =>  ({ user: state.currentUser })
+
 
 
 export default connect(mapState)(UserHome)
