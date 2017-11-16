@@ -11,11 +11,12 @@ import {logout} from './store'
  *  rendered out by the component's `children`.
  */
 class Main extends Component {
-
   render() {
+    const {children} = this.props
     return (
       <div className="App">
         <h1>Users</h1>
+        {children}
       </div>
     );
   }

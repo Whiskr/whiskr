@@ -1,32 +1,23 @@
 import axios from 'axios'
 
-
-/**
- * ACTION TYPES
- */
+//ACTION TYPES
 const GET_USER = 'GET_USER'
 const LOGOUT_USER = 'LOGOUT_USER'
 
-/**
- * INITIAL STATE
- */
+//INITIAL STATE
 const defaultUser = {}
 
-/**
- * ACTION CREATORS
- */
+//ACTION CREATORS
 const getUser = user => ({type: GET_USER, user})
 const logOutUser = () => ({type: LOGOUT_USER})
 
-/**
- * THUNK CREATORS
- */
-// export const me = () =>
-//   dispatch =>
-//     axios.get('/auth/me')
-//       .then(res =>
-//         dispatch(getUser(res.data || defaultUser)))
-//       .catch(err => console.log(err))
+//THUNK CREATORS
+export const me = () =>
+  dispatch =>
+    axios.get('/auth/me')
+      .then(res =>
+        dispatch(getUser(res.data || defaultUser)))
+      .catch(err => console.log(err))
 
 export const auth = (email, password, method) =>
   dispatch =>
@@ -66,9 +57,8 @@ export const deleteAccount = (userId) => {
     .catch(err => console.log(err))
 }
 
-/**
- * REDUCER
- */
+//REDUCER
+
 export default function (state = defaultUser, action) {
   switch (action.type) {
     case GET_USER:
