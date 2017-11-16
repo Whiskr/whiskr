@@ -6,7 +6,8 @@
   "scripts": {
     "sync": "concurrently \"yarn \" \"cd client && yarn \"",
     "start": "concurrently \"nodemon server\" \"cd client && yarn start\" ",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "seed": "node ./seed"
   },
   "repository": {
     "type": "git",

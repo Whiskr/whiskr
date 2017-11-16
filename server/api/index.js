@@ -6,7 +6,7 @@ router.use('/userAccount', require('./userAccount'))
 
 router.use('/match', require('./match'))
 
-router.use('/check', require('./check'))
+
 
 router.use(statusCat())
 
