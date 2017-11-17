@@ -7,9 +7,10 @@ import currentUser from './currentUser'
 const reducer = combineReducers({currentUser})
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware,
-  createLogger({collapsed: true})
-))
-const store = createStore(reducer, middleware)
+  createLogger({ collapsed: true }),
+));
+const store = createStore(reducer, middleware);
 
-export default store
-export * from './currentUser'
+export default store;
+export * from './currentUser';
+export * from './pets';

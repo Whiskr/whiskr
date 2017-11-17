@@ -1,27 +1,28 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {Route, Switch, BrowserRouter as Router} from 'react-router-dom'
-import PropTypes from 'prop-types'
-import { Login, Signup, UserHome } from './components'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { Login, Signup, UserHome, AllPets } from './components';
 import App from './App';
-import { me } from './store'
+import { me } from './store';
 
 /**
  * COMPONENT
  */
 class Routes extends Component {
-  componentDidMount () {
-    this.props.loadInitialData()
+  componentDidMount() {
+    this.props.loadInitialData();
   }
 
-  render () {
-    const {isLoggedIn} = this.props
+  render() {
+    const { isLoggedIn } = this.props;
 
     return (
       <Router>
         <App>
           <Switch>
             {/* Routes placed here are available to all visitors */}
+            <Route path="/pets" component={AllPets} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
             {
@@ -36,35 +37,31 @@ class Routes extends Component {
           </Switch>
         </App>
       </Router>
-    )
+    );
   }
 }
 
 /**
  * CONTAINER
  */
-const mapState = (state) => {
-  return {
-    // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
-    // Otherwise, state.user will be an empty object, and state.user.id will be falsey
-    isLoggedIn: !!state.currentUser.id
-  }
-}
+const mapState = state => ({
+  // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
+  // Otherwise, state.user will be an empty object, and state.user.id will be falsey
+  isLoggedIn: !!state.currentUser.id,
+});
 
-const mapDispatch = (dispatch) => {
-  return {
-    loadInitialData () {
-      dispatch(me())
-    }
-  }
-}
+const mapDispatch = dispatch => ({
+  loadInitialData() {
+    dispatch(me());
+  },
+});
 
-export default connect(mapState, mapDispatch)(Routes)
+export default connect(mapState, mapDispatch)(Routes);
 
 /**
  * PROP TYPES
  */
 Routes.propTypes = {
   loadInitialData: PropTypes.func.isRequired,
-  isLoggedIn: PropTypes.bool.isRequired
-}
+  isLoggedIn: PropTypes.bool.isRequired,
+};
