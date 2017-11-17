@@ -83,12 +83,12 @@ const setSaltAndPassword = user => {
 
 User.beforeCreate(setSaltAndPassword)
 User.beforeUpdate(setSaltAndPassword)
-User.beforeUpdate((stateObject, options) => {
-  let preferences = ['dogs', 'cats', 'birds', 'smallFurries', 'reptiles', 'horses', 'barnyardAnimals']
-  let owns = ['dog', 'cat', 'bird', 'smallFurry', 'reptile', 'horse', 'barnyardAnimal']
-  const keys = Object.keys(stateObject)
-  let filteredKeys = keys.map(key => stateObject[key] === true)
+// User.beforeUpdate((stateObject, options) => {
+//   let preferences = ['dogs', 'cats', 'birds', 'smallFurries', 'reptiles', 'horses', 'barnyardAnimals']
+//   let owns = ['dog', 'cat', 'bird', 'smallFurry', 'reptile', 'horse', 'barnyardAnimal']
+//   const keys = Object.keys(stateObject)
+//   let filteredKeys = keys.map(key => stateObject[key] === true)
 
-  stateObject.animalPreferences = filteredKeys.filter(key => preferences.indexOf(key) > -1);
-  stateObject.otherPetTypes = filteredKeys.filter(key => owns.indexOf(key) > -1)
-})
+//   stateObject.animalPreferences = filteredKeys.filter(key => preferences.indexOf(key) > -1);
+//   stateObject.otherPetTypes = filteredKeys.filter(key => owns.indexOf(key) > -1)
+// })

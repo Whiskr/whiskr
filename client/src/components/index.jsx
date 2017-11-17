@@ -6,4 +6,4 @@
 export { default as UserHome } from './user-home';
 export { Login, Signup } from './auth-form';
 export { default as AllPets } from './AllPets';
-export { default as UserEditProfileForm } from './UserEditProfileForm';
+export { default as ProfileForm } from './forms/ProfileForm';
