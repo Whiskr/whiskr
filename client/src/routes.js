@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Login, Signup, UserHome, AllPets } from './components';
+import { Login, Signup, UserHome, AllPets, UserEditProfileForm } from './components';
 import App from './App';
 import { me } from './store';
 
@@ -25,6 +25,7 @@ class Routes extends Component {
             <Route path="/pets" component={AllPets} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
+            <Route path="/profileForm" component={UserEditProfileForm} />
             {
               isLoggedIn &&
                 <Switch>

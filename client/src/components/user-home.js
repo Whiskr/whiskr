@@ -50,7 +50,7 @@ export const UserHome = (props) => {
         </div>
       </div>
       <div>
-        <NavLink to="/UserEditProfileForm">
+        <NavLink to="/ProfileForm">
           <button disabled={true}>Edit Your Profile</button>
         </NavLink>
         <button disabled={true}>Delete Your Account</button>
