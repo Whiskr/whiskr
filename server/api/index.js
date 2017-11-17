@@ -2,7 +2,7 @@ const router = require('express').Router()
 const statusCat = require('http-status-cats')
 module.exports = router
 
-router.use('/user', require('./user'))
+router.use('/userAccount', require('./userAccount'))
 
 router.use('/match', require('./match'))
 

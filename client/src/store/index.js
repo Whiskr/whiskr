@@ -13,6 +13,6 @@ const middleware = composeWithDevTools(applyMiddleware(
 const store = createStore(reducer, middleware);
 
 export default store;
-export * from './user';
+export * from './currentUser';
 export * from './pets';
 export * from './matches';

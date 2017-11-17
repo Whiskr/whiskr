@@ -12,6 +12,7 @@ import { logout } from './store';
  */
 class App extends Component {
   render() {
+    const {children} = this.props
     return (
       <div className="App">
         {this.props.children}
