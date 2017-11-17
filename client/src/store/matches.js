@@ -10,7 +10,7 @@ const REMOVE_MATCHES = 'REMOVE_MATCHES'
 
 const getMatches = matches => ({type: GET_MATCHES, matches})
 const removeMatches = () => ({type: REMOVE_MATCHES})
-const createMatches = matches => ({type: CREATE_MATCHES, matches})
+const createMatches = match => ({type: CREATE_MATCHES, match})
 
 //THUNK CREATORS
 
@@ -21,10 +21,25 @@ export const fetchMatches = (userId) =>
           dispatch(getMatches(res.data)))
           .catch(err => console.log(err))
 
-// export const removeMatches = (matchId) =>
-//     dispatch =>
-//     dispatch(removeMatches(`/api/match/${matchId}`))
-//     axios.delete(``)
+export const addMatches = (matchData) =>
+    dispatch =>
+    axios.post(`/api/match`, matchData)
+        .then(res => {
+            dispatch(createMatches(`/api/match`))
+            return res.data;
+        })
+        .catch(err => console.log(err))
 
 
-// Change delete model from API route to take matchId instead of user and pet Id
+//REDUCER
+
+export default function (state = {}, action) {
+    switch (action.type) {
+      case GET_MATCHES:
+        return action.user
+      case CREATE_MATCHES:
+        return [...state, action.match]
+      default:
+        return state
+    }
+  }
