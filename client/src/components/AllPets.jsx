@@ -21,8 +21,8 @@ const AllPets = props => (
   </Cards>
 );
 
-// const mapState = state => ({ pets });
+// const mapState = state => ({ matches });
 
 const mapDispatch = dispatch => ({ rejectPet, lovePet, refreshCards });
 
-export default connect(null, mapDispatch)(AllPets);
+export default connect(mapDispatch)(AllPets);

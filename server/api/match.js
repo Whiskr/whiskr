@@ -27,8 +27,7 @@ router.post('/', (req, res, next) => {
 router.delete('/', (req, res, next) => {
     Match.destroy({
         where: {
-            petId: req.body.petId,
-            userId: req.body.userId
+            id: req.body.matchId
         }
     })
     .then(() => res.sendStatus(204))
