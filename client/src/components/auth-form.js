@@ -25,7 +25,7 @@ const AuthForm = (props) => {
         <div>
           <button type="submit">{displayName}</button>
         </div>
-        {error && error.response && <div> {error.response.data} </div>}
+          {/*error && error.response && <div> {error.response.data} </div>*/}
       </form>
       <a href="/auth/google">{displayName} with Google</a>
     </div>
@@ -43,7 +43,7 @@ const mapLogin = (state) => {
   return {
     name: 'login',
     displayName: 'Login',
-    error: state.currentUser.error
+    /*error: state.currentUser.error*/
   }
 }
 
