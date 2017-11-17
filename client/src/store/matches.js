@@ -34,7 +34,6 @@ export const addMatches = (matchData) =>
 //REDUCER
 
 export default function (state = [], action) {
-  console.log("inreducer")
     switch (action.type) {
       case GET_MATCHES:
         return action.matches

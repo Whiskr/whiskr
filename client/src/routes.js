@@ -4,7 +4,7 @@ import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Login, Signup, UserHome, AllPets } from './components';
 import App from './App';
-import { me } from './store';
+import { me, fetchMatches } from './store';
 
 /**
  * COMPONENT
@@ -48,11 +48,14 @@ const mapState = state => ({
   // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
   // Otherwise, state.user will be an empty object, and state.user.id will be falsey
   isLoggedIn: !!state.user.id,
+  user: state.user,
+  matches: state.matches
 });
 
 const mapDispatch = dispatch => ({
-  loadInitialData() {
-    dispatch(me());
+  loadInitialData(userId) {
+    dispatch(me())
+    dispatch(fetchMatches(userId))
   },
 });
 

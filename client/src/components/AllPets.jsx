@@ -9,23 +9,27 @@ const data = ['Spot', 'Duke', 'Fluffy'];
 
  class AllPets extends Component {
 
-  componentDidMount(){
-     const user = this.props.user
-     //user is not loaded yet so i can't pass down the user.id prop yet
-    this.props.getAllMatches(1);
 
+  componentDidMount() {
+    console.log(this.props)
   }
   render() {
     return (
       <div>
         <h1> heeey</h1>
-        <p>{this.props.user.id}</p>
+        <p>{this.props.user}</p>
       </div>
     )
   }
 }
 
-const mapState = () => ({ user, matches }) => ({ user, matches });
+const mapState = (state) => {
+  return ({
+    user: state.user,
+    matches: state.matches
+  }
+  )
+}
 
 const mapDispatch = (dispatch) => {
   return{
