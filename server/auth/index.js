@@ -2,6 +2,7 @@ const router = require('express').Router()
 const User = require('../db/models/user')
 module.exports = router
 
+//Logs user in and sets them to currentUser on the state
 router.post('/login', (req, res, next) => {
   User.findOne({where: {email: req.body.email}})
     .then(user => {
