@@ -1,12 +1,12 @@
 import axios from 'axios'
 
-//ACTION TYPES 
+//ACTION TYPES
 
 const GET_MATCHES = 'GET_MATCHES'
 const CREATE_MATCHES = 'CREATE_MATCHES'
 const REMOVE_MATCHES = 'REMOVE_MATCHES'
 
-// ACTION CREATOR 
+// ACTION CREATOR
 
 const getMatches = matches => ({type: GET_MATCHES, matches})
 const removeMatches = () => ({type: REMOVE_MATCHES})
@@ -14,10 +14,10 @@ const createMatches = match => ({type: CREATE_MATCHES, match})
 
 //THUNK CREATORS
 
-export const fetchMatches = (userId) => 
+export const fetchMatches = (userId) =>
     dispatch =>
     axios.get(`/api/match/${userId}`)
-        .then(res => 
+        .then(res =>
           dispatch(getMatches(res.data)))
           .catch(err => console.log(err))
 
@@ -33,10 +33,11 @@ export const addMatches = (matchData) =>
 
 //REDUCER
 
-export default function (state = {}, action) {
+export default function (state = [], action) {
+  console.log("inreducer")
     switch (action.type) {
       case GET_MATCHES:
-        return action.user
+        return action.matches
       case CREATE_MATCHES:
         return [...state, action.match]
       default:
