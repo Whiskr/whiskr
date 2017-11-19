@@ -43,7 +43,7 @@ const mapLogin = (state) => {
   return {
     name: 'login',
     displayName: 'Login',
-    /*error: state.currentUser.error*/
+    error: state.currentUser.error
   }
 }
 

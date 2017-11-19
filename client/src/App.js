@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
 import { logout } from './store';
+import Navbar from './components/Navbar'
 
 /**
  * COMPONENT
@@ -15,11 +16,29 @@ class App extends Component {
     const {children} = this.props
     return (
       <div className="App">
+        <Navbar />
         {this.props.children}
       </div>
     );
   }
 }
 
-
-export default App;
+const mapState = (state) => {
+  return {
+    isLoggedIn: !!state.currentUser.id
+  }
+}
+const mapDispatch = (dispatch) => {
+  return {
+    handleClick () {
+      dispatch(logout())
+    }
+  }
+}
+export default withRouter(connect(mapState,mapDispatch)(App))
+/**
+ * PROP TYPES
+ */
+App.propTypes = {
+  children: PropTypes.object,
+}
