@@ -4,7 +4,7 @@ import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Login, UserHome, AllPets, SinglePet, CreateProfile, UpdateProfile } from './components';
 import App from './App';
-import { me, fetchMatches } from './store';
+import { me } from './store';
 
 /**
  * COMPONENT
@@ -12,7 +12,6 @@ import { me, fetchMatches } from './store';
 class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData();
-    
   }
 
   render() {
@@ -52,13 +51,13 @@ const mapState = state => ({
   // Otherwise, state.user will be an empty object, and state.user.id will be falsey
   isLoggedIn: !!state.currentUser.id,
   currentUser: state.currentUser,
-  matches: state.matches
+  matches: state.matches,
 });
 
 const mapDispatch = dispatch => ({
   loadInitialData() {
-    dispatch(me())
-  }
+    dispatch(me());
+  },
 });
 
 export default connect(mapState, mapDispatch)(Routes);
