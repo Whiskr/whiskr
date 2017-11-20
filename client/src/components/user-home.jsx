@@ -2,12 +2,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import { NavLink } from 'react-router-dom'
+import { deleteAccount } from '../store'
 
 //COMPONENT
 
 export const UserHome = (props) => {
-  const {user} = props
-
+  const { user, deleteUser } = props
+  const userId = user.id
   return (
     <div>
       <h3>Your Profile</h3>
@@ -53,7 +54,9 @@ export const UserHome = (props) => {
         <NavLink to="/updateProfile">
           <button>Edit Your Profile</button>
         </NavLink>
-        <button disabled={true}>Delete Your Account</button>
+        <NavLink to="/login">
+          <button onClick={(event) => deleteUser(event, userId)}>Delete Your Account</button>
+        </NavLink>
       </div>
     </div>
   )
@@ -63,9 +66,18 @@ export const UserHome = (props) => {
 //CONTAINER
 const mapState = (state) =>  ({ user: state.currentUser })
 
+const mapDispatch = (dispatch) => ({ 
+  deleteUser(event, userId) {
+    event.preventDefault()
+    if (window.confirm('Are you sure you want to delete your account?')) {
+      dispatch(deleteAccount(userId))
+    }
+  }
+})
 
 
-export default connect(mapState)(UserHome)
+
+export default connect(mapState, mapDispatch)(UserHome)
 
 /**
  * PROP TYPES

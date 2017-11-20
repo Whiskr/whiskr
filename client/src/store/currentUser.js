@@ -48,12 +48,11 @@ export const updateUser = (userId, updateInfo) => {
 }
 
 export const deleteAccount = (userId) => {
-  dispatch => 
-  axios.delete(`/api/userAccount/${userId}`)
-  .then(_ => {
+  return dispatch => {
     dispatch(logOutUser())
-    })
+    axios.delete(`/api/userAccount/${userId}`)
     .catch(err => console.log(err))
+  }
 }
 
 //REDUCER
