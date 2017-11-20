@@ -33,15 +33,16 @@ const User = db.define('user', {
     defaultValue: []
   },
   zipCode: {
-    type: Sequelize.STRING
+    type: Sequelize.STRING,
+    defaultValue: ''
   },
   phoneNumber: {
     type: Sequelize.STRING,
-    allowNull: false
+    defaultValue: ''
   },
   petHistory: {
     type: Sequelize.TEXT,
-    allowNull: false
+    defaultValue: ''
   }
 })
 
@@ -79,5 +80,8 @@ const setSaltAndPassword = user => {
   }
 }
 
+
+
 User.beforeCreate(setSaltAndPassword)
 User.beforeUpdate(setSaltAndPassword)
+
