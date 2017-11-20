@@ -19,7 +19,7 @@ router.post('/', (req, res, next) => {
         petId: req.body.petId,
         userId: req.body.userId
     })
-    .then(() => res.sendStatus(200))
+    .then((newMatch) => res.send(newMatch))
     .catch(next)
 })
 

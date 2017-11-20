@@ -19,7 +19,7 @@ class AllPets extends Component {
         <Card
           key={i}
           onSwipeLeft={() => { this.props.onReject(el.id.$t) }}
-          onSwipeRight={() => { this.props.onLove(el.id.$t) }}
+          onSwipeRight={() => { this.props.onLove(el.id.$t, this.props.currentUser.id ) }}
         >
           <SinglePet pet={el} />
         </Card>
@@ -31,7 +31,7 @@ class AllPets extends Component {
 
 const mapState = state => ({
   pets: state.pets,
-  user: state.user,
+  currentUser: state.currentUser,
 });
 
 const mapDispatch = (dispatch, ownProps) => ({
@@ -45,9 +45,8 @@ const mapDispatch = (dispatch, ownProps) => ({
   onReject(i) {
     dispatch(rejectPet(i));
   },
-  onLove(i) {
-    dispatch(lovePet(i)),
-    dispatch(addMatches({petId: i, userId: this.props.user.id}));
+  onLove(petId, userId) {
+    dispatch(addMatches(petId, userId));
   },
 });
 
