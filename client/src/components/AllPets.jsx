@@ -1,28 +1,42 @@
-import React from 'react';
-import Cards, { Card } from 'react-swipe-card';
+import React, { Component } from 'react';
+// import Cards, { Card } from 'react-swipe-card';
 import { connect } from 'react-redux';
-import { rejectPet, lovePet, refreshCards } from '../store';
+import { fetchAllPets } from '../store';
+// import SinglePet from './SinglePet';
 
+class AllPets extends Component {
+  componentDidMount() {
+    this.props.onLoad();
+  }
 
-const data = ['Spot', 'Duke', 'Fluffy'];
+  render() {
+    console.log('Pets in allPets: ', this.props.pets);
+    return (<div />
+    //   <Cards onEnd={this.props.refreshCards} className="master-root">
+    //     {this.props.pets && this.props.pets.map((item, i) =>
+    //   (
+    //     <Card
+    //       key={i}
+    //       onSwipeLeft={this.props.rejectPet(i)}
+    //       onSwipeRight={this.props.lovePet(i)}
+    //     >
+    //       <SinglePet pet={item} />
+    //     </Card>
+    // ))}
+    //   </Cards>
+    )
+  }
+}
 
-const AllPets = props => (
-  <Cards onEnd={props.refreshCards} className="master-root">
-    {data.map((item, i) =>
-      (
-        <Card
-          key={i}
-          onSwipeLeft={props.rejectPet(i)}
-          onSwipeRight={props.lovePet(i)}
-        >
-          <h2>{item}</h2>
-        </Card>
-    ))}
-  </Cards>
-);
+const mapState = state => ({
+  pets: state.pets,
+  user: state.user,
+});
 
-// const mapState = state => ({ pets });
+const mapDispatch = (dispatch, ownProps) => ({
+  onLoad() {
+    dispatch(fetchAllPets(ownProps.match.params.type));
+  },
+});
 
-const mapDispatch = dispatch => ({ rejectPet, lovePet, refreshCards });
-
-export default connect(null, mapDispatch)(AllPets);
+export default connect(mapState, mapDispatch)(AllPets)
