@@ -24,7 +24,6 @@ export const auth = (email, password, method) =>
     axios.post(`/auth/${method}`, { email, password })
       .then(res => {
         dispatch(getUser(res.data))
-      
       })
       .catch(error =>
         dispatch(getUser({error})))
@@ -39,13 +38,13 @@ export const logout = () =>
 
 //updateUser expects the state's currentUser.id, and updated info to be prepackaged into a single, nested object
 export const updateUser = (userId, updateInfo) => {
-  dispatch => 
-    axios.put(`/api/userAccount/${userId}`, {updateInfo})
+  return dispatch => {
+    axios.put(`/api/userAccount/${userId}`, updateInfo)
     .then(res => {
       dispatch(getUser(res.data))
     })
-    .catch(error =>
-      dispatch(getUser({error})))
+    .catch(error => console.error(error))
+  }
 }
 
 export const deleteAccount = (userId) => {
@@ -59,7 +58,7 @@ export const deleteAccount = (userId) => {
 
 //REDUCER
 
-export default function (state = defaultUser, action) {
+export default function currentUser (state = defaultUser, action) {
   switch (action.type) {
     case GET_USER:
       return action.user
