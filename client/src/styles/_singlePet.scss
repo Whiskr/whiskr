@@ -1,4 +1,9 @@
 #petCard {
+
+    * {
+        transition: all .7s ease;
+    }
+
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
@@ -18,6 +23,7 @@
     }
 }
 
+@media screen and (max-width: 480px) {
 .expanded {
     h2,
     h3,
@@ -26,19 +32,25 @@
     div {
         display: block;
     }
+
+    h1 {
+        font-size: 26px;
+    }
+    h2 {
+        font-size: 18px;
+        line-height: 0;
+        }
+
     .petPic {
         border-radius: 100%;
         object-fit: cover;
         display: block;
-        width: 150px;
-        height: 150px;
+        width: 100px;
+        height: 100px;
     }
 }
 
 .collapsed {
-    h1 {
-        font-size: 36px;
-    }
     p,
     h3,
     h4 {
@@ -48,11 +60,31 @@
         border-radius: 100%;
         object-fit: cover;
         display: block;
-        width: 260px;
-        height: 260px;
+        width: 70vw;
+        height: 70vw;
     }
+}
 }
 
 .rounded {
     border-radius: 10px;
+}
+
+@media screen and (min-width: 480px) {
+    .collapsed, .expanded {
+            h2,
+            h3,
+            h4,
+            p,
+            div {
+                display: block;
+            }
+            .petPic {
+                border-radius: 100%;
+                object-fit: cover;
+                display: block;
+                width: 300px;
+                height: 300px;
+        }
+    }
 }

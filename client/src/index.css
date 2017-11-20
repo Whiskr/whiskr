@@ -31,6 +31,8 @@ h2 {
   justify-content: space-around;
   align-content: stretch;
   height: 100%; }
+  #petCard * {
+    transition: all .7s ease; }
   #petCard .flex {
     margin: auto; }
   #petCard #more {
@@ -42,37 +44,55 @@ h2 {
     right: 0;
     top: 0; }
 
-.expanded h2,
-.expanded h3,
-.expanded h4,
-.expanded p,
-.expanded div {
-  display: block; }
-
-.expanded .petPic {
-  border-radius: 100%;
-  object-fit: cover;
-  display: block;
-  width: 150px;
-  height: 150px; }
-
-.collapsed h1 {
-  font-size: 36px; }
-
-.collapsed p,
-.collapsed h3,
-.collapsed h4 {
-  display: none; }
-
-.collapsed .petPic {
-  border-radius: 100%;
-  object-fit: cover;
-  display: block;
-  width: 260px;
-  height: 260px; }
+@media screen and (max-width: 480px) {
+  .expanded h2,
+  .expanded h3,
+  .expanded h4,
+  .expanded p,
+  .expanded div {
+    display: block; }
+  .expanded h1 {
+    font-size: 26px; }
+  .expanded h2 {
+    font-size: 18px;
+    line-height: 0; }
+  .expanded .petPic {
+    border-radius: 100%;
+    object-fit: cover;
+    display: block;
+    width: 100px;
+    height: 100px; }
+  .collapsed p,
+  .collapsed h3,
+  .collapsed h4 {
+    display: none; }
+  .collapsed .petPic {
+    border-radius: 100%;
+    object-fit: cover;
+    display: block;
+    width: 70vw;
+    height: 70vw; } }
 
 .rounded {
   border-radius: 10px; }
+
+@media screen and (min-width: 480px) {
+  .collapsed h2,
+  .collapsed h3,
+  .collapsed h4,
+  .collapsed p,
+  .collapsed div, .expanded h2,
+  .expanded h3,
+  .expanded h4,
+  .expanded p,
+  .expanded div {
+    display: block; }
+  .collapsed .petPic, .expanded .petPic {
+    border-radius: 100%;
+    object-fit: cover;
+    display: block;
+    width: 300px;
+    height: 300px; } }
 
 .master-root {
   margin: auto;
