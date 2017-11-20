@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
+import { NavLink } from 'react-router-dom'
 
-/**
- * COMPONENT
- */
+//COMPONENT
+
 export const UserHome = (props) => {
   const {user} = props
 
@@ -42,7 +42,7 @@ export const UserHome = (props) => {
         </div>
         <div>
           <h4>You Have Young Children:</h4>
-          <p>{user.hasYoungChildren ? 'True' : 'False'}</p> 
+          <p>{user.hasYoungChildren ? 'Yes' : 'No'}</p> 
         </div>
         <div>
           <h4>Your Pet Owning History:</h4>
@@ -50,16 +50,17 @@ export const UserHome = (props) => {
         </div>
       </div>
       <div>
-        <button disabled={true}>Edit Your Profile</button>
+        <NavLink to="/updateProfile">
+          <button>Edit Your Profile</button>
+        </NavLink>
         <button disabled={true}>Delete Your Account</button>
       </div>
     </div>
   )
 }
 
-/**
- * CONTAINER
- */
+
+//CONTAINER
 const mapState = (state) =>  ({ user: state.currentUser })
 
 
