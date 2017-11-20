@@ -23,7 +23,7 @@ router.post('/', (req, res, next) => {
     }
   })
     .then((newMatch) => res.json(newMatch[0]))
-    .catch(next)
+    .catch(err => console.log(err))
 })
 
 //Delete a match
