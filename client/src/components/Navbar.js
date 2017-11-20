@@ -19,10 +19,6 @@ const Navbar = (props) => {
                   <a href="#home" onClick={handleClick}>Logout</a>
                 </div>
                 : <div>
-                  {/* The navbar will show these links before you log in */}
-                  <Link to="/login">Login</Link>
-                  <br />
-                  <Link to="/signup">Sign Up</Link>
                 </div>
             }
 
