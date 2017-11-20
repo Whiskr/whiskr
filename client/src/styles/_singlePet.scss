@@ -1,17 +1,90 @@
-.container {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-around;
-  align-content: stretch;
+#petCard {
+
+    * {
+        transition: all .7s ease;
+    }
+
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-content: stretch;
+    height: 100%;
+    .flex {
+        margin: auto;
+    }
+    #more {
+        background-color: $secondary-medium-color;
+        padding: 10px;
+        font-size: 30px;
+        position: fixed;
+        margin: 10px;
+        right: 0;
+        top: 0;
+    }
 }
 
-.flex {
-  margin: auto;
+@media screen and (max-width: 480px) {
+.expanded {
+    h2,
+    h3,
+    h4,
+    p,
+    div {
+        display: block;
+    }
+
+    h1 {
+        font-size: 26px;
+    }
+    h2 {
+        font-size: 18px;
+        line-height: 0;
+        }
+
+    .petPic {
+        border-radius: 100%;
+        object-fit: cover;
+        display: block;
+        width: 100px;
+        height: 100px;
+    }
 }
 
-.petPic {
-  object-fit: cover;
-display: block;
-max-width: 300px;
-height: 30vh;
+.collapsed {
+    p,
+    h3,
+    h4 {
+        display: none;
+    }
+    .petPic {
+        border-radius: 100%;
+        object-fit: cover;
+        display: block;
+        width: 70vw;
+        height: 70vw;
+    }
+}
+}
+
+.rounded {
+    border-radius: 10px;
+}
+
+@media screen and (min-width: 480px) {
+    .collapsed, .expanded {
+            h2,
+            h3,
+            h4,
+            p,
+            div {
+                display: block;
+            }
+            .petPic {
+                border-radius: 100%;
+                object-fit: cover;
+                display: block;
+                width: 300px;
+                height: 300px;
+        }
+    }
 }

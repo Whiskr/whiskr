@@ -3,7 +3,7 @@ import axios from 'axios';
 /**
  * ACTION TYPES
  */
-const FETCH_PETS = 'FETCH_PETS'
+const FETCH_PETS = 'FETCH_PETS';
 const REJECT_PET = 'REJECT_PET';
 const REFRESH_CARDS = 'REFRESH_CARDS';
 const LOVE_PET = 'LOVE_PET';
@@ -27,10 +27,10 @@ export const fetchAllPets = type =>
     +
     `http://api.petfinder.com/pet.find?format=json&animal=${type}&location=11226&key=01e0c19609326eb33ed70df84f870392`)
       .then((res) => {
-        dispatch(fetchPets(res.data.petfinder.pets.pet))
+        dispatch(fetchPets(res.data.petfinder.pets.pet));
       })
       .catch(err => console.log(err));
-  }
+  };
 
 export const rejectPet = id =>
   (dispatch) => {
