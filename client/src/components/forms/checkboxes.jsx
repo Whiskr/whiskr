@@ -35,6 +35,10 @@ class Checkbox extends React.Component {
           <input name="birds" type="checkbox" value="bird" checked={this.state.birds} onChange={this.handleChange} />
         </div>
         <div>
+          <label htmlFor={name}><small>Rabbits</small></label>
+          <input name="rabbits" type="checkbox" value="rabbit" checked={this.state.rabbits} onChange={this.handleChange} />
+        </div>
+        <div>
           <label htmlFor={name}><small>Small Mammals</small></label>
           <input name="smallFurries" type="checkbox" value="smallFurry" checked={this.state.smallFurry} onChange={this.handleChange} />
         </div>
