@@ -1,64 +1,71 @@
 .master-root {
-  margin: auto;
-  position: relative;
-  height: 100vh;
-  width: 100vw;
-  overflow: hidden;
-  border: none;
+    margin: auto;
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    border: none;
 }
 
 .card {
-  padding: 5vw;
-  background-color: white;
-  background-size: cover;
-  position: absolute;
-  background: rgb(166, 207, 211);
-  height: 80vh;
-  width: 80vw;
-  margin: 0 auto;
-  transition: box-shadow .3s;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-  cursor: pointer;
-  overflow: hidden;
+    padding: 5vw;
+    background-color: white;
+    background-size: cover;
+    position: absolute;
+    background: rgb(255, 236, 235);
+    height: 80vh;
+    width: 80vw;
+    margin: 0 auto;
+    transition: box-shadow .3s;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    cursor: pointer;
+    overflow: hidden;
 }
 
 .animate {
-  transition: transform .3s;
-  box-shadow: none;
+    transition: transform .3s;
+    box-shadow: none;
 }
 
 .inactive {
-  box-shadow: none;
+    box-shadow: none;
 }
 
 .alert {
-  width: 45%;
-  min-height: 10%;
-  position: absolute;
-  z-index: 9999;
-  opacity: 0;
-  transition: opacity .5s;
-  color: white;
-  vertical-align: middle;
-  line-height: 3rem;
+    width: 85px;
+    position: absolute;
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity .5s;
+    color: white;
+    vertical-align: middle;
+    line-height: 1rem;
 }
 
 .alert-visible {
-  opacity: 1;
+    opacity: .6;
+}
+
+.alert-base {
+    margin: 15px;
+    padding: 8px 5px 5px 5px;
+    top: 0;
+    border-radius: 100%;
+}
+
+.icon {
+  height: auto;
+  width: 70px;
 }
 
 .alert-right {
-  top: 0;
-  right: 0;
-  background: green;
-  border-top-left-radius: 50px;
-  border-bottom-left-radius: 50px;
+    @extend .alert-base;
+    right: 0;
+    background: red;
 }
 
 .alert-left {
-  top: 0;
-  left: 0;
-  background: red;
-  border-top-right-radius: 50px;
-  border-bottom-right-radius: 50px;
+    @extend .alert-base;
+    left: 0;
+    background: blue;
 }
