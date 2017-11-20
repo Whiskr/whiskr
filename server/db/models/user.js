@@ -33,13 +33,16 @@ const User = db.define('user', {
     defaultValue: []
   },
   zipCode: {
-    type: Sequelize.STRING
+    type: Sequelize.STRING,
+    defaultValue: ''
   },
   phoneNumber: {
-    type: Sequelize.STRING
+    type: Sequelize.STRING,
+    defaultValue: ''
   },
   petHistory: {
-    type: Sequelize.TEXT
+    type: Sequelize.TEXT,
+    defaultValue: ''
   }
 })
 
