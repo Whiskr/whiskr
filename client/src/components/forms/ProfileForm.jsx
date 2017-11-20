@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import _ from 'lodash'
-import {updateUser} from '../store'
+import {updateUser} from '../../store'
 import { AnimalPreferences, OtherPetTypes } from './checkboxes'
 
 //COMPONENT
@@ -15,9 +15,10 @@ class ProfileForm extends React.Component {
     }
 
     handleCheckbox(checkboxState, componentName) {
-        const key = (componentName === 'animalPreferences') ? animalPreferences : otherPetTypes
+        const key = (componentName === 'animalPreferences') ? 'animalPreferences' : 'otherPetTypes'
         const array = _.keys(_.pickBy(checkboxState))
         this.setState( { [key]: array })
+        console.log(this.state)
     }
 
     handleChange(event) {
@@ -25,6 +26,7 @@ class ProfileForm extends React.Component {
     }
     render() {
         const {user} = this.props
+        console.log(this.state)
         return (
             <div>
             <form onSubmit={(event) => this.handleSubmit(event, user.id, this.state)}>
@@ -75,6 +77,7 @@ const mapDispatch = dispatch => {
     return {
       handleSubmit (evt, userId, localState) {
         evt.preventDefault()
+        console.log(localState)
         dispatch(updateUser(userId, localState))
       }
     }

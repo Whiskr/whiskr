@@ -39,10 +39,11 @@ export const logout = () =>
 
 //updateUser expects the state's currentUser.id, and updated info to be prepackaged into a single, nested object
 export const updateUser = (userId, updateInfo) => {
-  console.log('update Info', updateInfo)
+  console.log('update Info', updateInfo, 'userId', userId)
   dispatch => {
     axios.put(`/api/userAccount/${userId}`, {updateInfo})
     .then(res => {
+      console.log('inside axios' ,res)
       dispatch(getUser(res.data))
     })
     .catch(error =>

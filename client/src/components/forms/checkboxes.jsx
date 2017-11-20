@@ -10,14 +10,14 @@ class Checkbox extends React.Component {
 
     handleChange(event) {
         const value = event.target.checked;
-        this.setState({
+        Promise.resolve(this.setState({
             [event.target.name]: value
-        })
+        }))
         .then(() => {this.props.onCheck(this.state, this.props.name)})  
     }
 
     render () {
-        const { name, displayName, handleSubmit, error } = props;
+        const { name, displayName, handleSubmit, error } = this.props;
 
         return (
             <div>

@@ -20,6 +20,7 @@ module.exports = router
 router.put('/:userId', (req, res, next) => {
     User.findById(req.params.userId)
     .then(user => {
+        console.log('inside api route', user)
         user.update(req.body)
         .then(editedUser => res.json(editedUser))
     })
