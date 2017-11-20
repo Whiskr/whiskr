@@ -11,15 +11,15 @@ class AllPets extends Component {
   }
 
   render() {
-    console.log('Pets in allPets: ', this.props.pets);
+    console.log('Pets in allPets: ', this.props);
     return (
       <Cards onEnd={this.props.onEnd} className="master-root">
         {this.props.pets && this.props.pets.map((el, i) =>
       (
         <Card
           key={i}
-          onSwipeLeft={() => { this.props.onReject(i) }}
-          onSwipeRight={() => { this.props.onLove(i) }}
+          onSwipeLeft={() => { this.props.onReject(el.id.$t) }}
+          onSwipeRight={() => { this.props.onLove(el.id.$t) }}
         >
           <SinglePet pet={el} />
         </Card>
@@ -36,7 +36,8 @@ const mapState = state => ({
 
 const mapDispatch = (dispatch, ownProps) => ({
   onLoad() {
-    dispatch(fetchAllPets(ownProps.match.params.type));
+    dispatch(fetchAllPets(ownProps.match.params.type)),
+    dispatch(fetchMatches(1));
   },
   onEnd() {
     dispatch(refreshCards());
@@ -45,7 +46,8 @@ const mapDispatch = (dispatch, ownProps) => ({
     dispatch(rejectPet(i));
   },
   onLove(i) {
-    dispatch(lovePet(i));
+    dispatch(lovePet(i)),
+    dispatch(addMatches({petId: i, userId: this.props.user.id}));
   },
 });
 

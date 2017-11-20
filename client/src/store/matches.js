@@ -25,6 +25,7 @@ export const addMatches = (matchData) =>
     dispatch =>
     axios.post(`/api/match`, matchData)
         .then(res => {
+          console.log(matchData)
             dispatch(createMatches(`/api/match`))
             return res.data;
         })

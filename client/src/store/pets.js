@@ -40,7 +40,7 @@ export const rejectPet = id =>
 
 export const lovePet = id =>
   (dispatch) => {
-    console.log('Loved a super cool pet');
+    console.log('Loved a super cool pet',id);
     // dispatch(loveSinglePet(id));
   };
 
