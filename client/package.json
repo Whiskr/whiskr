@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "axios": "^0.17.1",
+    "concurrently": "^3.5.0",
+    "node-sass-chokidar": "^0.0.3",
     "react": "15.4.2",
     "react-dom": "15.4.2",
     "react-redux": "^5.0.6",
@@ -14,10 +16,13 @@
     "redux": "^3.7.2",
     "redux-devtools-extension": "^2.13.2",
     "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "sass": "^1.0.0-beta.3"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "build-css": "node-sass-chokidar src/styles -o src/",
+    "watch-css": "concurrently \"npm run build-css \" \" node-sass-chokidar src/styles -o src/ --watch --recursive\"",
+    "start": "concurrently \"react-scripts start\" \"yarn watch-css\"",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"

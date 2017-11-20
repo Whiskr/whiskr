@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-content: stretch;
+}
+
+.flex {
+  margin: auto;
+}
+
+.petPic {
+  object-fit: cover;
+display: block;
+max-width: 300px;
+height: 30vh;
+}

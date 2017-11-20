@@ -9,7 +9,7 @@ import { AnimalPreferences, OtherPetTypes } from './checkboxes'
 class ProfileForm extends React.Component {
     constructor(props){
         super(props)
-        this.state = {}
+        this.state = this.props.user
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.props.handleSubmit.bind(this)
         this.handleCheckbox = this.handleCheckbox.bind(this)
@@ -23,7 +23,6 @@ class ProfileForm extends React.Component {
 
     handleChange(event) {
         this.setState( { [event.target.name]: event.target.value } )
-        console.log(this.state)
     }
     render() {
         const {user} = this.props
