@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { auth } from '../store';
+import { withRouter } from 'react-router'
 
 /**
  * COMPONENT
@@ -22,7 +23,10 @@ const AuthForm = (props) => {
           <input name="password" type="password" />
         </div>
         <div>
-          <button type="submit">{displayName}</button>
+        {props.name === 'signup'
+          ? <button type="submit">Create Profile</button>
+          : <button type="submit">Log In</button>
+        }
         </div>
         {error && error.response && <div> {error.response.data} </div>}
       </form>
@@ -54,18 +58,20 @@ const mapSignup = (state) => {
   }
 }
 
-const mapDispatch = dispatch => ({
+const mapDispatch = (dispatch, ownProps) => ({
   handleSubmit(evt) {
     evt.preventDefault();
     const formName = evt.target.name;
     const email = evt.target.email.value;
     const password = evt.target.password.value;
-    dispatch(auth(email, password, formName));
+    const redirect = formName === 'login' ? '/petTypes' : '/createProfile'
+    Promise.resolve(dispatch(auth(email, password, formName)))
+    .then(() => {ownProps.history.push(redirect)})
   },
 });
 
-export const Login = connect(mapLogin, mapDispatch)(AuthForm);
-export const Signup = connect(mapSignup, mapDispatch)(AuthForm);
+export const Login = withRouter(connect(mapLogin, mapDispatch)(AuthForm));
+export const Signup = withRouter(connect(mapSignup, mapDispatch)(AuthForm));
 
 /**
  * PROP TYPES

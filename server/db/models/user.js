@@ -36,12 +36,10 @@ const User = db.define('user', {
     type: Sequelize.INTEGER
   },
   phoneNumber: {
-    type: Sequelize.STRING,
-    allowNull: false
+    type: Sequelize.STRING
   },
   petHistory: {
-    type: Sequelize.TEXT,
-    allowNull: false
+    type: Sequelize.TEXT
   }
 })
 
@@ -83,12 +81,4 @@ const setSaltAndPassword = user => {
 
 User.beforeCreate(setSaltAndPassword)
 User.beforeUpdate(setSaltAndPassword)
-// User.beforeUpdate((stateObject, options) => {
-//   let preferences = ['dogs', 'cats', 'birds', 'smallFurries', 'reptiles', 'horses', 'barnyardAnimals']
-//   let owns = ['dog', 'cat', 'bird', 'smallFurry', 'reptile', 'horse', 'barnyardAnimal']
-//   const keys = Object.keys(stateObject)
-//   let filteredKeys = keys.map(key => stateObject[key] === true)
 
-//   stateObject.animalPreferences = filteredKeys.filter(key => preferences.indexOf(key) > -1);
-//   stateObject.otherPetTypes = filteredKeys.filter(key => owns.indexOf(key) > -1)
-// })
