@@ -1,13 +1,15 @@
 const router = require('express').Router()
-const {User} = require('../db/models')
+const {User, Match} = require('../db/models')
 module.exports = router
 
 //get a single user (to set them as current user on state)
-// router.get('/:userId', (req, res, next) => {
-//     User.findById(req.params.userId)
-//     .then(user => res.json(user))
-//     .catch(next)
-// })
+router.get('/:userId', (req, res, next) => {
+    User.findById(req.params.userId, { include: {
+        model: Match, as: 'matches'
+    }})
+    .then(user => res.json(user))
+    .catch(next)
+})
 
 //create a new user and return them to set as current user on state
 // router.post('/', (req, res, next) => {

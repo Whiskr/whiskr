@@ -65,7 +65,7 @@ export default function (state = defaultUser, action) {
       return action.user
     case LOGOUT_USER:
       return defaultUser
-    default:
+    default: 
       return state
   }
 }

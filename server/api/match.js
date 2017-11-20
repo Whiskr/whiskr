@@ -15,11 +15,14 @@ router.get('/:userId', (req, res, next) => {
 
 //Add a match to a logged-in user
 router.post('/', (req, res, next) => {
-    Match.create({
+    Match.findOrCreate(
+      {
+        where:{
         petId: req.body.petId,
         userId: req.body.userId
-    })
-    .then(() => res.sendStatus(200))
+    }
+  })
+    .then((newMatch) => res.json(newMatch[0]))
     .catch(next)
 })
 
@@ -27,8 +30,7 @@ router.post('/', (req, res, next) => {
 router.delete('/', (req, res, next) => {
     Match.destroy({
         where: {
-            petId: req.body.petId,
-            userId: req.body.userId
+            id: req.body.matchId
         }
     })
     .then(() => res.sendStatus(204))

@@ -34,13 +34,13 @@ export const fetchAllPets = type =>
 
 export const rejectPet = id =>
   (dispatch) => {
-    console.log('Rejected a poor pet');
+    console.log(`Rejected a poor pet # ${id}`);
     // dispatch(rejectSinglePet(id));
   };
 
 export const lovePet = id =>
   (dispatch) => {
-    console.log('Loved a super cool pet');
+    console.log('Loved a super cool pet',id);
     // dispatch(loveSinglePet(id));
   };
 
