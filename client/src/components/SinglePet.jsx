@@ -29,7 +29,7 @@ class SinglePet extends Component {
             src={
       pet.media.photos
       ? pet.media.photos.photo[3].$t
-      : 'https://www.staticwhich.co.uk/static/images/products/no-image/no-image-available.png'}
+      : 'http://biorem.org/wp-content/uploads/2016/07/not-available.png'}
             className="petPic rounded"
             alt="pet profile pic"
           />
