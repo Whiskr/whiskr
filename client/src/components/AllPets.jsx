@@ -2,16 +2,21 @@ import React, { Component } from 'react';
 import Cards, { Card } from 'react-swipe-card';
 import { connect } from 'react-redux';
 import { fetchMatches, addMatches } from '../store';
-import { rejectPet, lovePet, refreshCards, fetchAllPets } from '../store';
+import { rejectPet, refreshCards, fetchAllPets } from '../store';
 import SinglePet from './SinglePet';
 
 class AllPets extends Component {
   componentDidMount() {
     this.props.onLoad();
   }
+  // there is a lag with getting the currentUser on state so this is needed to work fetch matches:
+  componentWillReceiveProps(nextProps){
+    if(nextProps.currentUser && nextProps.currentUser.id !== this.props.currentUser.id){
+      this.props.loadMatches(nextProps.currentUser.id);
+    }
+  }
 
   render() {
-    console.log('Pets in allPets: ', this.props);
     return (
       <Cards onEnd={this.props.onEnd} className="master-root">
         {this.props.pets && this.props.pets.map((el, i) =>
@@ -36,8 +41,10 @@ const mapState = state => ({
 
 const mapDispatch = (dispatch, ownProps) => ({
   onLoad() {
-    dispatch(fetchAllPets(ownProps.match.params.type)),
-    dispatch(fetchMatches(1));
+    dispatch(fetchAllPets(ownProps.match.params.type))
+  },
+  loadMatches(id) {
+    dispatch(fetchMatches(id))
   },
   onEnd() {
     dispatch(refreshCards());

@@ -15,11 +15,14 @@ router.get('/:userId', (req, res, next) => {
 
 //Add a match to a logged-in user
 router.post('/', (req, res, next) => {
-    Match.create({
+    Match.findOrCreate(
+      {
+        where:{
         petId: req.body.petId,
         userId: req.body.userId
-    })
-    .then((newMatch) => res.send(newMatch))
+    }
+  })
+    .then((newMatch) => res.json(newMatch[0]))
     .catch(next)
 })
 

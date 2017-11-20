@@ -34,7 +34,7 @@ export const fetchAllPets = type =>
 
 export const rejectPet = id =>
   (dispatch) => {
-    console.log('Rejected a poor pet');
+    console.log(`Rejected a poor pet # ${id}`);
     // dispatch(rejectSinglePet(id));
   };
 
