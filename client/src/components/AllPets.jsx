@@ -1,9 +1,20 @@
 import React, { Component } from 'react';
 import Cards, { Card } from 'react-swipe-card';
 import { connect } from 'react-redux';
-import { fetchMatches, addMatches } from '../store';
-import { rejectPet, refreshCards, fetchAllPets } from '../store';
+import Fav from '../styles/favorite-icon.png';
+import Reject from '../styles/reject-icon.png';
+import { fetchMatches, addMatches, rejectPet, refreshCards, fetchAllPets } from '../store';
 import SinglePet from './SinglePet';
+
+
+const CustomAlertLeft = () => (
+  <span>
+    <img alt="reject pet icon" src={Reject} className="icon" />
+  </span>);
+const CustomAlertRight = () => (
+  <span>
+    <img alt="accept pet icon" src={Fav} className="icon" />
+  </span>);
 
 class AllPets extends Component {
   componentDidMount() {
@@ -18,7 +29,12 @@ class AllPets extends Component {
 
   render() {
     return (
-      <Cards onEnd={this.props.onEnd} className="master-root">
+      <Cards
+        alertRight={<CustomAlertRight />}
+        alertLeft={<CustomAlertLeft />}
+        onEnd={this.props.onEnd}
+        className="master-root"
+      >
         {this.props.pets && this.props.pets.map((el, i) =>
       (
         <Card

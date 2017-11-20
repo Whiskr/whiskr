@@ -25,20 +25,54 @@ h1,
 h2 {
   font-weight: 500; }
 
-.container {
+#petCard {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
-  align-content: stretch; }
+  align-content: stretch;
+  height: 100%; }
+  #petCard .flex {
+    margin: auto; }
+  #petCard #more {
+    background-color: teal;
+    padding: 10px;
+    font-size: 30px;
+    position: fixed;
+    margin: 10px;
+    right: 0;
+    top: 0; }
 
-.flex {
-  margin: auto; }
+.expanded h2,
+.expanded h3,
+.expanded h4,
+.expanded p,
+.expanded div {
+  display: block; }
 
-.petPic {
+.expanded .petPic {
+  border-radius: 100%;
   object-fit: cover;
   display: block;
-  max-width: 300px;
-  height: 30vh; }
+  width: 150px;
+  height: 150px; }
+
+.collapsed h1 {
+  font-size: 36px; }
+
+.collapsed p,
+.collapsed h3,
+.collapsed h4 {
+  display: none; }
+
+.collapsed .petPic {
+  border-radius: 100%;
+  object-fit: cover;
+  display: block;
+  width: 260px;
+  height: 260px; }
+
+.rounded {
+  border-radius: 10px; }
 
 .master-root {
   margin: auto;
@@ -53,7 +87,7 @@ h2 {
   background-color: white;
   background-size: cover;
   position: absolute;
-  background: #a6cfd3;
+  background: #ffeceb;
   height: 80vh;
   width: 80vw;
   margin: 0 auto;
@@ -70,29 +104,32 @@ h2 {
   box-shadow: none; }
 
 .alert {
-  width: 45%;
-  min-height: 10%;
+  width: 85px;
   position: absolute;
   z-index: 9999;
   opacity: 0;
   transition: opacity .5s;
   color: white;
   vertical-align: middle;
-  line-height: 3rem; }
+  line-height: 1rem; }
 
 .alert-visible {
-  opacity: 1; }
+  opacity: .6; }
+
+.alert-base, .alert-right, .alert-left {
+  margin: 15px;
+  padding: 8px 5px 5px 5px;
+  top: 0;
+  border-radius: 100%; }
+
+.icon {
+  height: auto;
+  width: 70px; }
 
 .alert-right {
-  top: 0;
   right: 0;
-  background: green;
-  border-top-left-radius: 50px;
-  border-bottom-left-radius: 50px; }
+  background: red; }
 
 .alert-left {
-  top: 0;
   left: 0;
-  background: red;
-  border-top-right-radius: 50px;
-  border-bottom-right-radius: 50px; }
+  background: blue; }

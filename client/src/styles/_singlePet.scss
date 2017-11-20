@@ -1,17 +1,58 @@
-.container {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-around;
-  align-content: stretch;
+#petCard {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-content: stretch;
+    height: 100%;
+    .flex {
+        margin: auto;
+    }
+    #more {
+        background-color: $secondary-medium-color;
+        padding: 10px;
+        font-size: 30px;
+        position: fixed;
+        margin: 10px;
+        right: 0;
+        top: 0;
+    }
 }
 
-.flex {
-  margin: auto;
+.expanded {
+    h2,
+    h3,
+    h4,
+    p,
+    div {
+        display: block;
+    }
+    .petPic {
+        border-radius: 100%;
+        object-fit: cover;
+        display: block;
+        width: 150px;
+        height: 150px;
+    }
 }
 
-.petPic {
-  object-fit: cover;
-display: block;
-max-width: 300px;
-height: 30vh;
+.collapsed {
+    h1 {
+        font-size: 36px;
+    }
+    p,
+    h3,
+    h4 {
+        display: none;
+    }
+    .petPic {
+        border-radius: 100%;
+        object-fit: cover;
+        display: block;
+        width: 260px;
+        height: 260px;
+    }
+}
+
+.rounded {
+    border-radius: 10px;
 }

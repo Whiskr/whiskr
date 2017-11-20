@@ -1,36 +1,36 @@
+$secondary-medium-color: teal;
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 html {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
-  text-align: center;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    text-align: center;
 }
 
 img {
-  width: 100%;
+    width: 100%;
 }
 
 li {
-  list-style: none;
+    list-style: none;
 }
 
 h1,
 h2 {
-  font-weight: 500;
+    font-weight: 500;
 }
-
 
 @import "_singlePet";
 @import "_allPets";
