@@ -10,8 +10,8 @@ class AllPets extends Component {
     this.props.onLoad();
   }
   // there is a lag with getting the currentUser on state so this is needed to work fetch matches:
-  componentWillReceiveProps(nextProps){
-    if(nextProps.currentUser && nextProps.currentUser.id !== this.props.currentUser.id){
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.currentUser && nextProps.currentUser.id !== this.props.currentUser.id) {
       this.props.loadMatches(nextProps.currentUser.id);
     }
   }
@@ -23,14 +23,14 @@ class AllPets extends Component {
       (
         <Card
           key={i}
-          onSwipeLeft={() => { this.props.onReject(el.id.$t) }}
-          onSwipeRight={() => { this.props.onLove(el.id.$t, this.props.currentUser.id ) }}
+          onSwipeLeft={() => { this.props.onReject(el.id.$t); }}
+          onSwipeRight={() => { this.props.onLove(el.id.$t, this.props.currentUser.id); }}
         >
-          <SinglePet pet={el} />
+          <SinglePet pet={el} expand={false} />
         </Card>
     ))}
       </Cards>
-    )
+    );
   }
 }
 
@@ -41,10 +41,10 @@ const mapState = state => ({
 
 const mapDispatch = (dispatch, ownProps) => ({
   onLoad() {
-    dispatch(fetchAllPets(ownProps.match.params.type))
+    dispatch(fetchAllPets(ownProps.match.params.type));
   },
   loadMatches(id) {
-    dispatch(fetchMatches(id))
+    dispatch(fetchMatches(id));
   },
   onEnd() {
     dispatch(refreshCards());
@@ -57,4 +57,4 @@ const mapDispatch = (dispatch, ownProps) => ({
   },
 });
 
-export default connect(mapState, mapDispatch)(AllPets)
+export default connect(mapState, mapDispatch)(AllPets);
