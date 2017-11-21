@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { deleteAccount } from '../store'
+import Matches from './Matches'
 
 //COMPONENT
 
@@ -58,6 +59,7 @@ export const UserHome = (props) => {
           <button onClick={(event) => deleteUser(event, userId)}>Delete Your Account</button>
         </NavLink>
       </div>
+      <Matches userId={props.user.id} />
     </div>
   )
 }
