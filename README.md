@@ -1,8 +1,6 @@
 # Whiskr
 
-## Tinder styled pet adoption web app
-
----
+### Tinder styled pet adoption web app
 
 ## Getting Started 
 
