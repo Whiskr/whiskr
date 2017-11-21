@@ -12,13 +12,13 @@ class Matches extends Component {
     return (
       <div>
         <h1> Matches </h1>
-        <ul className='matchesList'>
+        <div className='matchesList'>
           {this.props.matches.length?
              this.props.matches.map(match =>  {
                this.props.onMap(match.petId)
             })
           : <p>NO MATCHES</p>}
-        </ul>
+        </div>
 
       </div>
     )
