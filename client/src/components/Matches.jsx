@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { fetchMatches } from '../store';
+import { fetchMatches, fetchPetById } from '../store';
 import { connect } from 'react-redux';
 
-
 class Matches extends Component {
+
   componentDidMount() {
     this.props.onLoad(this.props.currentUser.id);
   }
@@ -15,7 +15,8 @@ class Matches extends Component {
         <ul className='matchesList'>
           {this.props.matches.length?
              this.props.matches.map(match =>  {
-            return (<li key={match.id}>{match.petId}</li>)})
+               this.props.onMap(match.petId)
+            })
           : <p>NO MATCHES</p>}
         </ul>
 
@@ -24,22 +25,18 @@ class Matches extends Component {
   }
 }
 
-
-
-
-
-
-
-
-
 const mapState = state => ({
     currentUser: state.currentUser,
-    matches: state.matches
+    matches: state.matches,
+    matchPets: state.matchPets
 })
 
 const mapDispatch = (dispatch) => ({
     onLoad(id) {
         dispatch(fetchMatches(id));
+    },
+    onMap(petId) {
+      dispatch(fetchPetById(petId));
     }
 })
 
