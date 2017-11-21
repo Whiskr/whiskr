@@ -51,7 +51,7 @@ const mapDispatch = (dispatch, ownProps) => ({
     console.log(type);
     const email = evt.target.email.value;
     const password = evt.target.password.value;
-    const redirect = type === 'login' ? '/petTypes' : '/createProfile';
+    const redirect = type === 'login' ? '/pets' : '/createProfile';
     Promise.resolve(dispatch(auth(email, password, type)))
       .then(() => { ownProps.history.push(redirect); });
   },
