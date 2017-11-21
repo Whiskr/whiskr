@@ -1,4 +1,9 @@
-$secondary-medium-color: teal;
+$primary-dark-color: #041733;
+$primary-medium-color: #063648;
+$primary-light-color: #0E6463;
+$secondary-light-color: #E8DDCC;
+$secondary-medium-color: #CCB283;
+
 * {
     box-sizing: border-box;
 }
@@ -17,6 +22,7 @@ body {
     padding: 0;
     font-family: sans-serif;
     text-align: center;
+    background-color: $secondary-light-color;
 }
 
 img {
@@ -35,3 +41,4 @@ h2 {
 @import "_singlePet";
 @import "_allPets";
 @import "_petTypes";
+@import "_menu";
