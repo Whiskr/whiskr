@@ -28,6 +28,9 @@ class AllPets extends Component {
   }
 
   render() {
+    const geo = navigator.geolocation
+    const userLoc = geo.getCurrentPosition()
+    {console.log(userLoc)}
     return (
       <Cards
         alertRight={<CustomAlertRight />}
