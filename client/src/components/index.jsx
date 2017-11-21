@@ -8,3 +8,4 @@ export { Login, Signup } from './auth-form';
 export { default as AllPets } from './AllPets';
 export { CreateProfile, UpdateProfile } from './forms/ProfileForm';
 export { default as SinglePet } from './SinglePet';
+export { default as PetTypes } from './PetTypes';

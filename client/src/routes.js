@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Login, UserHome, AllPets, SinglePet, CreateProfile, UpdateProfile } from './components';
+import { Login, UserHome, AllPets, SinglePet, CreateProfile, UpdateProfile, PetTypes } from './components';
 import App from './App';
 import { me } from './store';
 
@@ -22,6 +22,7 @@ class Routes extends Component {
         <App>
           <Switch>
             {/* Routes placed here are available to all visitors */}
+            <Route exact path="/pets" component={PetTypes} />
             <Route exact path="/pets/:type" component={AllPets} />
             <Route exact path="/pets/:type/:id" component={SinglePet} />
             <Route path="/login" component={Login} />
