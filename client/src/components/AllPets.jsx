@@ -3,7 +3,7 @@ import Cards, { Card } from 'react-swipe-card';
 import { connect } from 'react-redux';
 import Fav from '../styles/favorite-icon.png';
 import Reject from '../styles/reject-icon.png';
-import { fetchMatches, addMatches, fetchAllPets, updateOffset, grabKey } from '../store';
+import { fetchMatches, addMatches, fetchAllPets, rejectPet, updateOffset, grabKey } from '../store';
 import SinglePet from './SinglePet';
 
 
@@ -30,23 +30,30 @@ class AllPets extends Component {
   }
 
   render() {
-    let offset = this.props.getOffset(this.state.currentUser)
+    const { key, currentUser } = this.props
+    const offset = Number(currentUser[key])
+    const update = {}
     return (
       <Cards
         alertRight={<CustomAlertRight />}
         alertLeft={<CustomAlertLeft />}
-        // onEnd={this.props.onEnd}
+        onEnd={this.props.onEnd}
         className="master-root"
       >
         {this.props.pets && this.props.pets.map((el, i) =>
       (
         <Card
           key={i}
-          // onSwipeLeft={() => { this.props.onReject(el.id.$t); }}
-          onSwipeRight={() => { 
-            offset++
-            this.props.onLove(el.id.$t, this.props.currentUser.id); 
-            }}
+          onSwipeLeft={() => {
+            console.log(typeof offset)
+            //update[key] = offset
+            //this.props.changeOffset(update); 
+            this.props.onReject(el.id.$t); }}
+          onSwipeRight={() => {
+            console.log(offset)
+            //update[key] = offset
+            //this.props.changeOffset(update);
+            this.props.onLove(el.id.$t, currentUser.id); }}
         >
           <SinglePet pet={el} expand={false} />
         </Card>
@@ -56,9 +63,11 @@ class AllPets extends Component {
   }
 }
 
-const mapState = state => ({
+const mapState = (state, ownProps) => ({
   pets: state.pets,
   currentUser: state.currentUser,
+  key: grabKey(ownProps.match.params.type, state.currentUser)
+
 });
 
 const mapDispatch = (dispatch, ownProps) => ({
@@ -71,14 +80,11 @@ const mapDispatch = (dispatch, ownProps) => ({
   // onEnd() {
   //   dispatch(refreshCards());
   // },
-  // onReject(i) {
-  //   dispatch(rejectPet(i));
-  // },
+  onReject(i) {
+    dispatch(rejectPet(i));
+  },
   onLove(petId, userId) {
     dispatch(addMatches(petId, userId));
-  },
-  getOffset(user){
-    return grabKey(ownProps.match.params.type, user)
   },
   changeOffset(offset) {
     dispatch(updateOffset(offset))

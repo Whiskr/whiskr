@@ -6,15 +6,15 @@ import { updateUser } from './'
  * ACTION TYPES
  */
 const FETCH_PETS = 'FETCH_PETS';
-// const REJECT_PET = 'REJECT_PET';
-// const REFRESH_CARDS = 'REFRESH_CARDS';
+const REJECT_PET = 'REJECT_PET';
+const REFRESH_CARDS = 'REFRESH_CARDS';
 
 /**
  * ACTION CREATORS
  */
 const fetchPets = pets => ({ type: FETCH_PETS, pets });
-// const rejectSinglePet = id => ({ type: REJECT_PET, id });
-// const refreshAllCards = cards => ({ type: REFRESH_CARDS, cards });
+const rejectSinglePet = id => ({ type: REJECT_PET, id });
+const refreshAllCards = cards => ({ type: REFRESH_CARDS, cards });
 /**
  * THUNK CREATORS
  */
@@ -33,29 +33,26 @@ export const grabKey = (type, currentUser) => {
 export const fetchAllPets = (type, currentUser) =>
   (dispatch) => {
     const key = grabKey(type, currentUser)
-    console.log('inside fetchAllPets', key)
     const currentOffset = currentUser[key]
     axios.get('https://cors-anywhere.herokuapp.com/'
     +
     `http://api.petfinder.com/pet.find?format=json&animal=${type}&location=11226&offset=${currentOffset}&key=01e0c19609326eb33ed70df84f870392`)
       .then((res) => {
-        const update = {}
-        const nextOffset = res.data.petfinder.lastOffset.$t;
-        update[key] = nextOffset
-        //look into res.data for offset value to save to database and reuse in refresh thunk- break this up
+        // const update = {}
+        // const nextOffset = res.data.petfinder.lastOffset.$t;
+        // update[key] = nextOffset
         dispatch(fetchPets(res.data.petfinder.pets.pet))
         //updates the offset value in the database and on currentUser in state
-        console.log('did not close function with first dispatch', update)
-        dispatch(updateUser(currentUser.id, update));
+        //dispatch(updateUser(currentUser.id, update));
       })
       .catch(err => console.log(err));
   };
 
-// export const rejectPet = id =>
-//   (dispatch) => {
-//     console.log(`Rejected a poor pet # ${id}`);
-//     // dispatch(rejectSinglePet(id));
-//   };
+export const rejectPet = id =>
+  (dispatch) => {
+    console.log(`Rejected a poor pet # ${id}`);
+    // dispatch(rejectSinglePet(id));
+  };
 
 // export const refreshCards = () =>
 //   dispatch =>
@@ -72,10 +69,10 @@ export default function (state = [], action) {
   switch (action.type) {
     case FETCH_PETS:
       return action.pets;
-    // case REJECT_PET:
-    //   return `${action.id} is rejected`;
-    // case REFRESH_CARDS:
-    //   return action.cards;
+    case REJECT_PET:
+      return `${action.id} is rejected`;
+    case REFRESH_CARDS:
+      return action.cards;
     default:
       return state;
   }
