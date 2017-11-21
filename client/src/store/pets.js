@@ -25,6 +25,8 @@ export const fetchAllPets = type =>
     +
     `http://api.petfinder.com/pet.find?format=json&animal=${type}&location=11226&key=01e0c19609326eb33ed70df84f870392`)
       .then((res) => {
+        console.log(res.data)
+        //look into res.data for offset value to save to database and reuse in refresh thunk- break this up
         dispatch(fetchPets(res.data.petfinder.pets.pet));
       })
       .catch(err => console.log(err));

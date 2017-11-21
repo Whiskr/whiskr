@@ -26,7 +26,6 @@ const User = db.define('user', {
   hasYoungChildren: {
     type: Sequelize.BOOLEAN,
     defaultValue: false
-
   },
   otherPetTypes: {
     type: Sequelize.ARRAY(Sequelize.STRING),
@@ -43,6 +42,38 @@ const User = db.define('user', {
   petHistory: {
     type: Sequelize.TEXT,
     defaultValue: ''
+  },
+  lastOffsetDog: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0
+  },
+  lastOffsetCat: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0
+  },
+  lastOffsetBird: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0
+  },
+  lastOffsetRabbit: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0
+  },
+  lastOffsetSmallFurry: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0
+  },
+  lastOffsetReptile: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0
+  },
+  lastOffsetHorse: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0
+  },
+  lastOffsetBarnyard: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0
   }
 })
 
