@@ -44,7 +44,7 @@ class SinglePet extends Component {
           </h3>
         </div>
         <div>
-          <p>{pet.description.$t.length > 600 ? `${pet.description.$t.slice(0, 600)}...` : pet.description.$t}</p>
+          <p>{pet.description.$t && pet.description.$t.length > 600 ? `${pet.description.$t.slice(0, 600)}...` : pet.description.$t}</p>
         </div>
       </div>
     );
