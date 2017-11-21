@@ -1,4 +1,5 @@
 .master-root {
+    background-color: white;
     margin: auto;
     position: relative;
     height: 100vh;
@@ -9,10 +10,9 @@
 
 .card {
     padding: 5vw;
-    background-color: white;
     background-size: cover;
     position: absolute;
-    background: rgb(255, 236, 235);
+    background: $secondary-light-color;
     height: 80vh;
     width: 80vw;
     margin: 0 auto;
