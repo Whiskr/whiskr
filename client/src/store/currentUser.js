@@ -3,6 +3,7 @@ import axios from 'axios'
 //ACTION TYPES
 const GET_USER = 'GET_USER'
 const LOGOUT_USER = 'LOGOUT_USER'
+const UPDATE_OFFSET= 'UPDATE_OFFSET'
 
 //INITIAL STATE
 const defaultUser = {}
@@ -10,6 +11,7 @@ const defaultUser = {}
 //ACTION CREATORS
 const getUser = user => ({type: GET_USER, user})
 const logOutUser = () => ({type: LOGOUT_USER})
+export const updateOffset = (offset) => ({type: UPDATE_OFFSET, offset})
 
 //THUNK CREATORS
 export const me = () =>
@@ -38,6 +40,7 @@ export const logout = () =>
 
 //updateUser expects the state's currentUser.id, and updated info to be prepackaged into a single, nested object
 export const updateUser = (userId, updateInfo) => {
+  console.log('made it into updateUser', userId, updateInfo)
   return dispatch => {
     axios.put(`/api/userAccount/${userId}`, updateInfo)
     .then(res => {
@@ -60,9 +63,11 @@ export const deleteAccount = (userId) => {
 export default function currentUser (state = defaultUser, action) {
   switch (action.type) {
     case GET_USER:
-      return action.user
+      //return action.user
     case LOGOUT_USER:
       return defaultUser
+    case UPDATE_OFFSET:
+      return Object.assign({}, state, action)
     default: 
       return state
   }

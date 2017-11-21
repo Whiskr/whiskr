@@ -3,7 +3,7 @@ import Cards, { Card } from 'react-swipe-card';
 import { connect } from 'react-redux';
 import Fav from '../styles/favorite-icon.png';
 import Reject from '../styles/reject-icon.png';
-import { fetchMatches, addMatches, fetchAllPets } from '../store';
+import { fetchMatches, addMatches, fetchAllPets, updateOffset, grabKey } from '../store';
 import SinglePet from './SinglePet';
 
 
@@ -18,7 +18,9 @@ const CustomAlertRight = () => (
 
 class AllPets extends Component {
   componentDidMount() {
-    this.props.onLoad();
+    if(this.props.currentUser.id){
+      this.props.onLoad(this.props.currentUser);
+    }
   }
   // there is a lag with getting the currentUser on state so this is needed to work fetch matches:
   componentWillReceiveProps(nextProps) {
@@ -28,6 +30,7 @@ class AllPets extends Component {
   }
 
   render() {
+    let offset = this.props.getOffset(this.state.currentUser)
     return (
       <Cards
         alertRight={<CustomAlertRight />}
@@ -40,7 +43,10 @@ class AllPets extends Component {
         <Card
           key={i}
           // onSwipeLeft={() => { this.props.onReject(el.id.$t); }}
-          onSwipeRight={() => { this.props.onLove(el.id.$t, this.props.currentUser.id); }}
+          onSwipeRight={() => { 
+            offset++
+            this.props.onLove(el.id.$t, this.props.currentUser.id); 
+            }}
         >
           <SinglePet pet={el} expand={false} />
         </Card>
@@ -56,8 +62,8 @@ const mapState = state => ({
 });
 
 const mapDispatch = (dispatch, ownProps) => ({
-  onLoad() {
-    dispatch(fetchAllPets(ownProps.match.params.type));
+  onLoad(user) {
+    dispatch(fetchAllPets(ownProps.match.params.type, user));
   },
   loadMatches(id) {
     dispatch(fetchMatches(id));
@@ -71,6 +77,12 @@ const mapDispatch = (dispatch, ownProps) => ({
   onLove(petId, userId) {
     dispatch(addMatches(petId, userId));
   },
+  getOffset(user){
+    return grabKey(ownProps.match.params.type, user)
+  },
+  changeOffset(offset) {
+    dispatch(updateOffset(offset))
+  }
 });
 
 export default connect(mapState, mapDispatch)(AllPets);

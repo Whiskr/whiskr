@@ -1,4 +1,6 @@
 import axios from 'axios';
+import _ from 'lodash';
+import { updateUser } from './'
 
 /**
  * ACTION TYPES
@@ -17,17 +19,34 @@ const fetchPets = pets => ({ type: FETCH_PETS, pets });
  * THUNK CREATORS
  */
 
+//helper function
+export const grabKey = (type, currentUser) => {
+  //utilizing regex to find the right key to update
+  const searchWord = '\w+' + type
+  const re = new RegExp(searchWord, "i")
+  //array of the user object's keys --> a string of the keys --> an a array of the key that has the type in it
+  const keyArray = _.keys(currentUser).join(' ').match(re)
+  return keyArray[0]
+}
 
 // Had to add in extra https to get cors to work
-export const fetchAllPets = type =>
+export const fetchAllPets = (type, currentUser) =>
   (dispatch) => {
+    const key = grabKey(type, currentUser)
+    console.log('inside fetchAllPets', key)
+    const currentOffset = currentUser[key]
     axios.get('https://cors-anywhere.herokuapp.com/'
     +
-    `http://api.petfinder.com/pet.find?format=json&animal=${type}&location=11226&key=01e0c19609326eb33ed70df84f870392`)
+    `http://api.petfinder.com/pet.find?format=json&animal=${type}&location=11226&offset=${currentOffset}&key=01e0c19609326eb33ed70df84f870392`)
       .then((res) => {
-        console.log(res.data)
+        const update = {}
+        const nextOffset = res.data.petfinder.lastOffset.$t;
+        update[key] = nextOffset
         //look into res.data for offset value to save to database and reuse in refresh thunk- break this up
-        dispatch(fetchPets(res.data.petfinder.pets.pet));
+        dispatch(fetchPets(res.data.petfinder.pets.pet))
+        //updates the offset value in the database and on currentUser in state
+        console.log('did not close function with first dispatch', update)
+        dispatch(updateUser(currentUser.id, update));
       })
       .catch(err => console.log(err));
   };
