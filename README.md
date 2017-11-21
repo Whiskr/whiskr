@@ -11,10 +11,12 @@ Our project has two package.json files, one on the client side and one on the se
 
 Use the `yarn sync` to install the packages simultaneously 
 
+### Create and Seed the database
 In your terminal, create the database with the command `createdb whiskr`
 
 Next, seed the database with `yarn seed`
 
+### Run the app 
 After you install the packages, run `yarn start` to start up the app and navigate to `localhost:3000`
 
 
