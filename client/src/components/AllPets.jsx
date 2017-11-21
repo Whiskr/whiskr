@@ -30,8 +30,8 @@ class AllPets extends Component {
   }
 
   render() {
-    const { key, currentUser } = this.props
-    const offset = Number(currentUser[key])
+    const { offsetKey, currentUser } = this.props
+    let offset = Number(currentUser[offsetKey])
     const update = {}
     return (
       <Cards
@@ -45,14 +45,12 @@ class AllPets extends Component {
         <Card
           key={i}
           onSwipeLeft={() => {
-            console.log(typeof offset)
-            //update[key] = offset
-            //this.props.changeOffset(update); 
+            update[offsetKey] = offset++
+            this.props.changeOffset(update); 
             this.props.onReject(el.id.$t); }}
           onSwipeRight={() => {
-            console.log(offset)
-            //update[key] = offset
-            //this.props.changeOffset(update);
+            update[offsetKey] = offset++
+            this.props.changeOffset(update);
             this.props.onLove(el.id.$t, currentUser.id); }}
         >
           <SinglePet pet={el} expand={false} />
@@ -66,7 +64,7 @@ class AllPets extends Component {
 const mapState = (state, ownProps) => ({
   pets: state.pets,
   currentUser: state.currentUser,
-  key: grabKey(ownProps.match.params.type, state.currentUser)
+  offsetKey: grabKey(ownProps.match.params.type, state.currentUser)
 
 });
 

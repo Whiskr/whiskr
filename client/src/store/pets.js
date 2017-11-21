@@ -15,14 +15,16 @@ const REFRESH_CARDS = 'REFRESH_CARDS';
 const fetchPets = pets => ({ type: FETCH_PETS, pets });
 const rejectSinglePet = id => ({ type: REJECT_PET, id });
 const refreshAllCards = cards => ({ type: REFRESH_CARDS, cards });
+
 /**
  * THUNK CREATORS
  */
 
 //helper function
 export const grabKey = (type, currentUser) => {
+  console.log(type, currentUser)
   //utilizing regex to find the right key to update
-  const searchWord = '\w+' + type
+  const searchWord = 'lastOffset' + type
   const re = new RegExp(searchWord, "i")
   //array of the user object's keys --> a string of the keys --> an a array of the key that has the type in it
   const keyArray = _.keys(currentUser).join(' ').match(re)

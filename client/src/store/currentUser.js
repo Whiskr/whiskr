@@ -63,11 +63,11 @@ export const deleteAccount = (userId) => {
 export default function currentUser (state = defaultUser, action) {
   switch (action.type) {
     case GET_USER:
-      //return action.user
+      return action.user
     case LOGOUT_USER:
       return defaultUser
     case UPDATE_OFFSET:
-      return Object.assign({}, state, action)
+      return Object.assign({}, state, action.offset)
     default: 
       return state
   }
