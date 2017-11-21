@@ -30,7 +30,7 @@ const PetTypes = () => (
         alt="small furry animal"
       />
     </Link>
-    <Link to="/pets/scalesFinsOther">
+    <Link to="/pets/reptile">
       <img src={reptileSquare} className="typeIcon" alt="reptile animal" />
     </Link>
     <Link to="/pets/horse">
