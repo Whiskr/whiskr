@@ -1,0 +1,19 @@
+.container {
+  padding: 1vw;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  align-content: stretch;
+  align-items: center;
+  height: 100%;
+  max-width: 780px;
+  margin: auto;
+}
+.typeIcon {
+width: 160px;
+transition: all .2s ease-in-out;
+
+  &:hover, &:active {
+    transform: scale(1.1);
+  }
+}
