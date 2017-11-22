@@ -10,7 +10,7 @@ const REFRESH_CARDS = 'REFRESH_CARDS';
 /**
  * ACTION CREATORS
  */
-const fetchPets = pets => ({ type: FETCH_PETS, pets });
+const fetchPets = (pets, species) => ({ type: FETCH_PETS, pets, species });
 const rejectSinglePet = id => ({ type: REJECT_PET, id });
 const refreshAllCards = cards => ({ type: REFRESH_CARDS, cards });
 /**
@@ -23,7 +23,7 @@ export const fetchAllPets = (type, currentUser) =>
   (dispatch) => {
     axios.get(`/api/pets?animal=${type}&location=${currentUser.zipCode || 11226}&key=01e0c19609326eb33ed70df84f870392`)
       .then((res) => {
-        dispatch(fetchPets(res.data));
+        dispatch(fetchPets(res.data, type));
       })
       .catch(err => console.log(err));
   };
@@ -45,10 +45,15 @@ export const refreshCards = () =>
 /**
  * REDUCER
  */
-export default function (state = [], action) {
+export default function (state = {
+  bird: [], dog: [], horse: [], cat: [], smallFurry: [], reptile: [], barnyard: [], rabbit: [],
+}, action) {
   switch (action.type) {
-    case FETCH_PETS:
-      return action.pets;
+    case FETCH_PETS: {
+      const newState = { ...state };
+      newState[action.species] = [...state[action.species], action.pets];
+      return newState;
+    }
     case REJECT_PET:
       return `${action.id} is rejected`;
     case REFRESH_CARDS:

@@ -13,7 +13,6 @@ const middleware = composeWithDevTools(applyMiddleware(
   createLogger({ collapsed: true }),
 ));
 
-
 const persistedState = localStorage.getItem('store') ? JSON.parse(localStorage.getItem('store')) : {};
 
 

@@ -28,6 +28,7 @@ class AllPets extends Component {
   }
 
   render() {
+    const species = this.props.pets[this.props.match.params.type];
     return (
       <Cards
         alertRight={<CustomAlertRight />}
@@ -35,14 +36,14 @@ class AllPets extends Component {
         onEnd={this.props.onEnd}
         className="master-root"
       >
-        {this.props.pets && this.props.pets.map((el, i) =>
+        {species && Object.keys(species).map((el, i) =>
       (
         <Card
           key={i}
-          onSwipeLeft={() => { this.props.onReject(el.id.$t); }}
-          onSwipeRight={() => { this.props.onLove(el.id.$t, this.props.currentUser.id); }}
+          onSwipeLeft={() => { this.props.onReject(species[el].id.$t); }}
+          onSwipeRight={() => { this.props.onLove(species[el].id.$t, this.props.currentUser.id); }}
         >
-          <SinglePet pet={el} expand={false} />
+          <SinglePet pet={species[el]} expand={false} />
         </Card>
     ))}
       </Cards>
