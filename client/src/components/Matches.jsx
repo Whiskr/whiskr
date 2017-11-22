@@ -17,6 +17,11 @@ class Matches extends Component {
              this.props.matches.map(match =>  {
                this.props.onMap(match.petId)
             })
+            // this.props.matchPets.map(matchPet =>{
+            //   <div>
+            //     <h1>{matchPet.name.$t}</h1>
+            //   </div>
+            })
           : <p>NO MATCHES</p>}
         </div>
 
