@@ -19,13 +19,12 @@ const refreshAllCards = cards => ({ type: REFRESH_CARDS, cards });
 
 
 // Had to add in extra https to get cors to work
-export const fetchAllPets = type =>
+export const fetchAllPets = (type, currentUser) =>
   (dispatch) => {
-    axios.get('https://cors-anywhere.herokuapp.com/'
-    +
-    `http://api.petfinder.com/pet.find?format=json&animal=${type}&location=11226&key=01e0c19609326eb33ed70df84f870392`)
+    axios.get(`/api/pets?animal=${type}&location=${currentUser.zipCode || 11226}&key=01e0c19609326eb33ed70df84f870392`)
       .then((res) => {
-        dispatch(fetchPets(res.data.petfinder.pets.pet));
+        console.log(res);
+        // dispatch(fetchPets(res.data.petfinder.pets.pet));
       })
       .catch(err => console.log(err));
   };
