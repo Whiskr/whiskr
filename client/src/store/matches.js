@@ -29,11 +29,24 @@ export const fetchMatches = userId =>
         dispatch(getMatches(res.data)))
       .catch(err => console.log(err));
 
+export const petWasSeen = (petId, userId) => 
+  dispatch => {
+    axios.post('/api/seen', {petId, userId})
+    .catch(err => console.log(err))
+  } 
+
+export const rejectPet = (petId, userId) =>
+  (dispatch) => {
+  dispatch(petWasSeen(petId, userId))
+  console.log(`Rejected a poor pet # ${id}`);
+  // dispatch(rejectSinglePet(id));
+};
+
 export const addMatches = (petId, userId) =>
   dispatch =>
     axios.post('/api/match', { petId, userId })
       .then((res) => {
-        console.log(petId, userId);
+        dispatch(petWasSeen(petId, userId))
         dispatch(createMatches(res.data));
       })
       .catch(err => console.log(err));
