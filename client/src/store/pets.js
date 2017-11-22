@@ -23,8 +23,7 @@ export const fetchAllPets = (type, currentUser) =>
   (dispatch) => {
     axios.get(`/api/pets?animal=${type}&location=${currentUser.zipCode || 11226}&key=01e0c19609326eb33ed70df84f870392`)
       .then((res) => {
-        console.log(res);
-        // dispatch(fetchPets(res.data.petfinder.pets.pet));
+        dispatch(fetchPets(res.data));
       })
       .catch(err => console.log(err));
   };

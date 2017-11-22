@@ -13,8 +13,7 @@ router.get('/', (req, res, next) => {
   });
 
   axios.get(`http://api.petfinder.com/pet.find?${queryStr}`).then((allPets) => {
-    console.log(allPets.data.petfinder.pets.pet.length, res);
-    res.json(allPets);
+    res.json(allPets.data.petfinder.pets.pet);
     res.end();
   }).catch(next);
 });
