@@ -6,28 +6,65 @@ const db = require('../db')
 const app = require('../index')
 const User = db.model('user')
 
+    
 describe('User routes', () => {
   beforeEach(() => {
     return db.sync({force: true})
   })
 
-  describe('/api/users/', () => {
-    const codysEmail = 'cody@puppybook.com'
+  describe('/api/users/:id', () => {
+    const catLadyEmail = 'catlady@gmal.com'
 
     beforeEach(() => {
       return User.create({
-        email: codysEmail
+        email: catLadyEmail
       })
     })
 
-    it('GET /api/users', () => {
+    it('GET /api/users/:id', () => {
       return request(app)
-        .get('/api/users')
+        .get('/api/users/${catlady}')
         .expect(200)
         .then(res => {
           expect(res.body).to.be.an('array')
-          expect(res.body[0].email).to.be.equal(codysEmail)
+          expect(res.body[0].email).to.be.equal(catLadyEmail)
         })
     })
-  }) // end describe('/api/users')
-}) // end describe('User routes')
+    it('returns a 404 error if the ID is not correct', function () {
+      
+            return agent
+            .get('/articles/76142896')
+            .expect(404);
+      
+          });
+    it('updates a user at PUT', () => {
+      return request(app)
+          .put(`/api/users/${catlady}`)
+          .send({
+              email: 'catlady@hotmail.com'
+          })
+          .expect(201)
+          .then(res => {
+              return User.findById(catlady);
+          })
+          .then(user => {
+              expect(user.email).to.be.equal('catlady@gmail.com');
+          });
+    })
+    it('deletes a user at Delete', () => {
+      return request(app)
+          .delete(`/api/users/${catlady}`)
+          .send({
+              email: 'catlady@hotmail.com'
+          })
+          .expect(201)
+          .then(res => {
+              return User.findById(catlady);
+          })
+          .then(user => {
+              expect(user.email).to.be.equal('catlady@gmail.com');
+          });
+    })
+  }) 
+});
+
