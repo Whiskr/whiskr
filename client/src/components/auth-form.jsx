@@ -41,9 +41,9 @@ const AuthForm = (props) => {
  *   function, and share the same Component. This is a good example of how we
  *   can stay DRY with interfaces that are very similar to each other!
  */
-// const mapState = state => ({
-//   error: state.currentUser.error,
-// });
+const mapState = state => ({
+  error: state.currentUser.error,
+});
 
 const mapDispatch = (dispatch, ownProps) => ({
   handleSubmit(evt, type) {
@@ -57,24 +57,9 @@ const mapDispatch = (dispatch, ownProps) => ({
   },
 });
 
-const mapLogin = (state) => {
-  return {
-    name: 'login',
-    displayName: 'Login',
-    error: state.user.error
-  }
-}
 
-const mapSignup = (state) => {
-  return {
-    name: 'signup',
-    displayName: 'Sign Up',
-    error: state.user.error
-  }
-}
 
-export const Login = withRouter(connect(mapLogin, mapDispatch)(AuthForm));
-export const Login = withRouter(connect(mapSignup, mapDispatch)(AuthForm));
+export const Login = withRouter(connect(mapState, mapDispatch)(AuthForm));
 
 /**
  * PROP TYPES

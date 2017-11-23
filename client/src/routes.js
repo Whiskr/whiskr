@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Login, UserHome, AllPets, SinglePet, CreateProfile, UpdateProfile, PetTypes, Signup } from './components';
+import { Login, UserHome, AllPets, SinglePet, CreateProfile, UpdateProfile, PetTypes } from './components';
 import App from './App';
 import { me } from './store';
 
