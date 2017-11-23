@@ -30,6 +30,9 @@ const AuthForm = (props) => {
       </form>
       <a href="/auth/google">Log in with Google</a>
       <a href="/auth/google">Sign up with Google</a>
+      <br/>
+      <a href="/auth/facebook">Log in with Facebook</a>
+      <a href="/auth/facebook">Sign up with Facebook</a>
     </div>
   );
 };
