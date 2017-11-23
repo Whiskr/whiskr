@@ -338,3 +338,91 @@ h2 {
   .menu .item-4:hover {
     color: #063648;
     text-shadow: none; }
+
+.splash,
+.splash::before {
+  text-align: left;
+  background: linear-gradient(rgba(14, 100, 99, 0.8), rgba(14, 100, 99, 0.8)), url("http://caringpethospital.net/clients/7284/images/shutterstock_234936910.jpg") no-repeat center center fixed;
+  background-size: cover;
+  font-family: "Roboto";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; }
+
+.form {
+  border-radius: 30px;
+  position: absolute;
+  background: #fff;
+  width: calc(285px + 10vw);
+  padding: 40px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22); }
+  .form h2 {
+    margin: 0 0 20px;
+    line-height: 1;
+    color: #0E6463;
+    font-size: 18px;
+    font-weight: 400; }
+  .form div input {
+    border-radius: 10px;
+    outline: none;
+    display: block;
+    width: 100%;
+    margin: 0 0 20px;
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    color: #ccc;
+    font-family: "Roboto";
+    font-size: 14px;
+    font-weight: 400;
+    transition: 0.2s linear; }
+    .form div input:focus {
+      color: #333;
+      border: 1px solid #0E6463; }
+  .form div button {
+    border-radius: 15px;
+    cursor: pointer;
+    background: #0E6463;
+    width: 50%;
+    padding: 10px 15px;
+    border: solid 5px white;
+    color: #fff;
+    font-family: "Roboto";
+    font-size: 16px;
+    font-weight: 400;
+    transition: all .5s ease; }
+    .form div button:hover {
+      opacity: .8; }
+
+.social {
+  border: solid 2px white;
+  padding: auto;
+  border-radius: 100%;
+  font-size: 28px;
+  line-height: 46px;
+  height: 48px;
+  width: 48px;
+  margin: 5px;
+  text-align: center;
+  text-decoration: none;
+  transition: all .3s ease; }
+
+.facebook {
+  background: #3B5998;
+  color: white; }
+  .facebook:hover {
+    border: solid 2px #3B5998;
+    color: #3B5998;
+    background: white; }
+
+.google {
+  background: #dd4b39;
+  color: white; }
+  .google:hover {
+    border: solid 2px #dd4b39;
+    color: #dd4b39;
+    background: white; }

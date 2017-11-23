@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
+import FontAwesome from 'react-fontawesome';
 import PropTypes from 'prop-types';
 import { auth } from '../store';
 
@@ -11,25 +12,65 @@ const AuthForm = (props) => {
   const { handleSubmit } = props;
   let type;
   return (
-    <div>
-      <h1>Whiskr</h1>
-      <form onSubmit={event => handleSubmit(event, type)}>
+    <div className="splash">
+      <div className="form animated flipInX">
+        <h1>Whiskr</h1>
+        <h2>Login To Your Account</h2>
+        <form onSubmit={event => handleSubmit(event, type)}>
+          <div>
+            <label htmlFor="email">
+              <small>Email</small>
+            </label>
+            <input name="email" type="text" />
+          </div>
+          <div>
+            <label htmlFor="password">
+              <small>Password</small>
+            </label>
+            <input name="password" type="password" />
+          </div>
+          <div>
+            <button
+              type="submit"
+              onClick={() => {
+                type = 'login';
+              }}
+            >
+              Log In
+            </button>
+            <button
+              type="submit"
+              onClick={() => {
+                type = 'signup';
+              }}
+            >
+              Sign Up
+            </button>
+          </div>
+          {/* error && error.response && <div> {error.response.data} </div> */}
+        </form>
         <div>
-          <label htmlFor="email"><small>Email</small></label>
-          <input name="email" type="text" />
+          <span>Log in with </span>
+          <a href="/auth/google" >
+            <FontAwesome name="google" className="social google" />
+          </a>
+          <a href="/auth/facebook">
+            <FontAwesome name="facebook" className="social facebook" />
+          </a>
         </div>
         <div>
-          <label htmlFor="password"><small>Password</small></label>
-          <input name="password" type="password" />
+          <span>Sign up with </span>
+          <a href="/auth/google" >
+            <FontAwesome name="google" className="social google" />
+          </a>
+          <a href="/auth/facebook" >
+            <FontAwesome
+              name="facebook"
+              className="social facebook"
+            />
+          </a>
         </div>
-        <div>
-          <button type="submit" onClick={() => { type = 'login'; }}>Log In</button>
-          <button type="submit" onClick={() => { type = 'signup'; }}>Sign Up</button>
-        </div>
-        {/* error && error.response && <div> {error.response.data} </div> */}
-      </form>
-      <a href="/auth/google">Log in with Google</a>
-      <a href="/auth/google">Sign up with Google</a>
+      </div>
     </div>
   );
 };
@@ -52,8 +93,9 @@ const mapDispatch = (dispatch, ownProps) => ({
     const email = evt.target.email.value;
     const password = evt.target.password.value;
     const redirect = type === 'login' ? '/pets' : '/createProfile';
-    Promise.resolve(dispatch(auth(email, password, type)))
-      .then(() => { ownProps.history.push(redirect); });
+    Promise.resolve(dispatch(auth(email, password, type))).then(() => {
+      ownProps.history.push(redirect);
+    });
   },
 });
 
