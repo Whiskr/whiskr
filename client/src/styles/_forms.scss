@@ -17,7 +17,7 @@
 .form {
     border-radius: 30px;
     position: absolute;
-    background: #fff;
+    background: rgba(255, 243, 229, 0.8);
     width: calc(285px + 10vw);
     padding: 40px;
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
@@ -51,9 +51,8 @@
             border-radius: 15px;
             cursor: pointer;
             background: $primary-light-color;
-            width: 50%;
+            width: 100%;
             padding: 10px 15px;
-            border: solid 5px white;
             color: #fff;
             font-family: "Roboto";
             font-size: 16px;
@@ -63,6 +62,23 @@
                 opacity: .8;
             }
         }
+    }
+    .radio {
+        display: flex;
+    }
+
+    .checkboxes {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        div {
+            padding: 5px;
+        }
+    }
+
+    textarea {
+        width: 100%;
+        min-height: 100px;
     }
 }
 

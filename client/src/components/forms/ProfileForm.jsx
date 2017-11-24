@@ -33,7 +33,9 @@ class ProfileForm extends React.Component {
       <div className="splash">
         <div className="form animated flipInX">
           <h2>{this.props.display}</h2>
-          <form onSubmit={event => this.handleSubmit(event, user.id, this.state)}>
+          <form
+            onSubmit={event => this.handleSubmit(event, user.id, this.state)}
+          >
             <div>
               <label htmlFor="email">
                 <small>Email</small>
@@ -75,24 +77,26 @@ class ProfileForm extends React.Component {
             </div>
             <div>
               <label htmlFor="hasYoungChildren">
-              Do You Have Small Children?
+                Do You Have Small Children?
               </label>
-              <input
-                id="YesChildren"
-                name="hasYoungChildren"
-                value
-                type="radio"
-                onChange={this.handleChange}
-              />
-              <label htmlFor="YesChildren">Yes</label>
-              <input
-                id="NoChildren"
-                name="hasYoungChildren"
-                value={false}
-                type="radio"
-                onChange={this.handleChange}
-              />
-              <label htmlFor="NoChildren">No</label>
+              <div className="radio">
+                <label htmlFor="YesChildren">Yes</label>
+                <input
+                  id="YesChildren"
+                  name="hasYoungChildren"
+                  value
+                  type="radio"
+                  onChange={this.handleChange}
+                />
+                <label htmlFor="NoChildren">No</label>
+                <input
+                  id="NoChildren"
+                  name="hasYoungChildren"
+                  value={false}
+                  type="radio"
+                  onChange={this.handleChange}
+                />
+              </div>
             </div>
             <div>
               <label htmlFor="petHistory">
@@ -135,8 +139,7 @@ const mapUpdateProfile = state => ({
 const mapDispatch = dispatch => ({
   handleSubmit(evt, userId, localState) {
     evt.preventDefault();
-    const redirect = this.props.name === 'createProfile'
-      ? '/pets' : '/home';
+    const redirect = this.props.name === 'createProfile' ? '/pets' : '/home';
     Promise.resolve(dispatch(updateUser(userId, localState))).then(() => {
       this.props.history.push(redirect);
     });
