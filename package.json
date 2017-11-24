@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/Whiskr/whiskr#readme",
   "dependencies": {
+    "axios": "^0.17.1",
     "compression": "^1.7.1",
     "concurrently": "^3.5.0",
     "connect-session-sequelize": "^5.0.1",
