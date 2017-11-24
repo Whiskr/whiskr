@@ -33,13 +33,8 @@ class Routes extends Component {
               )
             )}
             />
-            {/* These routes are only available when not logged in */}
-            {!isLoggedIn &&
-              <Switch>
-                <Route exact path="/login" component={Login} />
-                <Route path="/createProfile" component={CreateProfile} />
-              </Switch>
-            }
+            <Route exact path="/login" component={Login} />
+            <Route path="/createProfile" component={CreateProfile} />
             {
               isLoggedIn &&
                 <Switch>
