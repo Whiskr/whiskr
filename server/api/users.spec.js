@@ -2,6 +2,9 @@
 
 const {expect} = require('chai')
 const request = require('supertest')
+// var request = require('supertest-as-promised');
+var app = require('../app');
+var agent = request.agent(app);
 const db = require('../db')
 const app = require('../index')
 const User = db.model('user')
