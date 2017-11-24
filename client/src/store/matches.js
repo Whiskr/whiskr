@@ -1,4 +1,5 @@
 import axios from 'axios';
+//import {removePet} from './'
 
 // ACTION TYPES
 
@@ -31,6 +32,7 @@ export const fetchMatches = userId =>
 
 export const petWasSeen = (petId, userId) => 
   dispatch => {
+    //dispatch(removePet(petId, petSpecies))
     axios.post('/api/seen', {petId, userId})
     .catch(err => console.log(err))
   } 
@@ -38,8 +40,6 @@ export const petWasSeen = (petId, userId) =>
 export const rejectPet = (petId, userId) =>
   (dispatch) => {
   dispatch(petWasSeen(petId, userId))
-  console.log(`Rejected a poor pet # ${id}`);
-  // dispatch(rejectSinglePet(id));
 };
 
 export const addMatches = (petId, userId) =>

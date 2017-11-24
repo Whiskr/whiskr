@@ -28,21 +28,22 @@ class AllPets extends Component {
   }
 
   render() {
+    const species = this.props.pets[this.props.match.params.type];
     return (
       <Cards
         alertRight={<CustomAlertRight />}
         alertLeft={<CustomAlertLeft />}
-        onEnd={this.props.onEnd}
+        onEnd={() => this.props.onLoad(this.props.currentUser)}
         className="master-root"
       >
-        {this.props.pets && this.props.pets.map((el, i) =>
+        {species && Object.keys(species).map((el, i) =>
       (
         <Card
           key={i}
-          onSwipeLeft={() => { this.props.onReject(el.id.$t, this.props.currentUser.id); }}
-          onSwipeRight={() => { this.props.onLove(el.id.$t, this.props.currentUser.id); }}
+          onSwipeLeft={() => { this.props.onReject(species[el].id.$t, this.props.currentUser.id, this.props.match.params.type); }}
+          onSwipeRight={() => { this.props.onLove(species[el].id.$t, this.props.currentUser.id, this.props.match.params.type); }}
         >
-          <SinglePet pet={el} expand={false} />
+          <SinglePet pet={species[el]} expand={false} />
         </Card>
     ))}
       </Cards>
@@ -57,21 +58,20 @@ const mapState = state => ({
 
 const mapDispatch = (dispatch, ownProps) => ({
   onLoad(user) {
-    console.log('onLoad');
-    dispatch(fetchAllPets(ownProps.match.params.type, user));
+    let i= 0
+    for (;i < 25; i++){
+      dispatch(fetchAllPets(ownProps.match.params.type, user));
+    }
   },
   loadMatches(id) {
     dispatch(fetchMatches(id));
   },
-  onEnd() {
-    dispatch(refreshCards());
+  onReject(petId, userId, petSpecies) {
+    dispatch(rejectPet(petId, userId, petSpecies));
   },
-  onReject(petId, userId) {
-    dispatch(rejectPet(petId, userId));
-  },
-  onLove(petId, userId) {
-    dispatch(addMatches(petId, userId));
-  },
+  onLove(petId, userId, petSpecies) {
+    dispatch(addMatches(petId, userId, petSpecies));
+  }
 });
 
 export default connect(mapState, mapDispatch)(AllPets);

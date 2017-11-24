@@ -20,6 +20,6 @@ router.post('/', (req, res, next) => {
         petId: req.body.petId,
         userId: req.body.userId
     })
-    .then(() => res.status(201))
+    .then(seent => res.json(seent.data))
     .catch(err => console.log(err))
 })

@@ -3,7 +3,6 @@ const axios = require('axios');
 
 module.exports = router;
 
-
 router.get('/', (req, res, next) => {
   let queryStr = 'output=full&format=json';
   // res.header('Access-Control-Allow-Headers', 'x-requested-with, x-requested-by');
