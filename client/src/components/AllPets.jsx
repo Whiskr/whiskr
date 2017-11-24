@@ -18,7 +18,7 @@ const CustomAlertRight = () => (
 
 class AllPets extends Component {
   componentDidMount() {
-    this.props.onLoad();
+    this.props.onLoad(this.props.currentUser);
   }
   // there is a lag with getting the currentUser on state so this is needed to work fetch matches:
   componentWillReceiveProps(nextProps) {
@@ -56,8 +56,9 @@ const mapState = state => ({
 });
 
 const mapDispatch = (dispatch, ownProps) => ({
-  onLoad() {
-    dispatch(fetchAllPets(ownProps.match.params.type));
+  onLoad(user) {
+    console.log('onLoad');
+    dispatch(fetchAllPets(ownProps.match.params.type, user));
   },
   loadMatches(id) {
     dispatch(fetchMatches(id));
