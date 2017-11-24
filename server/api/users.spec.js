@@ -36,7 +36,7 @@ describe('User routes', () => {
     it('returns a 404 error if the ID is not correct', function () {
       
             return agent
-            .get('/articles/76142896')
+            .get('/users/76146')
             .expect(404);
       
           });
