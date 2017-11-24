@@ -25,6 +25,5 @@ router.get('/findById/:petId', (req, res, next) => {
     .then((pet) => {
       res.json(pet.data.petfinder.pet);
       res.end()
-    })
-    .catch(next);
+    }).catch(next);
 })

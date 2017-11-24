@@ -6,15 +6,15 @@ const FETCH_PET_BY_ID = 'FETCH_PET_BY_ID';
 
 // ACTION CREATORS
 
-const fetchOnePetById = pet => ({ type: FETCH_PET_BY_ID, pet });
+const fetchOnePetById = (pet) => {const action = {type: FETCH_PET_BY_ID, pet}
+  return action;}
 
 // THUNK
-export const fetchPetById = petId =>
+export const fetchPetById = (petId) =>
   (dispatch) => {
-    axios.get('https://cors-anywhere.herokuapp.com/' +
-        `http://api.petfinder.com/pet.get?format=json&id=${petId}&key=01e0c19609326eb33ed70df84f870392`)
-      .then(res => {
-        dispatch(fetchOnePetById(res.data.petfinder.pet));
+    axios.get(`/api/pets/findById/${petId}`)
+      .then((res) => {
+        dispatch(fetchOnePetById(res.data));
       })
       .catch(err => console.log(err));
   };

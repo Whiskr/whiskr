@@ -13,18 +13,13 @@ class Matches extends Component {
       <div>
         <h1> Matches </h1>
         <div className='matchesList'>
-          {this.props.matches.length?
-             this.props.matches.map(match =>  {
-               this.props.onMap(match.petId)
-            })
-            // this.props.matchPets.map(matchPet =>{
-            //   <div>
-            //     <h1>{matchPet.name.$t}</h1>
-            //   </div>
-            })
-          : <p>NO MATCHES</p>}
+            {this.props.matches.length?
+              this.props.matches.map(match =>  {
+                return this.props.onMap(match.petId)
+              })
+              : <p>NO MATCHES!</p>
+            }
         </div>
-
       </div>
     )
   }
@@ -46,3 +41,14 @@ const mapDispatch = (dispatch) => ({
 })
 
 export default connect(mapState, mapDispatch)(Matches);
+
+
+
+// mapStatethis.props.matches.map(match =>  {
+//   this.props.onMap(match.petId)
+// })
+// // this.props.matchPets.map(matchPet =>{
+// //   <div>
+// //     <h1>{matchPet.name.$t}</h1>
+// //   </div>
+// })
