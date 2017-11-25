@@ -486,3 +486,28 @@ h2 {
 
 .login-html .sign-up:checked + .tab + .login-form .sign-up-htm {
   transform: rotate(0); }
+
+.matchesList {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly; }
+
+.petCard {
+  background-color: #CCB283;
+  padding: 5em;
+  margin: 3em; }
+  .petCard img {
+    border-radius: 100%;
+    height: 300px;
+    width: 300px; }
+  .petCard a {
+    text-decoration: none;
+    color: white; }
+  .petCard button {
+    background-color: #0E6463;
+    border: none;
+    border-radius: 3em;
+    padding: 1em;
+    font-size: 1.5em;
+    color: white; }
