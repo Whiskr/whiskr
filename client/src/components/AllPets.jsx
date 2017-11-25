@@ -3,7 +3,7 @@ import Cards, { Card } from 'react-swipe-card';
 import { connect } from 'react-redux';
 import Fav from '../styles/favorite-icon.png';
 import Reject from '../styles/reject-icon.png';
-import { fetchMatches, addMatches, fetchAllPets, refreshCards, rejectPet } from '../store';
+import { fetchMatches, addMatches, fetchAllPets, clearPets, rejectPet } from '../store';
 import SinglePet from './SinglePet';
 
 
@@ -21,28 +21,35 @@ class AllPets extends Component {
     this.props.onLoad(this.props.currentUser);
   }
   // there is a lag with getting the currentUser on state so this is needed to work fetch matches:
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.currentUser && nextProps.currentUser.id !== this.props.currentUser.id) {
-      this.props.loadMatches(nextProps.currentUser.id);
-    }
+  // componentWillReceiveProps(nextProps) {
+  //   if (nextProps.currentUser && nextProps.currentUser.id !== this.props.currentUser.id) {
+  //     this.props.loadMatches(nextProps.currentUser.id);
+  //   }
+  // }
+
+  componentWillUnmount() {
+    const species = this.props.match.params.type;
+    this.props.onDismount(species)
   }
 
   render() {
+    //this is the object of pets held by the species' key in state
+    const species = this.props.pets[this.props.match.params.type];
     return (
       <Cards
         alertRight={<CustomAlertRight />}
         alertLeft={<CustomAlertLeft />}
-        onEnd={this.props.onEnd}
+        onEnd={() => this.props.onLoad(this.props.currentUser)}
         className="master-root"
       >
-        {this.props.pets && this.props.pets.map((el, i) =>
+        {species && Object.keys(species).map((el, i) =>
       (
         <Card
           key={i}
-          onSwipeLeft={() => { this.props.onReject(el.id.$t); }}
-          onSwipeRight={() => { this.props.onLove(el.id.$t, this.props.currentUser.id); }}
+          onSwipeLeft={() => { this.props.onReject(species[el].id.$t, this.props.currentUser.id, this.props.match.params.type); }}
+          onSwipeRight={() => { this.props.onLove(species[el].id.$t, this.props.currentUser.id, this.props.match.params.type); }}
         >
-          <SinglePet pet={el} expand={false} />
+          <SinglePet pet={species[el]} expand={false} />
         </Card>
     ))}
       </Cards>
@@ -57,21 +64,23 @@ const mapState = state => ({
 
 const mapDispatch = (dispatch, ownProps) => ({
   onLoad(user) {
-    console.log('onLoad');
-    dispatch(fetchAllPets(ownProps.match.params.type, user));
+    let i= 0
+    for (;i < 25; i++){
+      dispatch(fetchAllPets(ownProps.match.params.type, user));
+    }
   },
   loadMatches(id) {
     dispatch(fetchMatches(id));
   },
-  onEnd() {
-    dispatch(refreshCards());
+  onReject(petId, userId, petSpecies) {
+    dispatch(rejectPet(petId, userId, petSpecies));
   },
-  onReject(i) {
-    dispatch(rejectPet(i));
+  onLove(petId, userId, petSpecies) {
+    dispatch(addMatches(petId, userId, petSpecies));
   },
-  onLove(petId, userId) {
-    dispatch(addMatches(petId, userId));
-  },
+  onDismount(petSpecies) {
+    dispatch(clearPets(petSpecies));
+  }
 });
 
 export default connect(mapState, mapDispatch)(AllPets);

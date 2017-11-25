@@ -13,10 +13,17 @@ const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware,
   createLogger({ collapsed: true }),
 ));
-const store = createStore(reducer, middleware);
 
-export default store;
+const persistedState = localStorage.getItem('store') ? JSON.parse(localStorage.getItem('store')) : {};
+
+
+const store = createStore(reducer, persistedState, middleware);
+
+store.subscribe(() => localStorage.setItem('store', JSON.stringify(store.getState())));
+
+
 export * from './currentUser';
 export * from './pets';
 export * from './matches';
 export * from './matchPets';
+export default store;

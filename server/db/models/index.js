@@ -1,5 +1,6 @@
 const User = require('./user')
 const Match = require('./match')
+const Seen = require('./seen')
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -9,6 +10,8 @@ const Match = require('./match')
  */
 User.hasMany(Match, {onDelete: "cascade"})
 Match.belongsTo(User)
+User.hasMany(Seen, {onDelete: "cascade"})
+Seen.belongsTo(User)
 
 /**
  * We'll export all of our models here, so that any time a module needs a model,
@@ -18,5 +21,6 @@ Match.belongsTo(User)
  */
 module.exports = {
   User,
-  Match
+  Match,
+  Seen
 }
