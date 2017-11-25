@@ -69,8 +69,8 @@ export default function (state = [], action) {
       return action.matches;
     case CREATE_MATCHES:
       return [...state, action.match];
-    case REMOVE_MATCHES:
-      return matches.filter(cMatch => cMatch.id !== action.match.id)
+    // case REMOVE_MATCHES:
+      // return matches.filter(cMatch => cMatch.id !== action.match.id)
     default:
       return state;
   }
