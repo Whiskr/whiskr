@@ -2,10 +2,11 @@
 
 const {expect} = require('chai')
 const request = require('supertest')
+require('chai').use(require('chai-as-promised'))
 // var app = require('../app');
-// var agent = request.agent(app);
+const agent = require('supertest')(require('../server/index'))
 const db = require('../server/db')
-// const app = require('../index')
+const app = require('../server/index')
 const User = db.model('user')
 
     
@@ -16,16 +17,18 @@ describe('User routes', () => {
 
   describe('/api/users/:id', () => {
     const catLadyEmail = 'catlady@gmal.com'
+    const password = 'catscatscats'
 
     beforeEach(() => {
       return User.create({
-        email: catLadyEmail
+        email: catLadyEmail,
+        password: password
       })
     })
 
     it('GET /api/users/:id', () => {
       return request(app)
-        .get('/api/users/${catlady}')
+        .get('/api/users/${id}')
         .expect(200)
         .then(res => {
           expect(res.body).to.be.an('array')
@@ -34,14 +37,14 @@ describe('User routes', () => {
     })
     it('returns a 404 error if the ID is not correct', function () {
       
-            return agent
+            return request(app)
             .get('/users/76146')
             .expect(404);
       
           });
     it('updates a user at PUT', () => {
       return request(app)
-          .put(`/api/users/${catlady}`)
+          .put(`/api/users/${id}`)
           .send({
               email: 'catlady@hotmail.com'
           })
