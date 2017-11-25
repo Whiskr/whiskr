@@ -125,7 +125,6 @@ const mapState = state => ({
 const mapDispatch = (dispatch, ownProps) => ({
   handleSubmit(evt, type) {
     evt.preventDefault();
-    console.log(type);
     const email = evt.target.email.value;
     const password = evt.target.password.value;
     const redirect = type === 'login' ? '/pets' : '/createProfile';
