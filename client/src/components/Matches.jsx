@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { fetchMatches, fetchPetById } from '../store';
 import { connect } from 'react-redux';
 
@@ -6,12 +7,13 @@ class Matches extends Component {
 
   componentDidMount() {
     this.props.onLoad(this.props.currentUser.id);
+    this.props.matches.map(match => {
+      this.props.onMap(match.petId);
+    })
   }
 
 componentWillMount() {
-  this.props.matches.map(match => {
-    this.props.onMap(match.petId);
-  })
+  // reset state here maybe?
 }
 
   render(){
@@ -19,19 +21,20 @@ componentWillMount() {
       <div>
         <h1> Matches </h1>
         <div className='matchesList'>
-          <table className='matches'>
             {this.props.matches.length?
-              this.props.matchPets.map (pet => {
+              this.props.matchPets.map(pet => {
                 return(
-                  <tr>
-                    <td>{pet.name.$t}</td>
-                    <td>{pet.animal.$t}</td>
-                  </tr>
+                  <div key={pet.id.$t} className='matches petCard'>
+                    <Link to={`/petDetail/${pet.id.$t}`}>
+                    <img src={pet.media.photos.photo[3].$t}/>
+                    <h1>{pet.name.$t},{pet.age.$t}</h1>
+                    <h2>{pet.breeds.breed.$t},{pet.animal.$t}</h2>
+                    </Link>
+                  </div>
                 )
               })
               : <p>NO MATCHES!</p>
           }
-          </table>
         </div>
       </div>
     )
