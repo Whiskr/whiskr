@@ -8,15 +8,19 @@ class Matches extends Component {
     this.props.onLoad(this.props.currentUser.id);
   }
 
+componentWillMount() {
+  this.props.matches.map(match => {
+    this.props.onMap(match.petId);
+  })
+}
+
   render(){
     return (
       <div>
         <h1> Matches </h1>
         <div className='matchesList'>
             {this.props.matches.length?
-              this.props.matches.map(match =>  {
-                return this.props.onMap(match.petId)
-              })
+              <p> matches!</p>
               : <p>NO MATCHES!</p>
             }
         </div>
@@ -36,7 +40,7 @@ const mapDispatch = (dispatch) => ({
         dispatch(fetchMatches(id));
     },
     onMap(petId) {
-      dispatch(fetchPetById(petId));
+     return (dispatch(fetchPetById(petId)));
     }
 })
 
