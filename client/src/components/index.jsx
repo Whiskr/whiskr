@@ -6,6 +6,7 @@
 export { default as UserHome } from './user-home';
 export { Login, Signup } from './auth-form';
 export { default as AllPets } from './AllPets';
+export { default as Matches } from './Matches';
 export { CreateProfile, UpdateProfile } from './forms/ProfileForm';
 export { default as SinglePet } from './SinglePet';
 export { default as PetTypes } from './PetTypes';

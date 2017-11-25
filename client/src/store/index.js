@@ -5,16 +5,25 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import currentUser from './currentUser'
 import pets from './pets'
 import matches from './matches'
+import matchPets from './matchPets'
 
 
-const reducer = combineReducers({ currentUser, pets, matches })
+const reducer = combineReducers({ currentUser, pets, matches, matchPets})
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware,
   createLogger({ collapsed: true }),
 ));
-const store = createStore(reducer, middleware);
 
-export default store;
+const persistedState = localStorage.getItem('store') ? JSON.parse(localStorage.getItem('store')) : {};
+
+
+const store = createStore(reducer, persistedState, middleware);
+
+store.subscribe(() => localStorage.setItem('store', JSON.stringify(store.getState())));
+
+
 export * from './currentUser';
 export * from './pets';
 export * from './matches';
+export * from './matchPets';
+export default store;
