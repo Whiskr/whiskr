@@ -3,7 +3,7 @@ import Cards, { Card } from 'react-swipe-card';
 import { connect } from 'react-redux';
 import Fav from '../styles/favorite-icon.png';
 import Reject from '../styles/reject-icon.png';
-import { fetchMatches, addMatches, fetchAllPets, refreshCards, rejectPet } from '../store';
+import { fetchMatches, addMatches, fetchAllPets, clearPets, rejectPet } from '../store';
 import SinglePet from './SinglePet';
 
 
@@ -21,13 +21,19 @@ class AllPets extends Component {
     this.props.onLoad(this.props.currentUser);
   }
   // there is a lag with getting the currentUser on state so this is needed to work fetch matches:
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.currentUser && nextProps.currentUser.id !== this.props.currentUser.id) {
-      this.props.loadMatches(nextProps.currentUser.id);
-    }
+  // componentWillReceiveProps(nextProps) {
+  //   if (nextProps.currentUser && nextProps.currentUser.id !== this.props.currentUser.id) {
+  //     this.props.loadMatches(nextProps.currentUser.id);
+  //   }
+  // }
+
+  componentWillUnmount() {
+    const species = this.props.match.params.type;
+    this.props.onDismount(species)
   }
 
   render() {
+    //this is the object of pets held by the species' key in state
     const species = this.props.pets[this.props.match.params.type];
     return (
       <Cards
@@ -71,6 +77,9 @@ const mapDispatch = (dispatch, ownProps) => ({
   },
   onLove(petId, userId, petSpecies) {
     dispatch(addMatches(petId, userId, petSpecies));
+  },
+  onDismount(petSpecies) {
+    dispatch(clearPets(petSpecies));
   }
 });
 
