@@ -8,7 +8,7 @@ class Matches extends Component {
   componentDidMount() {
     this.props.onLoad(this.props.currentUser.id);
     this.props.matches.map(match => {
-      this.props.onMap(match.petId);
+      return this.props.onMap(match.petId);
     })
   }
 
@@ -29,6 +29,7 @@ componentWillMount() {
                     <img src={pet.media.photos.photo[3].$t}/>
                     <h1>{pet.name.$t},{pet.age.$t}</h1>
                     <h2>{pet.breeds.breed.$t},{pet.animal.$t}</h2>
+                    <button> Contact</button>
                     </Link>
                   </div>
                 )
