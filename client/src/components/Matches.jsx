@@ -19,10 +19,19 @@ componentWillMount() {
       <div>
         <h1> Matches </h1>
         <div className='matchesList'>
+          <table className='matches'>
             {this.props.matches.length?
-              <p> matches!</p>
+              this.props.matchPets.map (pet => {
+                return(
+                  <tr>
+                    <td>{pet.name.$t}</td>
+                    <td>{pet.animal.$t}</td>
+                  </tr>
+                )
+              })
               : <p>NO MATCHES!</p>
-            }
+          }
+          </table>
         </div>
       </div>
     )
