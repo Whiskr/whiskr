@@ -7,6 +7,7 @@ router.use('/userAccount', require('./userAccount'));
 
 router.use('/match', require('./match'));
 router.use('/pets', require('./pets'));
+router.use('/seen', require('./seen'));
 
 router.use(statusCat());
 
