@@ -6,7 +6,7 @@
     justify-content: space-evenly;
     align-content: space-evenly;
     align-items: flex-start;
-    height: 80vh;
+    height: 85vh;
     max-width: 880px;
     margin: auto;
 }
@@ -19,15 +19,35 @@
     width: 160px;
     transition: all .2s ease-in-out;
     margin: 10px;
-    &:hover {
-        transform: scale(1.1);
-        box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);;
-    }
+            &:hover {
+                box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);;
+            }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 600px) {
     .typeIcon {
         width: 16vh;
         margin: 10px;
     }
+}
+
+.petTypeContainer {
+    padding: 5px;
+    position: relative;
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    &:hover {
+        transform: scale(1.2);
+    }
+}
+
+.petTypesText {
+    font-family: $secondary-font-family;
+    position: absolute;
+    left: -35px;
+    bottom: -5px;
+    width: 100%;
+    margin: auto;
+    font-size: 30px;
+    text-decoration: none;
+    color: $primary-dark-color;
 }
