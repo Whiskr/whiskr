@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { fetchMatches, fetchPetById, sendEmail, resetMatchPets } from '../store';
 import { connect } from 'react-redux';
-import SinglePet from './SinglePet';
 
 class Matches extends Component {
   componentDidMount() {

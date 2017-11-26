@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { fetchPetById, sendEmail, resetMatchPets } from '../store';
 import { connect } from 'react-redux';
 import SinglePet from './SinglePet';
@@ -9,9 +9,9 @@ class MatchSingle extends Component {
     this.props.onLoad(this.props.match.params.petId);
   }
 
-  // componentWillUnmount() {
-  //   this.props.onReload();
-  // }
+  componentWillUnmount() {
+    this.props.onReload();
+  }
 
   render() {
     return (
