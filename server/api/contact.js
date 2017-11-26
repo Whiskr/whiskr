@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
     to, userEmail, userPhoneNumber, userZipCode, userHasYoungChildren, userPetHistory, petName, petId, petCity, petState,
   } = req.query;
   const mailOptions = {
-    to: 'shelbyrackleyart@gmail.com',
+    to: 'cuddlesanimalshelter@gmail.com',
     subject: 'An Inquiry About One of Your Pets',
     html: `
       <div>
