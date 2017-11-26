@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { fetchMatches, fetchPetById, sendEmail } from '../store';
 import { connect } from 'react-redux';
+import SinglePet from './SinglePet';
 
 class Matches extends Component {
   componentDidMount() {
@@ -21,20 +22,20 @@ class Matches extends Component {
           {this.props.matches.length ?
               this.props.matchPets.map(pet => (
                 <div key={pet.id.$t} className="matches petCard">
-                  <Link to={`/petDetail/${pet.id.$t}`}>
+                  <Link to={`/pets/${pet.animal.$t}/${pet.id.$t}`}>
                     <img
                       src={
-            pet.media.photos
-            ? pet.media.photos.photo[3].$t
-            : 'http://biorem.org/wp-content/uploads/2016/07/not-available.png'}
+                pet.media.photos
+                ? pet.media.photos.photo[3].$t
+                : 'http://biorem.org/wp-content/uploads/2016/07/not-available.png'}
                       className="petPic rounded"
                       alt="pet profile pic"
                     />
-                    <h1>{pet.name.$t},{pet.age.$t}</h1>
-                    <h2>{pet.breeds.breed.$t},{pet.animal.$t}</h2>
+                    <h1>{pet.name.$t}</h1>
+                    <h2>{pet.animal.$t}</h2>
                     <button onClick={(event) => {
                       event.preventDefault(); this.props.onClick(this.props.currentUser, pet);
-}}
+                }}
                     > Contact
                     </button>
                   </Link>
@@ -67,13 +68,3 @@ const mapDispatch = dispatch => ({
 });
 
 export default connect(mapState, mapDispatch)(Matches);
-
-
-// mapStatethis.props.matches.map(match =>  {
-//   this.props.onMap(match.petId)
-// })
-// // this.props.matchPets.map(matchPet =>{
-// //   <div>
-// //     <h1>{matchPet.name.$t}</h1>
-// //   </div>
-// })
