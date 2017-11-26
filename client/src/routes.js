@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Login, UserHome, AllPets, SinglePet, CreateProfile, UpdateProfile, PetTypes } from './components';
+import { Login, UserHome, AllPets, SinglePet, CreateProfile, UpdateProfile, PetTypes, MatchSingle } from './components';
 import App from './App';
 import { me } from './store';
 
@@ -43,7 +43,7 @@ class Routes extends Component {
                   <Route path="/updateProfile" component={UpdateProfile} />
                   <Route exact path="/pets" component={PetTypes} />
                   <Route exact path="/pets/:type" component={AllPets} />
-                  <Route exact path="/pets/:type/:id" component={SinglePet} />
+                  <Route exact Path="/match/:petId" component={MatchSingle}/>
                 </Switch>
             }
             {/* Displays our Login component as a fallback */}

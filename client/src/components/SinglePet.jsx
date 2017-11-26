@@ -14,6 +14,7 @@ class SinglePet extends Component {
   }
 
   render() {
+    {console.log(this.props)}
     const { pet } = this.props;
     return (
       <div

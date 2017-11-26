@@ -10,7 +10,7 @@ class Matches extends Component {
     this.props.matches.map(match => this.props.onMap(match.petId));
   }
 
-  componentWillMount() {
+  componentWillUnmount() {
   // reset state here maybe?
   }
 
@@ -22,7 +22,7 @@ class Matches extends Component {
           {this.props.matches.length ?
               this.props.matchPets.map(pet => (
                 <div key={pet.id.$t} className="matches petCard">
-                  <Link to={`/pets/${pet.animal.$t}/${pet.id.$t}`}>
+                  <Link to={`match/${pet.id.$t}`}>
                     <img
                       src={
                 pet.media.photos
