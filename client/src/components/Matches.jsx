@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { fetchMatches, fetchPetById, sendEmail } from '../store';
+import { fetchMatches, fetchPetById, sendEmail, resetMatchPets } from '../store';
 import { connect } from 'react-redux';
 import SinglePet from './SinglePet';
 
@@ -11,7 +11,7 @@ class Matches extends Component {
   }
 
   componentWillUnmount() {
-  // reset state here maybe?
+    this.props.onReload();
   }
 
   render() {
@@ -60,10 +60,13 @@ const mapDispatch = dispatch => ({
     dispatch(fetchMatches(id));
   },
   onMap(petId) {
-    return (dispatch(fetchPetById(petId)));
+    dispatch(fetchPetById(petId));
   },
   onClick(user, pet) {
     sendEmail(user, pet);
+  },
+  onReload() {
+    dispatch(resetMatchPets());
   },
 });
 

@@ -3,15 +3,16 @@ import axios from 'axios'
 // ACTION TYPES
 
 const FETCH_PET_BY_ID = 'FETCH_PET_BY_ID';
+const RESET_STATE = 'RESET_STATE';
 
 // ACTION CREATORS
 
-const fetchOnePetById = (pet) => {const action = {type: FETCH_PET_BY_ID, pet}
-  return action;}
+const fetchOnePetById = (pet) => ({type: FETCH_PET_BY_ID, pet});
+const resetPetDetail = () => ({type: RESET_STATE})
 
 // THUNK
 export const fetchPetById = (petId) =>
-  (dispatch) => {
+  dispatch => {
     axios.get(`/api/pets/findById/${petId}`)
       .then((res) => {
         dispatch(fetchOnePetById(res.data));
@@ -19,11 +20,16 @@ export const fetchPetById = (petId) =>
       .catch(err => console.log(err));
   };
 
+export const resetMatchPets = () =>
+  dispatch => (dispatch(resetPetDetail()))
+
   // REDUCER
   export default function ( state = [], action ) {
     switch (action.type) {
       case FETCH_PET_BY_ID:
         return [...state, action.pet];
+      case RESET_STATE:
+        return state = [];
       default:
       return state;
 

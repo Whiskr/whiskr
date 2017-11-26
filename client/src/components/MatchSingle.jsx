@@ -16,7 +16,7 @@ class MatchSingle extends Component {
     {console.log('-------', this.props)}
     return (
       <div>
-        <h1>Match Singlw</h1>
+        <h1>Match Single</h1>
       </div>
     );
   }
