@@ -5,15 +5,13 @@ import { connect } from 'react-redux';
 import SinglePet from './SinglePet';
 
 class MatchSingle extends Component {
-
   render() {
     const searchPet = this.props.match.params.petId;
     return (
-      <div>
-        <h1>Match Single</h1>
+      <div id="singleMatchContainer">
         {
           this.props.matchPets.length ?
-          <SinglePet pet={this.props.matchPets.filter(matchPet => matchPet.id.$t === searchPet)[0]} />
+            <SinglePet pet={this.props.matchPets.filter(matchPet => matchPet.id.$t === searchPet)[0]} />
           : <p>MatchPets did not load in time to pass to props maybe we can make this a loading animation?</p>
         }
       </div>

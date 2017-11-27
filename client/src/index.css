@@ -31,16 +31,31 @@ h1,
 h2 {
   font-weight: 500; }
 
+#singleMatchContainer {
+  background-size: cover;
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  margin: 0 auto;
+  padding: 5vw;
+  overflow: hidden; }
+
 #petCard {
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-around;
-  align-content: stretch;
-  height: 100%; }
-  #petCard .flex {
-    margin: auto; }
+  justify-content: center;
+  align-content: center;
+  padding: 5vw; }
   #petCard * {
-    transition: all .7s ease; }
+    transition: all .4s ease; }
+  #petCard .petPic {
+    padding: 20px;
+    margin: auto;
+    border-radius: 100%;
+    object-fit: cover;
+    display: block; }
+  #petCard #picContainer {
+    width: 100vw; }
 
 @media screen and (max-width: 480px) {
   .expanded h2,
@@ -50,28 +65,18 @@ h2 {
   .expanded div {
     display: block; }
   .expanded h1 {
-    font-size: 26px; }
+    font-size: 40px; }
   .expanded h2 {
-    font-size: 18px;
-    line-height: 0; }
+    font-size: 18px; }
   .expanded .petPic {
-    border-radius: 100%;
-    object-fit: cover;
-    display: block;
-    width: 100px;
-    height: 100px; }
+    width: 150px;
+    height: 150px; }
   .collapsed p,
   .collapsed h4 {
-    display: none; }
+    transform: translateY(600px); }
   .collapsed .petPic {
-    border-radius: 100%;
-    object-fit: cover;
-    display: block;
     width: 70vw;
     height: 70vw; } }
-
-.rounded {
-  border-radius: 10px; }
 
 @media screen and (min-width: 480px) {
   .collapsed h2,
@@ -85,9 +90,6 @@ h2 {
   .expanded div {
     display: block; }
   .collapsed .petPic, .expanded .petPic {
-    border-radius: 100%;
-    object-fit: cover;
-    display: block;
     width: 300px;
     height: 300px; } }
 
@@ -101,12 +103,11 @@ h2 {
   border: none; }
 
 .card {
-  padding: 5vw;
   background-size: cover;
   position: absolute;
   background: #FFF;
-  height: 80vh;
-  width: 80vw;
+  height: 95vh;
+  width: 95vw;
   margin: 0 auto;
   transition: box-shadow .3s;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
