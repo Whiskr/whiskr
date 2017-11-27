@@ -14,22 +14,28 @@ export class Menu extends React.Component {
     }
     this.handleOutsideClick = this.handleOutsideClick.bind(this)
     this.handleMenuClick = this.handleMenuClick.bind(this)
+    this.handleLogout = this.handleLogout.bind(this)
   }
 
-  handleOutsideClick(event) {
+  handleOutsideClick() {
     const { menuOpen } = this.state
     if (menuOpen) {
       this.setState({ menuOpen: false })
     }
   }
 
-  handleMenuClick(event) {
+  handleMenuClick() {
     const { menuOpen } = this.state
     this.setState({ menuOpen: !menuOpen })
   }
+
+  handleLogout() {
+    this.handleOutsideClick()
+    this.props.handleClick()
+  }
   
   render () {
-  const { handleClick, isLoggedIn } = this.props;
+  const { isLoggedIn } = this.props;
   const { menuOpen } = this.state
   return (
     <div>
@@ -41,10 +47,26 @@ export class Menu extends React.Component {
             <span className="lines line-2" />
             <span className="lines line-3" />
           </label>
-          <Link to="/home" onClick={this.handleOutsideClick} className="menu-item item-1" ><FontAwesome name="user" /></Link>
-          <Link to="/matches" onClick={this.handleOutsideClick} className="menu-item item-2"><FontAwesome name="heart" /></Link>
-          <Link to="/pets" onClick={this.handleOutsideClick} className="menu-item item-3" ><FontAwesome name="paw" /></Link>
-          <Link to="/logout" onClick={this.handleOutsideClick} className="menu-item item-4" onClick={handleClick} ><FontAwesome name="sign-out" /></Link>
+          <Link to="/home" 
+                onClick={this.handleOutsideClick} 
+                className="menu-item item-1" >
+                  <FontAwesome name="user" />
+                </Link>
+          <Link to="/matches" 
+                onClick={this.handleOutsideClick} 
+                className="menu-item item-2">
+                  <FontAwesome name="heart" />
+                </Link>
+          <Link to="/pets" 
+                onClick={this.handleOutsideClick} 
+                className="menu-item item-3" >
+                  <FontAwesome name="paw" />
+                </Link>
+          <Link to="/logout" 
+                onClick={this.handleLogout} 
+                className="menu-item item-4" >
+                  <FontAwesome name="sign-out" />
+                </Link>
         </nav>
 : null
     }
