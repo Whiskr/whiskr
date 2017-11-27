@@ -1,9 +1,13 @@
 //ACTION TYPES
-const ADD_ITEM = 'ADD_ITEM';
+const ADD_STRING = 'ADD_STRING';
+const ADD_ARRAY = 'ADD_ARRAY';
+const ADD_BOOLEAN = 'ADD_BOOLEAN';
 const CLEAR_FORM = 'CLEAR_FORM';
 
 //ACTION CREATORS
-export const addItem = (key, value) => { type: ADD_ITEM, key, value }
+export const addString = (key, value) => { type: ADD_STRING, key, value }
+export const addArray = (key, value) => { type: ADD_ARRAY, key, value }
+export const addBoolean = (key, value) => { type: ADD_BOOLEAN, key, value }
 export const clearForm = () => {type: CLEAR_FORM}
 
 //THUNKS
@@ -21,26 +25,14 @@ const defaultState = {
 
 //REDUCER
 export default function (state = defaultState, action) {
-    switch (action.type) {
-        case ADD_ITEM:
-        //complicated reducer due to a state with multiple keys 
-        //create a dummy copy
-            const newState = {...state}
-            const type = typeof newState[action.key]
-            //ensuring the function handles the return value correctly
-            newState[action.key] = () => {
-                switch (type) {
-                    case 'string':
-                        return newState[action.key] + action.value
-                    case 'object':
-                        return [...state[action.key], action.value]
-                    case 'boolean':
-                        return action.value
-                    default:
-                        return newState[action.key]
-                }
-            }
-            return newState
+    const {key, value, type} = action
+    switch (type) {
+        case ADD_STRING:
+            return Object.assign({}, state, { [key]: value })
+        case ADD_ARRAY:
+            return Object.assign({}, state, { [key]: state[key].concat(value) })
+        case ADD_BOOLEAN:
+            return Object.assign({}, state, { [key]: value })
         case CLEAR_FORM:
             return defaultState
         default: 

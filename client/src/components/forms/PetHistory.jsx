@@ -5,7 +5,7 @@ import { OtherPetTypes } from './checkboxes'
 export class PetHistory extends React.Component {
     render() {
     console.log('inside Pet History', this.props)
-    const { submitForm, previousPage, onCheck, onChange, value, user, form } = this.props
+    const { submitForm, previousPage, onCheck, onStringChange, onBooleanChange, value, user, form } = this.props
     return (
         <form onSubmit={(event) => event.preventDefault()}>        
             <OtherPetTypes onCheck={onCheck} />
@@ -20,7 +20,7 @@ export class PetHistory extends React.Component {
                   name="hasYoungChildren"
                   checked={form.hasYoungChildren}
                   type="radio"
-                  onChange={(event) => onChange(event)}
+                  onChange={(event) => onBooleanChange(event)}
                 />
                 <label htmlFor="NoChildren">No</label>
                 <input
@@ -28,7 +28,7 @@ export class PetHistory extends React.Component {
                   name="hasYoungChildren"
                   checked={!form.hasYoungChildren}
                   type="radio"
-                  onChange={(event) => onChange(event)}
+                  onChange={(event) => onBooleanChange(event)}
                 />
               </div>
             </div>
@@ -40,7 +40,7 @@ export class PetHistory extends React.Component {
                 name="petHistory"
                 type="textarea"
                 placeholder={value("petHistory")}
-                onChange={(event) => onChange(event)} 
+                onChange={(event) => onStringChange(event)} 
               >
                 {form.petHistory}
               </textarea>

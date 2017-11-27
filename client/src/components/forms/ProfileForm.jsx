@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import _ from 'lodash';
-import { updateUser, addItem, clearForm } from '../../store';
+import { updateUser, addString, addArray, addBoolean, clearForm } from '../../store';
 import { AnimalPreferences, OtherPetTypes } from './checkboxes';
 import { PersonalInfo } from './PersonalInfo';
 import { PetPreferences } from './PetPreferences';
@@ -39,7 +39,7 @@ class ProfileForm extends React.Component {
   }
 
   render() {
-    const { handleSubmit, handleChange, handleCheckbox, user, form, name, history } = this.props
+    const { handleSubmit, handleStringChange, handleCheckbox, handleBooleanChange, user, form, name, history } = this.props
     const { page } = this.state
     return (
       <div className="splash">
@@ -48,7 +48,7 @@ class ProfileForm extends React.Component {
           <div>
             {page === 1 && <PersonalInfo 
                               nextPage={this.nextPage} 
-                              onChange={handleChange}
+                              onStringChange={handleStringChange}
                               value={this.assignValue} 
                               user={user}
                               form={form} />}
@@ -60,7 +60,8 @@ class ProfileForm extends React.Component {
                               form={form} />}
             {page === 3 && <PetHistory 
                               previousPage={this.previousPage} 
-                              onChange={handleChange} 
+                              onStringChange={handleStringChange}
+                              onBooleanChange={handleBooleanChange} 
                               onCheck={handleCheckbox}
                               value={this.assignValue}
                               submitForm={() => handleSubmit(user.id, form, name, history)} 
@@ -91,11 +92,17 @@ const mapUpdateProfile = (state, ownProps) => ({
 });
 
 const mapDispatch = dispatch => ({
-  handleChange(evt) {
+  handleStringChange(evt) {
     let key = evt.target.name;
     let value = evt.target.value;
     console.log({[key]: value})
-    dispatch(addItem(key, value))
+    dispatch(addString(key, value))
+  },
+  handleBooleanChange(evt) {
+    let key = evt.target.name;
+    let value = evt.target.value;
+    console.log({[key]: value})
+    dispatch(addBoolean(key, value))
   },
   handleCheckbox(checkboxState, componentName) {
     const key =
@@ -103,7 +110,7 @@ const mapDispatch = dispatch => ({
         ? 'animalPreferences'
         : 'otherPetTypes';
     const array = _.keys(_.pickBy(checkboxState));
-    dispatch(addItem(key, array));
+    dispatch(addArray(key, array));
   },
   handleSubmit(userId, formState, name, history) {
     const redirect = name === 'createProfile' ? '/pets' : '/home';
