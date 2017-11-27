@@ -44,8 +44,8 @@ export class PetHistory extends React.Component {
               >
                 {form.petHistory}
               </textarea>
-            </div>
             { historyWarning && <div className="form-warning">{historyWarning}</div> }
+            </div>
             <button onClick={previousPage}>Back</button>
             <button onClick={submitForm} type="submit">Submit</button>
         </form>

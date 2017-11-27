@@ -27,8 +27,8 @@ export const PersonalInfo = (props) => {
                 value={form.phoneNumber}
                 onChange={(event) => onChange(event)}
                 />
-            </div>
             { phoneWarning && <div className="form-warning">{phoneWarning}</div> }
+            </div>
             <div>
                 <label htmlFor="zipCode">Zip Code</label>
                 <input
@@ -38,8 +38,8 @@ export const PersonalInfo = (props) => {
                 value={form.zipCode}
                 onChange={(event) => onChange(event)}
                 />
-            </div>
             { zipWarning && <div className="form-warning">{zipWarning}</div> }
+            </div>
             <button onClick={nextPage} type="submit">Next</button>
         </form>
     )
