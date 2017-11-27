@@ -32,6 +32,7 @@
     "morgan": "^1.9.0",
     "nodemailer": "^4.4.0",
     "passport": "^0.4.0",
+    "passport-facebook": "^2.1.1",
     "passport-google-oauth": "^1.0.0",
     "pg": "6.4.1",
     "react": "15.4.2",
