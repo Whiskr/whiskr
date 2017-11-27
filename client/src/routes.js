@@ -44,7 +44,7 @@ class Routes extends Component {
                   <Route exact path="/pets" component={PetTypes} />
                   <Route exact path="/pets/:type" component={AllPets} />
                   <Route exact path="/matches" component={Matches} />
-                  <Route exact path="/match/:petId" component={MatchSingle}/>
+                  <Route exact path="/matches/:petId" component={MatchSingle}/>
                 </Switch>
             }
             {/* Displays our Login component as a fallback */}
@@ -69,8 +69,8 @@ const mapState = state => ({
 
 const mapDispatch = dispatch => ({
   loadInitialData() {
-    dispatch(me());
-  },
+    dispatch(me())
+  }
 });
 
 export default connect(mapState, mapDispatch)(Routes);

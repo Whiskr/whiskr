@@ -1,25 +1,19 @@
 import React, { Component } from 'react';
 // import { Link } from 'react-router-dom';
-import { fetchPetById, sendEmail, resetMatchPets } from '../store';
+import { sendEmail } from '../store';
 import { connect } from 'react-redux';
 import SinglePet from './SinglePet';
 
 class MatchSingle extends Component {
-  componentDidMount() {
-    this.props.onLoad(this.props.match.params.petId);
-  }
-
-  componentWillUnmount() {
-    this.props.onReload();
-  }
 
   render() {
+    const searchPet = this.props.match.params.petId;
     return (
       <div>
         <h1>Match Single</h1>
         {
           this.props.matchPets.length ?
-          <SinglePet pet={this.props.matchPets[0]} />
+          <SinglePet pet={this.props.matchPets.filter(matchPet => matchPet.id.$t === searchPet)[0]} />
           : <p>MatchPets did not load in time to pass to props maybe we can make this a loading animation?</p>
         }
       </div>
@@ -32,14 +26,8 @@ const mapState = state => ({
 });
 
 const mapDispatch = dispatch => ({
-  onLoad(petId){
-    dispatch(fetchPetById(petId))
-  },
   onClick(user, pet) {
     sendEmail(user, pet);
-  },
-  onReload() {
-    dispatch(resetMatchPets());
   },
 });
 

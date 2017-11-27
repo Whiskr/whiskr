@@ -6,9 +6,10 @@ import currentUser from './currentUser'
 import pets from './pets'
 import matches from './matches'
 import matchPets from './matchPets'
+import form from './form'
 
 
-const reducer = combineReducers({ currentUser, pets, matches, matchPets})
+const reducer = combineReducers({ currentUser, pets, matches, matchPets, form})
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware,
   createLogger({ collapsed: true }),
@@ -32,4 +33,5 @@ export * from './currentUser';
 export * from './pets';
 export * from './matches';
 export * from './matchPets';
+export * from './form'
 export default store;
