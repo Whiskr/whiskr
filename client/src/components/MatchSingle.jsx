@@ -38,12 +38,13 @@ const mapState = state => ({
   matchPets: state.matchPets,
 });
 
-const mapDispatch = dispatch => ({
+const mapDispatch = (dispatch, ownProps) => ({
   onClick(user, pet) {
     sendEmail(user, pet);
   },
   onUnmatch(petId, userId){
     dispatch(unMatch(petId, userId));
+    ownProps.history.push('/matches');
   },
 });
 

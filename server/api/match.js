@@ -28,12 +28,13 @@ router.post('/', (req, res, next) => {
 
 //Delete a match
 router.delete('/', (req, res, next) => {
+  console.log("REQ>BODU", req.body)
     Match.destroy({
         where: {
             petId: req.body.petId,
             userId: req.body.userId,
         }
     })
-    .then((unMatched) => res.json(unMatched))
+    .then(() => res.sendStatus(204))
     .catch(next)
 })
