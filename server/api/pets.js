@@ -13,6 +13,7 @@ router.get('/', (req, res, next) => {
   });
 
   axios.get(`http://api.petfinder.com/pet.getRandom?${queryStr}`).then((allPets) => {
+    console.log(allPets)
     res.json(allPets.data.petfinder.pet);
     res.end();
   }).catch(next);
