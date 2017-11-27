@@ -49,7 +49,7 @@ router.get('/', (req, res) => {
         </div>
         <div>
           <strong>Pet Owning History: </strong>
-          ${userPetHistory}
+          ${userPetHistory || 'No pet history provided'}
         </div>
         <h2>This user is interested in ${petName}: </h2>
         <div>

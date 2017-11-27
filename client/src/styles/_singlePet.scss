@@ -1,16 +1,30 @@
+#singleMatchContainer {
+    background-size: cover;
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    margin: 0 auto;
+    padding: 5vw;
+    overflow: hidden;
+}
+
 #petCard {
-
-    * {
-        transition: all .7s ease;
-    }
-
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-around;
-    align-content: stretch;
-    height: 100%;
-    .flex {
+    justify-content: center;
+    align-content: center;
+    padding: 5vw;
+    * {
+        transition: all .4s ease;
+    }
+    .petPic {
         margin: auto;
+        border-radius: 100%;
+        object-fit: cover;
+        display: block;
+    }
+    #picContainer {
+        width: 100vw;
     }
 }
 
@@ -25,44 +39,40 @@
     }
 
     h1 {
-        font-size: 26px;
+        font-size: 40px;
     }
     h2 {
-        font-size: 18px;
-        line-height: 0;
+        font-size: 16px;
         }
 
     .petPic {
-        border-radius: 100%;
-        object-fit: cover;
-        display: block;
-        width: 100px;
-        height: 100px;
+        width: 150px;
+        height: 150px;
     }
 }
 
 .collapsed {
     p,
     h4 {
-        display: none;
+    transform: translateY(600px);
     }
     .petPic {
-        border-radius: 100%;
-        object-fit: cover;
-        display: block;
-        width: 70vw;
-        height: 70vw;
+        width: 280px;
+        height: 280px;
     }
 }
-}
-
-.rounded {
-    border-radius: 10px;
 }
 
 @media screen and (min-width: 480px) {
     .collapsed, .expanded {
-            h2,
+        h1 {
+            font-size: 48px;
+        }
+        h2 {
+            font-size: 24px;
+            line-height: 0;
+            }
+
             h3,
             h4,
             p,
@@ -70,10 +80,7 @@
                 display: block;
             }
             .petPic {
-                border-radius: 100%;
-                object-fit: cover;
-                display: block;
-                width: 300px;
+                width: calc(300px);
                 height: 300px;
         }
     }

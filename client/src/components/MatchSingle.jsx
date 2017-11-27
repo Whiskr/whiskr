@@ -5,25 +5,26 @@ import SinglePet from './SinglePet';
 import FontAwesome from 'react-fontawesome';
 
 class MatchSingle extends Component {
-
   render() {
     const searchPet = this.props.match.params.petId;
-    const petDetail = this.props.matchPets.filter(matchPet => matchPet.id.$t === searchPet)[0]
+    const petDetail = this.props.matchPets.filter(matchPet => matchPet.id.$t === searchPet)[0];
     return (
-      <div>
+      <div id="singleMatchContainer">
         {
           this.props.matchPets.length ?
-          <div>
-          <SinglePet pet={petDetail} />
-            <button onClick={(event) => {
+            <div>
+              <SinglePet pet={petDetail} />
+              <button onClick={(event) => {
               event.preventDefault(); this.props.onUnmatch(petDetail.id.$t, this.props.currentUser.id);
-              }} >UnMatch</button>
+              }}
+              >UnMatch
+              </button>
               <button onClick={(event) => {
                 event.preventDefault(); this.props.onClick(this.props.currentUser, petDetail);
                   }}
               > <FontAwesome name="envelope-o" />
               </button>
-          </div>
+            </div>
           : <p>Loading</p>
         }
       </div>
@@ -40,7 +41,7 @@ const mapDispatch = (dispatch, ownProps) => ({
   onClick(user, pet) {
     sendEmail(user, pet);
   },
-  onUnmatch(petId, userId){
+  onUnmatch(petId, userId) {
     dispatch(unMatch(petId, userId));
     ownProps.history.push('/matches');
   },
