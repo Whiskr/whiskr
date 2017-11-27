@@ -122,6 +122,7 @@ const mapState = state => ({
   error: state.currentUser.error,
 });
 
+
 const mapDispatch = (dispatch, ownProps) => ({
   handleSubmit(evt, type) {
     evt.preventDefault();
@@ -135,12 +136,17 @@ const mapDispatch = (dispatch, ownProps) => ({
   },
 });
 
+
+
 export const Login = withRouter(connect(mapState, mapDispatch)(AuthForm));
+
 
 /**
  * PROP TYPES
  */
 AuthForm.propTypes = {
+  name: PropTypes.string.isRequired,
+  displayName: PropTypes.string.isRequired,
   handleSubmit: PropTypes.func.isRequired,
-  error: PropTypes.object,
+  error: PropTypes.object
 };
