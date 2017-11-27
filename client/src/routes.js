@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Login, UserHome, AllPets, CreateProfile, UpdateProfile, PetTypes, Matches, MatchSingle } from './components';
+import { Signup, Login, UserHome, AllPets, CreateProfile, UpdateProfile, PetTypes, Matches, MatchSingle } from './components';
 import App from './App';
 import { me } from './store';
 
@@ -22,13 +22,7 @@ class Routes extends Component {
         <App>
           <Switch>
             {/* Root route renders Login when not logged in already, and pets when logged in */}
-            <Route
-              exact
-              path="/"
-              render={() => (
-              isLoggedIn ? (
-                <Redirect to="/pets" />
-              ) : (
+            <Route exact path="/" render={() => ( isLoggedIn ? ( <Redirect to="/pets" />) : (
                 <Login />
               )
             )}
