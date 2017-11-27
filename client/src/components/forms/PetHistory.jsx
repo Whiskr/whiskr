@@ -1,10 +1,9 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { OtherPetTypes } from './checkboxes'
 
 export class PetHistory extends React.Component {
     render() {
-    const { submitForm, previousPage, onCheck, onChange, value, user, form } = this.props
+    const { submitForm, previousPage, onCheck, onChange, defaultValue, form } = this.props
     return (
         <form onSubmit={(event) => event.preventDefault()}>        
             <OtherPetTypes onCheck={onCheck} />
@@ -38,7 +37,7 @@ export class PetHistory extends React.Component {
               <textarea
                 name="petHistory"
                 type="textarea"
-                placeholder={value("petHistory")}
+                placeholder={defaultValue("petHistory")}
                 onChange={(event) => onChange(event)} 
               >
                 {form.petHistory}

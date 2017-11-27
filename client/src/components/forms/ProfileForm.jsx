@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import _ from 'lodash';
 import { updateUser, addItem, clearForm } from '../../store';
-import { AnimalPreferences, OtherPetTypes } from './checkboxes';
 import { PersonalInfo } from './PersonalInfo';
 import { PetPreferences } from './PetPreferences';
 import { PetHistory } from './PetHistory';
@@ -49,20 +48,19 @@ class ProfileForm extends React.Component {
             {page === 1 && <PersonalInfo 
                               nextPage={this.nextPage} 
                               onChange={handleChange}
-                              value={this.assignValue} 
+                              defaultValue={this.assignValue} 
                               user={user}
                               form={form} />}
             {page === 2 && <PetPreferences 
                               previousPage={this.previousPage} 
                               nextPage={this.nextPage}
-                              value={this.assignValue} 
                               onCheck={handleCheckbox}
                               form={form} />}
             {page === 3 && <PetHistory 
                               previousPage={this.previousPage} 
                               onChange={handleChange}
                               onCheck={handleCheckbox}
-                              value={this.assignValue}
+                              defaultValue={this.assignValue}
                               submitForm={() => handleSubmit(user.id, form, name, history)} 
                               user={user}
                               form={form} />}
