@@ -4,7 +4,7 @@ import { Redirect, Route, Switch, BrowserRouter as Router } from 'react-router-d
 import PropTypes from 'prop-types';
 import { Login, UserHome, AllPets, CreateProfile, UpdateProfile, PetTypes, Matches, MatchSingle } from './components';
 import App from './App';
-import { me } from './store';
+import { me, fetchMatches } from './store';
 
 /**
  * COMPONENT
@@ -12,6 +12,7 @@ import { me } from './store';
 class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData();
+    this.props.loadMatches(this.props.currentUser.id)
   }
 
   render() {
@@ -70,6 +71,9 @@ const mapState = state => ({
 const mapDispatch = dispatch => ({
   loadInitialData() {
     dispatch(me());
+  },
+  loadMatches(userId) {
+    dispatch(fetchMatches(userId));
   },
 });
 

@@ -4,9 +4,10 @@ import { fetchMatches, fetchPetById, sendEmail, resetMatchPets } from '../store'
 import { connect } from 'react-redux';
 
 class Matches extends Component {
+
   componentDidMount() {
     this.props.onReload();
-    this.props.onLoad(this.props.currentUser.id);
+    // this.props.onLoad(this.props.currentUser.id);
     this.props.matches.map(match => this.props.onMap(match.petId));
   }
 
