@@ -1,8 +1,7 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
 export const PersonalInfo = (props) => {
-    const { nextPage, onChange, value, user, form } = props
+    const { nextPage, onChange, defaultValue, form } = props
     return (
         <form>        
             <div>
@@ -10,7 +9,7 @@ export const PersonalInfo = (props) => {
                 <input
                 name="email"
                 type="text"
-                placeholder={value("email")}
+                placeholder={defaultValue("email")}
                 value={form.email}
                 onChange={(event) => onChange(event)}
                 />
@@ -20,7 +19,7 @@ export const PersonalInfo = (props) => {
                 <input
                 name="phoneNumber"
                 type="text"
-                placeholder={value("phoneNumber")}
+                placeholder={defaultValue("phoneNumber")}
                 value={form.phoneNumber}
                 onChange={(event) => onChange(event)}
                 />
@@ -30,7 +29,7 @@ export const PersonalInfo = (props) => {
                 <input
                 name="zipCode"
                 type="text"
-                placeholder={value("zipCode")}
+                placeholder={defaultValue("zipCode")}
                 value={form.zipCode}
                 onChange={(event) => onChange(event)}
                 />
