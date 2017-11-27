@@ -6,9 +6,10 @@ import currentUser from './currentUser'
 import pets from './pets'
 import matches from './matches'
 import matchPets from './matchPets'
+import form from './form'
 
 
-const reducer = combineReducers({ currentUser, pets, matches, matchPets})
+const reducer = combineReducers({ currentUser, pets, matches, matchPets, form})
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware,
   createLogger({ collapsed: true }),
@@ -16,8 +17,14 @@ const middleware = composeWithDevTools(applyMiddleware(
 
 const persistedState = localStorage.getItem('store') ? JSON.parse(localStorage.getItem('store')) : {};
 
+const rootReducer = ( state, action ) => {
+  if( action.type === 'LOGOUT_USER' ) {
+    state = undefined;
+  }
+  return reducer(state, action)
+}
 
-const store = createStore(reducer, persistedState, middleware);
+const store = createStore(rootReducer, persistedState, middleware);
 
 store.subscribe(() => localStorage.setItem('store', JSON.stringify(store.getState())));
 
@@ -26,4 +33,5 @@ export * from './currentUser';
 export * from './pets';
 export * from './matches';
 export * from './matchPets';
+export * from './form'
 export default store;
