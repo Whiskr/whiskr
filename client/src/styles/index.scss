@@ -1,7 +1,7 @@
 $primary-dark-color: #041733;
 $primary-medium-color: #063648;
 $primary-light-color: #0E6463;
-$secondary-light-color: #E8DDCC;
+$secondary-light-color: #FFF;
 $secondary-medium-color: #CCB283;
 
 $primary-font-family: 'Roboto';
@@ -36,6 +36,12 @@ li {
     list-style: none;
 }
 
+h1 {
+    font-family: $secondary-font-family;
+    font-size: 70px;
+    margin: 20px;
+}
+
 h1,
 h2 {
     font-weight: 500;
@@ -47,3 +53,4 @@ h2 {
 @import "_menu";
 @import "_forms";
 @import "_matches";
+@import "_user";

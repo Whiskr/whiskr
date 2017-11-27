@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { fetchMatches, fetchPetById, sendEmail, resetMatchPets } from '../store';
+import FontAwesome from 'react-fontawesome';
 import { connect } from 'react-redux';
 
 class Matches extends Component {
@@ -28,7 +29,7 @@ class Matches extends Component {
   render() {
     return (
       <div>
-        <h1> Matches </h1>
+        <h1>Matches</h1>
         <div className="matchesList">
           {this.props.matches.length ?
               this.props.matchPets.map(pet => (
@@ -42,14 +43,14 @@ class Matches extends Component {
                       className="petPic rounded"
                       alt="pet profile pic"
                     />
-                    <h1>{pet.name.$t}</h1>
-                    <h2>{pet.animal.$t}</h2>
-                  </Link>
                     <button onClick={(event) => {
                       event.preventDefault(); this.props.onClick(this.props.currentUser, pet);
                 }}
-                    > Contact
+                    > <FontAwesome name="envelope-o" />
                     </button>
+                    <h1>{pet.name.$t}</h1>
+                    <h2>{pet.animal.$t}</h2>
+                  </Link>
                 </div>
                 ))
               : <p>NO MATCHES!</p>
