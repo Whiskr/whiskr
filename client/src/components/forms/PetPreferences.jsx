@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { AnimalPreferences } from './checkboxes'
 
 export const PetPreferences = (props) => {
