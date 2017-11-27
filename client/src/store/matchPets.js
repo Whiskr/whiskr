@@ -12,7 +12,9 @@ const fetchOnePetById = (pet) => ({
   pet
 });
 
-const removedUnmatchData = () => ({type: REMOVE_UNMATCHES})
+const removedUnmatchData = () => ({
+  type: REMOVE_UNMATCHES
+})
 
 // THUNK
 export const fetchPetById = (petId) =>
@@ -25,9 +27,9 @@ export const fetchPetById = (petId) =>
   };
 
 export const removeUnmatchedPets = () =>
-dispatch => {
-  dispatch(removedUnmatchData());
-}
+  dispatch => {
+    dispatch(removedUnmatchData());
+  };
 
 // REDUCER
 export default function(state = [], action) {

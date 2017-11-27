@@ -6,7 +6,6 @@ import FontAwesome from 'react-fontawesome';
 
 class MatchSingle extends Component {
 
-
   render() {
     const searchPet = this.props.match.params.petId;
     const petDetail = this.props.matchPets.filter(matchPet => matchPet.id.$t === searchPet)[0]
@@ -17,7 +16,6 @@ class MatchSingle extends Component {
           <div>
           <SinglePet pet={petDetail} />
             <button onClick={(event) => {
-              console.log("This.pet",petDetail)
               event.preventDefault(); this.props.onUnmatch(petDetail.id.$t, this.props.currentUser.id);
               }} >UnMatch</button>
               <button onClick={(event) => {
