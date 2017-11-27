@@ -37,10 +37,10 @@ h2 {
   justify-content: space-around;
   align-content: stretch;
   height: 100%; }
-  #petCard * {
-    transition: all .7s ease; }
   #petCard .flex {
     margin: auto; }
+  #petCard * {
+    transition: all .7s ease; }
 
 @media screen and (max-width: 480px) {
   .expanded h2,
@@ -173,7 +173,7 @@ h2 {
   .typeIcon:hover {
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22); }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 480px) {
   .typeIcon {
     width: 16vh;
     margin: 10px; } }
@@ -512,55 +512,68 @@ h2 {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-evenly; }
+  justify-content: space-evenly;
+  padding: 20px; }
+  .matchesList .petCard {
+    border-radius: 20px;
+    position: relative;
+    background-color: #063648;
+    padding: 1.5em;
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1); }
+    .matchesList .petCard img {
+      border-radius: 100%;
+      object-fit: cover;
+      display: block;
+      height: 150px;
+      width: 150px;
+      border: dotted 3px white; }
+    .matchesList .petCard a {
+      text-decoration: none;
+      color: white; }
+    .matchesList .petCard h1 {
+      font-family: "Just Another Hand";
+      font-size: 42px;
+      margin: 8px 0 8px 0; }
+    .matchesList .petCard h2 {
+      font-size: 16px;
+      font-family: "Roboto";
+      line-height: 0; }
+    .matchesList .petCard button {
+      position: absolute;
+      right: 15px;
+      top: 120px;
+      background-color: #0E6463;
+      border: none;
+      border-radius: 5em;
+      width: 2.1em;
+      height: 2.1em;
+      padding: .4em;
+      font-size: 1.8em;
+      color: white;
+      transition: all .5s ease;
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22); }
+      .matchesList .petCard button:hover {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25), 0 2px 2px rgba(0, 0, 0, 0.22);
+        background-color: white;
+        color: #0E6463; }
+    .matchesList .petCard:hover {
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22); }
 
-.petCard {
-  text-align: left;
-  border-radius: 20px;
-  position: relative;
-  background-color: #063648;
-  padding: 1.5em;
-  width: 200px;
-  margin: 15px 0 15px 0;
-  transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1); }
-  .petCard img {
-    border-radius: 100%;
-    object-fit: cover;
-    display: block;
-    height: 150px;
-    width: 150px;
-    border: dotted 3px white; }
-  .petCard a {
-    text-decoration: none;
-    color: white; }
-  .petCard h1 {
-    font-family: "Just Another Hand";
-    font-size: 42px;
-    margin: 8px 0 8px 0; }
-  .petCard h2 {
-    font-size: 16px;
-    font-family: "Roboto";
-    line-height: 0; }
-  .petCard button {
-    position: absolute;
-    right: 15px;
-    top: 120px;
-    background-color: #0E6463;
-    border: none;
-    border-radius: 5em;
-    width: 2.1em;
-    height: 2.1em;
-    padding: .4em;
-    font-size: 1.8em;
-    color: white;
-    transition: all .5s ease;
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22); }
-    .petCard button:hover {
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25), 0 2px 2px rgba(0, 0, 0, 0.22);
-      background-color: white;
-      color: #0E6463; }
-  .petCard:hover {
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22); }
+@media screen and (max-width: 480px) {
+  .petCard {
+    width: 90%;
+    margin: 15px 0 15px 0;
+    text-align: right; }
+    .petCard #petInfo {
+      position: absolute;
+      top: 10px;
+      right: 20px; } }
+
+@media screen and (min-width: 480px) {
+  .petCard {
+    width: 200px;
+    margin: 15px 10px 15px 10px;
+    text-align: left; } }
 
 .userProfile {
   padding: 2em;

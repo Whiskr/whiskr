@@ -1,9 +1,4 @@
 #petCard {
-
-    * {
-        transition: all .7s ease;
-    }
-
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
@@ -11,6 +6,9 @@
     height: 100%;
     .flex {
         margin: auto;
+    }
+    * {
+        transition: all .7s ease;
     }
 }
 
