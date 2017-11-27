@@ -39,7 +39,6 @@ export const fetchMatches = userId =>
 
 export const petWasSeen = (petId, userId) =>
   (dispatch) => {
-    // dispatch(removePet(petId, petSpecies))
     axios.post('/api/seen', { petId, userId })
       .catch(err => console.log(err));
   };
@@ -63,6 +62,7 @@ export const unMatch = (petId, userId) =>
   dispatch =>
     axios.delete('/api/match', { petId, userId })
       .then((res) => {
+        console.log("MATCH DATA to REMOVE",res)
         dispatch(removeMatches(res.data));
       })
       .catch(err => console.log(err));

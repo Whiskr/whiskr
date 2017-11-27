@@ -30,9 +30,10 @@ router.post('/', (req, res, next) => {
 router.delete('/', (req, res, next) => {
     Match.destroy({
         where: {
-            id: req.body.matchId
+            petId: req.body.petId,
+            userId: req.body.userId,
         }
     })
-    .then(() => res.sendStatus(204))
+    .then((unMatched) => res.json(unMatched))
     .catch(next)
 })
