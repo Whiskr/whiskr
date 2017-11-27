@@ -35,7 +35,7 @@ h2 {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
-  align-content: stretch;
+  align-content: center;
   height: 100%; }
   #petCard * {
     transition: all .7s ease; }
