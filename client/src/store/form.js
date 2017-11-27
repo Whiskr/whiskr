@@ -5,10 +5,23 @@ const ADD_BOOLEAN = 'ADD_BOOLEAN';
 const CLEAR_FORM = 'CLEAR_FORM';
 
 //ACTION CREATORS
-export const addString = (key, value) => { type: ADD_STRING, key, value }
-export const addArray = (key, value) => { type: ADD_ARRAY, key, value }
-export const addBoolean = (key, value) => { type: ADD_BOOLEAN, key, value }
-export const clearForm = () => {type: CLEAR_FORM}
+export const addString = (key, value) => {
+    //I hate this, but it prevents a TypeError
+    let val = { type: ADD_STRING, key, value }
+    return val
+} 
+export const addArray = (key, value) => {
+    let val = { type: ADD_ARRAY, key, value }
+    return val
+} 
+export const addBoolean = (key, value) => {
+    let val = { type: ADD_BOOLEAN, key, value }
+    return val
+} 
+export const clearForm = () => {
+    let val = {type: CLEAR_FORM}
+    return val
+} 
 
 //THUNKS
 
@@ -30,7 +43,8 @@ export default function (state = defaultState, action) {
         case ADD_STRING:
             return Object.assign({}, state, { [key]: value })
         case ADD_ARRAY:
-            return Object.assign({}, state, { [key]: state[key].concat(value) })
+            const dumbArray = [...state[key]].push(value)
+            return Object.assign({}, state, { [key]: dumbArray })
         case ADD_BOOLEAN:
             return Object.assign({}, state, { [key]: value })
         case CLEAR_FORM:
