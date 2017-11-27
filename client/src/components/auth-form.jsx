@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import FontAwesome from 'react-fontawesome';
 import PropTypes from 'prop-types';
-import { auth } from '../store';
+import { auth, fetchMatches } from '../store';
 import logo from '../styles/logo.png';
 
 /**
@@ -128,8 +128,9 @@ const mapDispatch = (dispatch, ownProps) => ({
     const email = evt.target.email.value;
     const password = evt.target.password.value;
     const redirect = type === 'login' ? '/pets' : '/createProfile';
-    Promise.resolve(dispatch(auth(email, password, type))).then(() => {
-      ownProps.history.push(redirect);
+    Promise.resolve(dispatch(auth(email, password, type))).then((res) => {
+      ownProps.history.push(redirect)
+      dispatch(fetchMatches(res))
     });
   },
 });

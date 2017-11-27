@@ -4,7 +4,7 @@ import { Redirect, Route, Switch, BrowserRouter as Router } from 'react-router-d
 import PropTypes from 'prop-types';
 import { Login, UserHome, AllPets, CreateProfile, UpdateProfile, PetTypes, Matches, MatchSingle } from './components';
 import App from './App';
-import { me, fetchMatches } from './store';
+import { me } from './store';
 
 /**
  * COMPONENT
@@ -13,13 +13,6 @@ class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData();
   }
-
-  // componentWillReceiveProps(nextProps){
-  //   // this works to set it acter the user is logged in but it also calls current user when user is logged out
-  //   if(this.props.currentUser !== nextProps){
-  //     this.props.loadMatches(this.props.currentUser.id)
-  //   }
-  // }
 
   render() {
     const { isLoggedIn } = this.props;
@@ -76,11 +69,8 @@ const mapState = state => ({
 
 const mapDispatch = dispatch => ({
   loadInitialData() {
-    dispatch(me());
-  },
-  loadMatches(userId) {
-    dispatch(fetchMatches(userId));
-  },
+    dispatch(me())
+  }
 });
 
 export default connect(mapState, mapDispatch)(Routes);
