@@ -3,12 +3,13 @@ import axios from 'axios'
 // ACTION TYPES
 
 const FETCH_PET_BY_ID = 'FETCH_PET_BY_ID';
-const RESET_MATCHPETS = 'RESET_MATCHPETS';
 
 // ACTION CREATORS
 
-const fetchOnePetById = (pet) => ({type: FETCH_PET_BY_ID, pet});
-const resetPetDetail = () => ({type: RESET_MATCHPETS})
+const fetchOnePetById = (pet) => ({
+  type: FETCH_PET_BY_ID,
+  pet
+});
 
 // THUNK
 export const fetchPetById = (petId) =>
@@ -20,18 +21,12 @@ export const fetchPetById = (petId) =>
       .catch(err => console.log(err));
   };
 
-export const resetMatchPets = () =>
-  dispatch => (dispatch(resetPetDetail()))
-
-  // REDUCER
-  export default function ( state = [], action ) {
-    switch (action.type) {
-      case FETCH_PET_BY_ID:
-        return [...state, action.pet];
-      case RESET_MATCHPETS:
-        return state = [];
-      default:
+// REDUCER
+export default function(state = [], action) {
+  switch (action.type) {
+    case FETCH_PET_BY_ID:
+      return [...state, action.pet];
+    default:
       return state;
-
-    }
   }
+}

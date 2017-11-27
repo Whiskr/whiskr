@@ -34,9 +34,7 @@ export const fetchMatches = userId =>
     axios.get(`/api/match/${userId}`)
       .then(res =>
         dispatch(getMatches(res.data)))
-        .then(results => results.matches.map( pet => {
-          dispatch(fetchPetById(pet.petId))
-        }))
+        .then(results => results.matches.map( pet => dispatch(fetchPetById(pet.petId))))
       .catch(err => console.log(err));
 
 export const petWasSeen = (petId, userId) =>
