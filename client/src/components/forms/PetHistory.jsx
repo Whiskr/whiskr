@@ -2,11 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { OtherPetTypes } from './checkboxes'
 
-export const PetHistory = () => {
-
-    const { onSubmit, previousPage, onCheck, onChange, user } = this.props
+export class PetHistory extends React.Component {
+    render() {
+    console.log('inside Pet History', this.props)
+    const { submitForm, previousPage, onCheck, onChange, value, user, form } = this.props
     return (
-        <form onSubmit={onSubmit}>        
+        <form onSubmit={(event) => event.preventDefault()}>        
             <OtherPetTypes onCheck={onCheck} />
             <div>
               <label htmlFor="hasYoungChildren">
@@ -17,7 +18,7 @@ export const PetHistory = () => {
                 <input
                   id="YesChildren"
                   name="hasYoungChildren"
-                  value={true}
+                  checked={form.hasYoungChildren}
                   type="radio"
                   onChange={(event) => onChange(event)}
                 />
@@ -25,7 +26,7 @@ export const PetHistory = () => {
                 <input
                   id="NoChildren"
                   name="hasYoungChildren"
-                  value={false}
+                  checked={!form.hasYoungChildren}
                   type="radio"
                   onChange={(event) => onChange(event)}
                 />
@@ -38,13 +39,15 @@ export const PetHistory = () => {
               <textarea
                 name="petHistory"
                 type="textarea"
-                onChange={(event) => onChange(event)}
+                placeholder={value("petHistory")}
+                onChange={(event) => onChange(event)} 
               >
-                {user.petHistory}
+                {form.petHistory}
               </textarea>
             </div>
             <button onClick={previousPage}>Back</button>
-            <button type="submit">Next</button>
+            <button onClick={submitForm} type="submit">Submit</button>
         </form>
     )
+  }
 }

@@ -2,13 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { AnimalPreferences } from './checkboxes'
 
-export const PetPreferences = () => {
-    const { onSubmit, previousPage, onCheck } = this.props
+export const PetPreferences = (props) => {
+    const { nextPage, previousPage, onCheck } = props
     return (
-        <form onSubmit={onSubmit}>        
+        <form>        
             <AnimalPreferences onCheck={onCheck}/>
             <button onClick={previousPage}>Back</button>
-            <button type="submit">Next</button>
+            <button onClick={nextPage} type="submit">Next</button>
         </form>
     )
 }
