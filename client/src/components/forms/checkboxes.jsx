@@ -25,35 +25,35 @@ class Checkbox extends React.Component {
         <div className="checkboxes">
           <div>
             <label htmlFor={name}><small>Dogs</small></label>
-            <input name="dogs" type="checkbox" value="dog" checked={this.state.dogs} onChange={this.handleChange} />
+            <input name="dog" type="checkbox" value="dog" checked={this.state.dogs} onChange={this.handleChange} />
           </div>
           <div>
             <label htmlFor={name}><small>Cats</small></label>
-            <input name="cats" type="checkbox" value="cat" checked={this.state.cats} onChange={this.handleChange} />
+            <input name="cat" type="checkbox" value="cat" checked={this.state.cats} onChange={this.handleChange} />
           </div>
           <div>
             <label htmlFor={name}><small>Birds</small></label>
-            <input name="birds" type="checkbox" value="bird" checked={this.state.birds} onChange={this.handleChange} />
+            <input name="bird" type="checkbox" value="bird" checked={this.state.birds} onChange={this.handleChange} />
           </div>
           <div>
             <label htmlFor={name}><small>Rabbits</small></label>
-            <input name="rabbits" type="checkbox" value="rabbit" checked={this.state.rabbits} onChange={this.handleChange} />
+            <input name="rabbit" type="checkbox" value="rabbit" checked={this.state.rabbits} onChange={this.handleChange} />
           </div>
           <div>
             <label htmlFor={name}><small>Small Mammals</small></label>
-            <input name="smallFurries" type="checkbox" value="smallFurry" checked={this.state.smallFurry} onChange={this.handleChange} />
+            <input name="smallFurry" type="checkbox" value="smallFurry" checked={this.state.smallFurry} onChange={this.handleChange} />
           </div>
           <div>
             <label htmlFor={name}><small>Reptiles</small></label>
-            <input name="reptiles" type="checkbox" value="reptile" checked={this.state.reptiles} onChange={this.handleChange} />
+            <input name="reptile" type="checkbox" value="reptile" checked={this.state.reptiles} onChange={this.handleChange} />
           </div>
           <div>
             <label htmlFor={name}><small>Horses</small></label>
-            <input name="horses" type="checkbox" value="horse" checked={this.state.horses} onChange={this.handleChange} />
+            <input name="horse" type="checkbox" value="horse" checked={this.state.horses} onChange={this.handleChange} />
           </div>
           <div>
             <label htmlFor={name}><small>Barnyard Animals</small></label>
-            <input name="barnyardAnimals" type="checkbox" value="barnyardAnimal" checked={this.state.barnyardAnimals} onChange={this.handleChange} />
+            <input name="barnyardAnimal" type="checkbox" value="barnyardAnimal" checked={this.state.barnyardAnimals} onChange={this.handleChange} />
           </div>
         </div>
       </div>

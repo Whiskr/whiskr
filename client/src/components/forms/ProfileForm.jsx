@@ -23,7 +23,6 @@ class ProfileForm extends React.Component {
   assignValue(inputName) {
     const { form, user } = this.props
     console.log(form, inputName)
-    console.log(form[inputName])
     const value = (form[inputName] && form[inputName].length) ? form[inputName] : user[inputName]
     return value
   }
@@ -118,7 +117,8 @@ const mapDispatch = dispatch => ({
     Promise.resolve(dispatch(updateUser(userId, formState)))
     .then(() => {
       dispatch(clearForm())
-      history.push(redirect)});
+      history.push(redirect)})
+      .catch(err => console.log(err));
   },
 });
 

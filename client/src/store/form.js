@@ -27,13 +27,13 @@ export const clearForm = () => {
 
 //DEFAULTSTATE
 const defaultState = {
-    email: '',
-    phoneNumber: '',
-    zipCode: '',
-    animalPreferences: [],
-    otherPetTypes: [],
-    hasYoungChildren: false,
-    petHistory: ''
+    // email: '',
+    // phoneNumber: '',
+    // zipCode: '',
+    // animalPreferences: [],
+    // otherPetTypes: [],
+    // hasYoungChildren: false,
+    // petHistory: ''
 }
 
 //REDUCER
@@ -43,8 +43,7 @@ export default function (state = defaultState, action) {
         case ADD_STRING:
             return Object.assign({}, state, { [key]: value })
         case ADD_ARRAY:
-            const dumbArray = [...state[key]].push(value)
-            return Object.assign({}, state, { [key]: dumbArray })
+            return Object.assign({}, state, { [key]: value })
         case ADD_BOOLEAN:
             return Object.assign({}, state, { [key]: value })
         case CLEAR_FORM:
