@@ -4,6 +4,8 @@ import { OtherPetTypes } from './checkboxes'
 export class PetHistory extends React.Component {
     render() {
     const { submitForm, previousPage, onCheck, onChange, defaultValue, form } = this.props
+    let historyWarning = ''
+    if (historyWarning.length === 0) historyWarning = 'Your Pet Owning History is important for shelters and caregivers to ensure that you are a good match for their pet'
     return (
         <form onSubmit={(event) => event.preventDefault()}>        
             <OtherPetTypes onCheck={onCheck} />
@@ -43,6 +45,7 @@ export class PetHistory extends React.Component {
                 {form.petHistory}
               </textarea>
             </div>
+            { historyWarning && <div>{historyWarning}</div> }
             <button onClick={previousPage}>Back</button>
             <button onClick={submitForm} type="submit">Submit</button>
         </form>
