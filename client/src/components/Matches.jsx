@@ -1,30 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { fetchMatches, fetchPetById, sendEmail, resetMatchPets } from '../store';
+import { sendEmail } from '../store';
 import FontAwesome from 'react-fontawesome';
 import { connect } from 'react-redux';
 
 class Matches extends Component {
-
-  componentDidMount() {
-    this.props.onReload();
-    this.props.onLoad(this.props.currentUser.id);
-    // for reloading
-    this.props.matches.map(match => this.props.onMap(match.petId));
-
-  }
-
-  componentWillReceiveProps(nextProps){
-    // try to compare empty matches and setting matches to fire FETCHBYID
-    console.log("THISPROPS", this.props.matches, "NEXTPROPS>MATCH", nextProps.matches)
-    if(this.props.matches.length !== nextProps.matches.length){
-      this.props.matches.map(match => this.props.onMap(match.petId));
-    }
-  }
-
-  componentWillUnmount() {
-    this.props.onReload();
-  }
 
   render() {
     return (
@@ -34,7 +14,7 @@ class Matches extends Component {
           {this.props.matches.length ?
               this.props.matchPets.map(pet => (
                 <div key={pet.id.$t} className="matches petCard">
-                  <Link to={`match/${pet.id.$t}`}>
+                  <Link to={`matches/${pet.id.$t}`}>
                     <img
                       src={
                 pet.media.photos
@@ -68,17 +48,8 @@ const mapState = state => ({
 });
 
 const mapDispatch = dispatch => ({
-  onLoad(id) {
-    dispatch(fetchMatches(id));
-  },
-  onMap(petId) {
-    dispatch(fetchPetById(petId));
-  },
   onClick(user, pet) {
     sendEmail(user, pet);
-  },
-  onReload() {
-    dispatch(resetMatchPets());
   },
 });
 
