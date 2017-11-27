@@ -30,6 +30,8 @@ if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
     callbackURL: process.env.GOOGLE_CALLBACK
   }
 
+  console.log('init google oauth', googleConfig)
+
   const strategy = new GoogleStrategy(googleConfig, (token, refreshToken, profile, done) => {
     const googleId = profile.id
     const name = profile.displayName
@@ -46,7 +48,10 @@ if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
 
   passport.use(strategy)
 
-  router.get('/', passport.authenticate('google', {scope: 'email'}))
+  router.get('/', (req, res, next) => {
+    console.log('will get google auth')
+    next()
+  }, passport.authenticate('google', {scope: 'email'}))
 
   router.get('/callback', passport.authenticate('google', {
     successRedirect: '/home',

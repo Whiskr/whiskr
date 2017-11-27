@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { fetchPetById } from './';
 // import {removePet} from './'
 
 // ACTION TYPES
@@ -33,6 +34,7 @@ export const fetchMatches = userId =>
     axios.get(`/api/match/${userId}`)
       .then(res =>
         dispatch(getMatches(res.data)))
+        .then(results => results.matches.map( pet => dispatch(fetchPetById(pet.petId))))
       .catch(err => console.log(err));
 
 export const petWasSeen = (petId, userId) =>
@@ -52,7 +54,8 @@ export const addMatches = (petId, userId) =>
     axios.post('/api/match', { petId, userId })
       .then((res) => {
         dispatch(petWasSeen(petId, userId));
-        dispatch(createMatches(res.data));
+        dispatch(createMatches(res.data))
+        dispatch(fetchPetById(petId));
       })
       .catch(err => console.log(err));
 

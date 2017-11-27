@@ -19,6 +19,9 @@ const User = db.define('user', {
   googleId: {
     type: Sequelize.STRING
   },
+  facebookId: {
+    type: Sequelize.STRING
+  },
   animalPreferences: {
     type: Sequelize.ARRAY(Sequelize.STRING),
     defaultValue: []

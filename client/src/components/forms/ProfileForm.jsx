@@ -2,147 +2,117 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import _ from 'lodash';
-import { updateUser } from '../../store';
+import { updateUser, addItem, clearForm } from '../../store';
 import { AnimalPreferences, OtherPetTypes } from './checkboxes';
+import { PersonalInfo } from './PersonalInfo';
+import { PetPreferences } from './PetPreferences';
+import { PetHistory } from './PetHistory';
 
 // COMPONENT
 class ProfileForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = this.props.user;
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.props.handleSubmit.bind(this);
-    this.handleCheckbox = this.handleCheckbox.bind(this);
+    this.state = {
+      page: 1
+    }
+    this.nextPage = this.nextPage.bind(this)
+    this.previousPage = this.previousPage.bind(this)
+    this.assignValue = this.assignValue.bind(this)
   }
 
+  assignValue(inputName) {
+    const { form, user } = this.props
+    const value = (form[inputName] && form[inputName].length)
+      ? form[inputName]
+      : user[inputName]
+    return value
+  }
+
+  nextPage(evt) {
+    evt.preventDefault()
+    this.setState({ page: this.state.page + 1 })
+  }
+
+  previousPage(evt) {
+    evt.preventDefault()
+    this.setState({ page: this.state.page - 1 })
+  }
+
+  render() {
+    const { handleSubmit, handleChange, handleCheckbox, user, form, name, history } = this.props
+    const { page } = this.state
+    return (
+      <div className="splash">
+        <div className="form animated flipInX">
+          <h2>{this.props.display}</h2>
+          <div>
+            {page === 1 && <PersonalInfo 
+                              nextPage={this.nextPage} 
+                              onChange={handleChange}
+                              value={this.assignValue} 
+                              user={user}
+                              form={form} />}
+            {page === 2 && <PetPreferences 
+                              previousPage={this.previousPage} 
+                              nextPage={this.nextPage}
+                              value={this.assignValue} 
+                              onCheck={handleCheckbox}
+                              form={form} />}
+            {page === 3 && <PetHistory 
+                              previousPage={this.previousPage} 
+                              onChange={handleChange}
+                              onCheck={handleCheckbox}
+                              value={this.assignValue}
+                              submitForm={() => handleSubmit(user.id, form, name, history)} 
+                              user={user}
+                              form={form} />}
+          </div>
+        </div>
+      </div>
+    )
+  }
+}
+
+// CONTAINER
+const mapCreateProfile = (state, ownProps) => ({
+  user: state.currentUser,
+  form: state.form,
+  name: 'createProfile',
+  display: 'Please Create Your Profile to Better Help Us Match You With Your Purrfect Companion',
+  history: ownProps.history
+});
+
+const mapUpdateProfile = (state, ownProps) => ({
+  user: state.currentUser,
+  form: state.form,
+  name: 'updateProfile',
+  display: 'Update Your Preferences for Better Matching',
+  history: ownProps.history
+});
+
+const mapDispatch = dispatch => ({
+  handleChange(evt) {
+    let key = evt.target.name;
+    let value = evt.target.value;
+    dispatch(addItem(key, value))
+  },
   handleCheckbox(checkboxState, componentName) {
     const key =
       componentName === 'animalPreferences'
         ? 'animalPreferences'
         : 'otherPetTypes';
     const array = _.keys(_.pickBy(checkboxState));
-    this.setState({ [key]: array });
-  }
-
-  handleChange(event) {
-    this.setState({ [event.target.name]: event.target.value });
-  }
-  render() {
-    const { user } = this.props;
-    return (
-      <div className="splash">
-        <div className="form animated flipInX">
-          <h2>{this.props.display}</h2>
-          <form
-            onSubmit={event => this.handleSubmit(event, user.id, this.state)}
-          >
-            <div>
-              <label htmlFor="email">
-                <small>Email</small>
-              </label>
-              <input
-                name="email"
-                type="text"
-                value={this.state.email}
-                onChange={this.handleChange}
-              />
-            </div>
-            <div>
-              <label htmlFor="phoneNumber">
-                <small>Phone Number</small>
-              </label>
-              <input
-                name="phoneNumber"
-                type="text"
-                value={this.state.phoneNumber}
-                onChange={this.handleChange}
-              />
-            </div>
-            <div>
-              <label htmlFor="zipCode">
-                <small>Zip Code</small>
-              </label>
-              <input
-                name="zipCode"
-                type="text"
-                value={this.state.zipCode}
-                onChange={this.handleChange}
-              />
-            </div>
-            <div>
-              <AnimalPreferences onCheck={this.handleCheckbox} />
-            </div>
-            <div>
-              <OtherPetTypes onCheck={this.handleCheckbox} />
-            </div>
-            <div>
-              <label htmlFor="hasYoungChildren">
-                Do You Have Small Children?
-              </label>
-              <div className="radio">
-                <label htmlFor="YesChildren">Yes</label>
-                <input
-                  id="YesChildren"
-                  name="hasYoungChildren"
-                  value
-                  type="radio"
-                  onChange={this.handleChange}
-                />
-                <label htmlFor="NoChildren">No</label>
-                <input
-                  id="NoChildren"
-                  name="hasYoungChildren"
-                  value={false}
-                  type="radio"
-                  onChange={this.handleChange}
-                />
-              </div>
-            </div>
-            <div>
-              <label htmlFor="petHistory">
-                <small>What is Your Pet Owning History?</small>
-              </label>
-              <textarea
-                name="petHistory"
-                type="textarea"
-                onChange={this.handleChange}
-              >
-                {this.state.petHistory}
-              </textarea>
-            </div>
-            <div>
-              <button type="submit">Update Profile</button>
-            </div>
-            {/* {error && error.response && <div> {error.response.data} </div>} */}
-          </form>
-          {/* <a href="/auth/google">{displayName} with Google</a> */}
-        </div>
-      </div>
-    );
-  }
-}
-
-// CONTAINER
-const mapCreateProfile = state => ({
-  user: state.currentUser,
-  name: 'createProfile',
-  display:
-    'Please Create Your Profile to Better Help Us Match You With Your Purrfect Companion',
-});
-
-const mapUpdateProfile = state => ({
-  user: state.currentUser,
-  name: 'updateProfile',
-  display: 'Update Your Preferences for Better Matching',
-});
-
-const mapDispatch = dispatch => ({
-  handleSubmit(evt, userId, localState) {
-    evt.preventDefault();
-    const redirect = this.props.name === 'createProfile' ? '/pets' : '/home';
-    Promise.resolve(dispatch(updateUser(userId, localState))).then(() => {
-      this.props.history.push(redirect);
-    });
+    dispatch(addItem(key, array));
+  },
+  handleSubmit(userId, formState, name, history) {
+    const redirect = name === 'createProfile' 
+      ? '/pets' 
+      : '/home';
+    Promise.resolve(dispatch(updateUser(userId, formState)))
+    .then(() => {
+      dispatch(clearForm())
+      history.push(redirect)})
+      .catch(err => console.log(err));
   },
 });
 
