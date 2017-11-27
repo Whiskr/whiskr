@@ -12,8 +12,14 @@ import { me, fetchMatches } from './store';
 class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData();
-    this.props.loadMatches(this.props.currentUser.id)
   }
+
+  // componentWillReceiveProps(nextProps){
+  //   // this works to set it acter the user is logged in but it also calls current user when user is logged out
+  //   if(this.props.currentUser !== nextProps){
+  //     this.props.loadMatches(this.props.currentUser.id)
+  //   }
+  // }
 
   render() {
     const { isLoggedIn } = this.props;

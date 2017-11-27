@@ -7,8 +7,18 @@ class Matches extends Component {
 
   componentDidMount() {
     this.props.onReload();
-    // this.props.onLoad(this.props.currentUser.id);
+    this.props.onLoad(this.props.currentUser.id);
+    // for reloading
     this.props.matches.map(match => this.props.onMap(match.petId));
+
+  }
+
+  componentWillReceiveProps(nextProps){
+    // try to compare empty matches and setting matches to fire FETCHBYID
+    console.log("THISPROPS", this.props.matches, "NEXTPROPS>MATCH", nextProps.matches)
+    if(this.props.matches.length !== nextProps.matches.length){
+      this.props.matches.map(match => this.props.onMap(match.petId));
+    }
   }
 
   componentWillUnmount() {
@@ -34,12 +44,12 @@ class Matches extends Component {
                     />
                     <h1>{pet.name.$t}</h1>
                     <h2>{pet.animal.$t}</h2>
+                  </Link>
                     <button onClick={(event) => {
                       event.preventDefault(); this.props.onClick(this.props.currentUser, pet);
                 }}
                     > Contact
                     </button>
-                  </Link>
                 </div>
                 ))
               : <p>NO MATCHES!</p>
