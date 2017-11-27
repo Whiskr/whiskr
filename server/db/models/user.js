@@ -11,12 +11,15 @@ const User = db.define('user', {
   },
   password: {
     type: Sequelize.STRING,
-    allowNull: false
+    // allowNull: false
   },
   salt: {
     type: Sequelize.STRING
   },
   googleId: {
+    type: Sequelize.STRING
+  },
+  facebookId: {
     type: Sequelize.STRING
   },
   animalPreferences: {

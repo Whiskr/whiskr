@@ -13,9 +13,6 @@ module.exports = router
  * by git! In this case, you may use a file called `secrets.js`, which will
  * set these environment variables like so:
  *
- * process.env.GOOGLE_CLIENT_ID = '190963196857-06a0d4jjm611raku6mf2he87mmvu4i14.apps.googleusercontent.com'
- * process.env.GOOGLE_CLIENT_SECRET = 'oy4QEBxS9emJY_dk3xZlhM5E'
- * process.env.GOOGLE_CALLBACK = '/your/google/callback'
  */
 
 if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
