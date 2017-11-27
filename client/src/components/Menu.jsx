@@ -5,13 +5,30 @@ import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import { logout } from '../store';
 
-const Menu = (props) => {
-  const { handleClick, isLoggedIn } = props;
+export class Menu extends React.Component {
+
+  constructor(){
+    super();
+    this.state = {
+      menuOpen : false
+    }
+    this.handleClickEvent = this.handleClickEvent.bind(this)
+  }
+
+  handleClickEvent(event) {
+    event.preventDefault();
+    const newState = !this.state.menuOpen
+    this.setState({ menuOpen: newState })
+  }
+
+  render () {
+  const { handleClick, isLoggedIn } = this.props;
+  const { menuOpen } = this.state
   return (
     <div>
       {isLoggedIn ?
         <nav className="menu">
-          <input type="checkbox" href="#" className="menu-open" name="menu-open" id="menu-open" />
+          <input type="checkbox" checked={menuOpen} href="#" className="menu-open" name="menu-open" id="menu-open" />
           <label className="menu-open-button" htmlFor="menu-open">
             <span className="lines line-1" />
             <span className="lines line-2" />
@@ -25,8 +42,9 @@ const Menu = (props) => {
 : null
     }
     </div>
-  );
-};
+    );
+  };
+}
 
 const mapState = state => ({
   currentUser: state.currentUser,
