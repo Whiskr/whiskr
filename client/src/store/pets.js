@@ -31,7 +31,6 @@ export const fetchAllPets = (type, currentUser) =>
   async (dispatch) => {
     while(true){
       const pet = await axiosCall(type, currentUser)
-      console.log(pet)
       if (!await wasItSeen(pet.id.$t, currentUser.id))
         return dispatch(fetchPets(pet, type))
     }
