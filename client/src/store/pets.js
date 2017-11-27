@@ -19,14 +19,12 @@ export const clearPets = (species) => ({ type: CLEAR_PETS, species });
 // Had to add in extra https to get cors to work
 const wasItSeen = (petId, userId) => 
   axios.get(`/api/seen/${userId}/${petId}`)
-    .then(res => {
-      return res.data.length})
+    .then(res => res.data.length)
 
 
 const axiosCall = (type, currentUser) => 
 axios.get(`/api/pets?animal=${type}&location=${currentUser.zipCode || 11226}&key=01e0c19609326eb33ed70df84f870392`)
-  .then(res => {
-    return res.data})
+  .then(res => res.data)
 
 
 export const fetchAllPets = (type, currentUser) =>
@@ -37,7 +35,6 @@ export const fetchAllPets = (type, currentUser) =>
         return dispatch(fetchPets(pet, type))
     }
   }
-
 
 /**
  * REDUCER

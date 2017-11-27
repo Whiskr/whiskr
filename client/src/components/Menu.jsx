@@ -12,15 +12,22 @@ export class Menu extends React.Component {
     this.state = {
       menuOpen : false
     }
-    this.handleClickEvent = this.handleClickEvent.bind(this)
+    this.handleOutsideClick = this.handleOutsideClick.bind(this)
+    this.handleMenuClick = this.handleMenuClick.bind(this)
   }
 
-  handleClickEvent(event) {
-    event.preventDefault();
-    const newState = !this.state.menuOpen
-    this.setState({ menuOpen: newState })
+  handleOutsideClick(event) {
+    const { menuOpen } = this.state
+    if (menuOpen) {
+      this.setState({ menuOpen: false })
+    }
   }
 
+  handleMenuClick(event) {
+    const { menuOpen } = this.state
+    this.setState({ menuOpen: !menuOpen })
+  }
+  
   render () {
   const { handleClick, isLoggedIn } = this.props;
   const { menuOpen } = this.state
@@ -29,15 +36,15 @@ export class Menu extends React.Component {
       {isLoggedIn ?
         <nav className="menu">
           <input type="checkbox" checked={menuOpen} href="#" className="menu-open" name="menu-open" id="menu-open" />
-          <label className="menu-open-button" htmlFor="menu-open">
+          <label onClick={this.handleMenuClick} className="menu-open-button" htmlFor="menu-open">
             <span className="lines line-1" />
             <span className="lines line-2" />
             <span className="lines line-3" />
           </label>
-          <Link to="/home" className="menu-item item-1" ><FontAwesome name="user" /></Link>
-          <Link to="/matches" className="menu-item item-2"><FontAwesome name="heart" /></Link>
-          <Link to="/pets" className="menu-item item-3" ><FontAwesome name="paw" /></Link>
-          <Link to="/logout" className="menu-item item-4" onClick={handleClick} ><FontAwesome name="sign-out" /></Link>
+          <Link to="/home" onClick={this.handleOutsideClick} className="menu-item item-1" ><FontAwesome name="user" /></Link>
+          <Link to="/matches" onClick={this.handleOutsideClick} className="menu-item item-2"><FontAwesome name="heart" /></Link>
+          <Link to="/pets" onClick={this.handleOutsideClick} className="menu-item item-3" ><FontAwesome name="paw" /></Link>
+          <Link to="/logout" onClick={this.handleOutsideClick} className="menu-item item-4" onClick={handleClick} ><FontAwesome name="sign-out" /></Link>
         </nav>
 : null
     }
@@ -57,10 +64,7 @@ const mapDispatch = dispatch => ({
   },
 });
 
-// The `withRouter` wrapper makes sure that updates are not blocked
-// when the url changes
 export default withRouter(connect(mapState, mapDispatch)(Menu));
-
 
 Menu.propTypes = {
   handleClick: PropTypes.func.isRequired,
