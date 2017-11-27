@@ -14,13 +14,18 @@ body {
   padding: 0;
   font-family: sans-serif;
   text-align: center;
-  background-color: #E8DDCC; }
+  background-color: #FFF; }
 
 img {
   width: 100%; }
 
 li {
   list-style: none; }
+
+h1 {
+  font-family: "Just Another Hand";
+  font-size: 70px;
+  margin: 20px; }
 
 h1,
 h2 {
@@ -99,7 +104,7 @@ h2 {
   padding: 5vw;
   background-size: cover;
   position: absolute;
-  background: #E8DDCC;
+  background: #FFF;
   height: 80vh;
   width: 80vw;
   margin: 0 auto;
@@ -154,8 +159,7 @@ h2 {
   justify-content: space-evenly;
   align-content: space-evenly;
   align-items: flex-start;
-  height: 80vh;
-  max-width: 880px;
+  max-width: 980px;
   margin: auto; }
 
 .typeIcon {
@@ -167,13 +171,30 @@ h2 {
   transition: all .2s ease-in-out;
   margin: 10px; }
   .typeIcon:hover {
-    transform: scale(1.1);
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22); }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 600px) {
   .typeIcon {
     width: 16vh;
     margin: 10px; } }
+
+.petTypeContainer {
+  padding: 5px;
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
+  .petTypeContainer:hover {
+    transform: scale(1.2); }
+
+.petTypesText {
+  font-family: "Just Another Hand";
+  position: absolute;
+  left: -35px;
+  bottom: -5px;
+  width: 100%;
+  margin: auto;
+  font-size: 30px;
+  text-decoration: none;
+  color: #041733; }
 
 .menu {
   z-index: 9999999;
@@ -361,6 +382,17 @@ h2 {
   width: calc(285px + 10vw);
   padding: 40px;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22); }
+  .form .img-container {
+    display: flex;
+    width: 100%;
+    height: 100px; }
+  .form .social-container {
+    position: absolute;
+    bottom: 0; }
+  .form #logo {
+    width: 200px;
+    margin: auto;
+    padding: 0 15px 0 0; }
   .form h2 {
     margin: 0 0 20px;
     line-height: 1;
@@ -475,3 +507,96 @@ h2 {
 
 .login-html .sign-up:checked + .tab + .login-form .sign-up-htm {
   transform: rotate(0); }
+
+.matchesList {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly; }
+
+.petCard {
+  text-align: left;
+  border-radius: 20px;
+  position: relative;
+  background-color: #063648;
+  padding: 1.5em;
+  width: 200px;
+  margin: 15px 0 15px 0;
+  transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1); }
+  .petCard img {
+    border-radius: 100%;
+    object-fit: cover;
+    display: block;
+    height: 150px;
+    width: 150px;
+    border: dotted 3px white; }
+  .petCard a {
+    text-decoration: none;
+    color: white; }
+  .petCard h1 {
+    font-family: "Just Another Hand";
+    font-size: 42px;
+    margin: 8px 0 8px 0; }
+  .petCard h2 {
+    font-size: 16px;
+    font-family: "Roboto";
+    line-height: 0; }
+  .petCard button {
+    position: absolute;
+    right: 15px;
+    top: 120px;
+    background-color: #0E6463;
+    border: none;
+    border-radius: 5em;
+    width: 2.1em;
+    height: 2.1em;
+    padding: .4em;
+    font-size: 1.8em;
+    color: white;
+    transition: all .5s ease;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22); }
+    .petCard button:hover {
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25), 0 2px 2px rgba(0, 0, 0, 0.22);
+      background-color: white;
+      color: #0E6463; }
+  .petCard:hover {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22); }
+
+.userProfile {
+  padding: 2em;
+  width: 100%; }
+  .userProfile h4 {
+    text-align: left;
+    font-family: "Just Another Hand";
+    font-size: 36px;
+    margin: 15px 0 4px 0;
+    line-height: 36px; }
+  .userProfile p {
+    text-align: right;
+    margin: 0 0 0 40px; }
+  .userProfile .userInfo {
+    max-width: 600px;
+    margin: auto;
+    text-align: right;
+    font-family: "Roboto";
+    font-size: 22px; }
+  .userProfile .userButtons button {
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    background: #0E6463;
+    width: 50%;
+    max-width: 200px;
+    margin: 2em 1em 2em 1em;
+    padding: 12px 15px;
+    color: #fff;
+    font-family: "Roboto";
+    font-size: 18px;
+    font-weight: 400;
+    transition: all .5s ease;
+    transition: all .2s ease-in-out; }
+    .userProfile .userButtons button:hover {
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22); }
+  .userProfile .userButtons #deleteUser {
+    width: 80px;
+    background-color: red; }

@@ -4,6 +4,7 @@ import { withRouter } from 'react-router';
 import FontAwesome from 'react-fontawesome';
 import PropTypes from 'prop-types';
 import { auth } from '../store';
+import logo from '../styles/logo.png';
 
 /**
  * COMPONENT
@@ -14,6 +15,9 @@ const AuthForm = (props) => {
   return (
     <div className="splash">
       <div className="form animated flipInX login-html">
+        <div className="img-container">
+          <img id="logo" src={logo} alt="whiskr logo" />
+        </div>
         <input id="tab-1" type="radio" name="tab" className="sign-in" defaultChecked />
         <label htmlFor="tab-1" className="tab">Log In</label>
         <input id="tab-2" type="radio" name="tab" className="sign-up" />
@@ -45,7 +49,7 @@ const AuthForm = (props) => {
 
               </div>
             </form>
-            <div className="group">
+            <div className="social-container">
               <span>or Log in with </span>
               <a href="/auth/google" >
                 <FontAwesome name="google" className="social google" />
@@ -88,7 +92,7 @@ const AuthForm = (props) => {
               {/* error && error.response && <div> {error.response.data} </div> */}
             </form>
 
-            <div>
+            <div className="social-container">
               <span>or Sign up with </span>
               <a href="/auth/google" >
                 <FontAwesome name="google" className="social google" />
@@ -121,7 +125,6 @@ const mapState = state => ({
 const mapDispatch = (dispatch, ownProps) => ({
   handleSubmit(evt, type) {
     evt.preventDefault();
-    console.log(type);
     const email = evt.target.email.value;
     const password = evt.target.password.value;
     const redirect = type === 'login' ? '/pets' : '/createProfile';
