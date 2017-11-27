@@ -1,5 +1,7 @@
 * {
   box-sizing: border-box; }
+  *:focus {
+    outline: none; }
 
 html {
   -webkit-touch-callout: none;
@@ -49,7 +51,6 @@ h2 {
   #petCard * {
     transition: all .4s ease; }
   #petCard .petPic {
-    padding: 20px;
     margin: auto;
     border-radius: 100%;
     object-fit: cover;
@@ -67,7 +68,7 @@ h2 {
   .expanded h1 {
     font-size: 40px; }
   .expanded h2 {
-    font-size: 18px; }
+    font-size: 16px; }
   .expanded .petPic {
     width: 150px;
     height: 150px; }
@@ -75,22 +76,25 @@ h2 {
   .collapsed h4 {
     transform: translateY(600px); }
   .collapsed .petPic {
-    width: 70vw;
-    height: 70vw; } }
+    width: 280px;
+    height: 280px; } }
 
 @media screen and (min-width: 480px) {
-  .collapsed h2,
+  .collapsed h1, .expanded h1 {
+    font-size: 48px; }
+  .collapsed h2, .expanded h2 {
+    font-size: 24px;
+    line-height: 0; }
   .collapsed h3,
   .collapsed h4,
   .collapsed p,
-  .collapsed div, .expanded h2,
-  .expanded h3,
+  .collapsed div, .expanded h3,
   .expanded h4,
   .expanded p,
   .expanded div {
     display: block; }
   .collapsed .petPic, .expanded .petPic {
-    width: 300px;
+    width: calc(300px);
     height: 300px; } }
 
 .master-root {
