@@ -6,7 +6,6 @@ import Reject from '../styles/reject-icon.png';
 import { fetchMatches, addMatches, fetchAllPets, clearPets, rejectPet } from '../store';
 import SinglePet from './SinglePet';
 
-
 const CustomAlertLeft = () => (
   <span>
     <img alt="reject pet icon" src={Reject} className="icon" />
@@ -20,12 +19,6 @@ class AllPets extends Component {
   componentDidMount() {
     this.props.onLoad(this.props.currentUser);
   }
-  // there is a lag with getting the currentUser on state so this is needed to work fetch matches:
-  // componentWillReceiveProps(nextProps) {
-  //   if (nextProps.currentUser && nextProps.currentUser.id !== this.props.currentUser.id) {
-  //     this.props.loadMatches(nextProps.currentUser.id);
-  //   }
-  // }
 
   componentWillUnmount() {
     const species = this.props.match.params.type;

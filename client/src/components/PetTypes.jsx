@@ -8,6 +8,8 @@ import smallFurrySquare from '../styles/mouseSquare.png';
 import reptileSquare from '../styles/reptileSquare.png';
 import horseSquare from '../styles/horseSquare.png';
 import barnyardSquare from '../styles/pigSquare.png';
+import CurrentLocation from './CurrentLocation';
+
 
 const PetTypes = () => (
   <div className="container">
