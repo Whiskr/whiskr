@@ -7,7 +7,6 @@
 /coverage
 
 
-/client/build
 /client/node_modules
 
 # production
