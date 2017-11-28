@@ -5,7 +5,6 @@ import FontAwesome from 'react-fontawesome';
 import { connect } from 'react-redux';
 
 class Matches extends Component {
-
   render() {
     return (
       <div>
@@ -23,11 +22,23 @@ class Matches extends Component {
                       className="petPic rounded"
                       alt="pet profile pic"
                     />
+<<<<<<< HEAD
                     <Link to={'./emailPreview'}>
                     <button> <FontAwesome name="envelope-o" /> </button>
                     <h1>{pet.name.$t}</h1>
                     <h2>{pet.animal.$t}</h2>
                     </Link>
+=======
+                    <button onClick={(event) => {
+                      event.preventDefault(); this.props.onClick(this.props.currentUser, pet);
+                }}
+                    > <FontAwesome name="envelope-o" />
+                    </button>
+                    <div id="petInfo">
+                      <h1>{pet.name.$t}</h1>
+                      <h2>{pet.animal.$t}</h2>
+                    </div>
+>>>>>>> master
                   </Link>
                 </div>
                 ))
