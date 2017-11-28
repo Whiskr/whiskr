@@ -23,13 +23,11 @@ class Matches extends Component {
                       className="petPic rounded"
                       alt="pet profile pic"
                     />
-                    <button onClick={(event) => {
-                      event.preventDefault(); this.props.onClick(this.props.currentUser, pet);
-                }}
-                    > <FontAwesome name="envelope-o" />
-                    </button>
+                    <Link to={'./emailPreview'}>
+                    <button> <FontAwesome name="envelope-o" /> </button>
                     <h1>{pet.name.$t}</h1>
                     <h2>{pet.animal.$t}</h2>
+                    </Link>
                   </Link>
                 </div>
                 ))

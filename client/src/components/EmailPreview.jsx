@@ -1,7 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+//import { browserHistory } from 'react-router';
 import { sendEmail } from '../store';
+
 
 export const EmailPreview = (props) => {
     const {user, pet, sendTheEmail} = props;
@@ -58,11 +60,11 @@ export const EmailPreview = (props) => {
 }
 
 //CONTAINER
-const mapDispatch = (dispatch) => {
-    sendTheEmail = (user, pet) => {
+const mapDispatch = (dispatch, ownProps) => ({
+    sendTheEmail(user, pet) {
         Promise.resolve(dispatch(sendEmail(user, pet)))
-        .then(redirect('/matches'))
+        .then(ownProps.history.push('/matches'))
     }
-}
+})
 
-export default connect(_, mapDispatch)(EmailPreview);
+export default connect(null, mapDispatch)(EmailPreview);
