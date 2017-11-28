@@ -74,7 +74,7 @@ const mapDispatch = dispatch => ({
     if (window.confirm('Are you sure you want to delete your account?')) {
       dispatch(deleteAccount(userId));
     }
-  },
+  }
 });
 
 
