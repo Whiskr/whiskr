@@ -105,9 +105,7 @@ const AuthForm = (props) => {
                 />
               </a>
             </div>
-            </form>
-            {/*signup form with google*/}
-           
+            </form>        
           </div>
         </div>
       </div>
