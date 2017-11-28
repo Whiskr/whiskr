@@ -19,7 +19,7 @@ class MatchSingle extends Component {
                 onClick={(event) => {
                 event.preventDefault();
                 this.props.onUnmatch(
-                  petDetail.id.$t,
+                  petDetail,
                   this.props.currentUser.id,
                 );
               }}
@@ -48,10 +48,11 @@ const mapDispatch = (dispatch, ownProps) => ({
   onClick(user, pet) {
     sendEmail(user, pet);
   },
-  onUnmatch(petId, userId) {
-    dispatch(unMatch(petId, userId));
+  onUnmatch(pet, userId) {
+    if (window.confirm(`Are you sure you want to delete your match with ${pet.name.$t}?`))
+    dispatch(unMatch(pet.id.$t, userId));
     ownProps.history.push('/matches');
-  },
+  }
 });
 
 export default connect(mapState, mapDispatch)(MatchSingle);
