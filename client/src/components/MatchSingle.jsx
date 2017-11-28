@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import FontAwesome from 'react-fontawesome';
+import EmailPreview from './EmailPreview';
 import { sendEmail, unMatch } from '../store';
 import SinglePet from './SinglePet';
 
@@ -26,16 +27,7 @@ class MatchSingle extends Component {
                 <FontAwesome name="heart" />
                 <FontAwesome name="remove" />
               </button>
-              <button
-                className="emailEnvelope largeIconRight"
-                onClick={(event) => {
-                event.preventDefault();
-                this.props.onClick(this.props.currentUser, petDetail);
-              }}
-              >
-                {' '}
-                <FontAwesome name="envelope-o" />
-              </button>
+              <EmailPreview user={this.props.currentUser} pet={petDetail} name={'matchSingle'}/>
               <SinglePet pet={petDetail} />
             </div>
         ) : (
