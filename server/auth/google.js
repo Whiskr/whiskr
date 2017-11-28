@@ -50,9 +50,28 @@ if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
     next()
   }, passport.authenticate('google', {scope: 'email'}))
 
-  router.get('/callback', passport.authenticate('google', {
-    successRedirect: '/home',
-    failureRedirect: '/login'
-  }))
+//   router.get('/callback', passport.authenticate('google', {
+//     successRedirect: '/pets',
+//     failureRedirect: '/login'
+//   }))
 
+// }
+
+router.get('/callback', function(req, res, next) {
+  passport.authenticate('google', function(err, user, info) {
+    
+    if (err) { return next(err); }
+  
+    req.logIn(user, function(err) {
+      if (err) { return next(err); }
+
+      if(user._options.isNewRecord){
+        console.log("USSERRRRRRRRR in profile")
+        return res.redirect('/createProfile')
+      }
+
+      return res.redirect('/pets');
+    });
+  })(req, res, next);
+})
 }

@@ -43,8 +43,6 @@ h2 {
   overflow: hidden; }
 
 #petCard {
-  background: red;
-  padding: 3vw;
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
