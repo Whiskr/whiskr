@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { sendEmail } from '../store';
+import { sendEmail, unMatch } from '../store';
 import FontAwesome from 'react-fontawesome';
 import { connect } from 'react-redux';
 
@@ -22,13 +22,24 @@ class Matches extends Component {
                       className="petPic rounded"
                       alt="pet profile pic"
                     />
-                    <button onClick={(event) => {
+                    <button
+                      className="unmatch smallIcon"
+                      onClick={(event) => {
+              event.preventDefault(); this.props.onUnmatch(pet.id.$t, this.props.currentUser.id);
+              }}
+                    >
+                      <FontAwesome name="heart" />
+                      <FontAwesome name="remove" />
+                    </button>
+                    <button
+                      className="emailEnvelope smallIcon"
+                      onClick={(event) => {
                       event.preventDefault(); this.props.onClick(this.props.currentUser, pet);
                 }}
                     > <FontAwesome name="envelope-o" />
                     </button>
                     <div id="petInfo">
-                      <h1>{pet.name.$t}</h1>
+                      <h1>{pet.name.$t.length < 16 ? pet.name.$t : `${pet.name.$t.slice(0, 16)}...`}</h1>
                       <h2>{pet.animal.$t}</h2>
                     </div>
                   </Link>
@@ -49,6 +60,9 @@ const mapState = state => ({
 });
 
 const mapDispatch = dispatch => ({
+  onUnmatch(petId, userId) {
+    dispatch(unMatch(petId, userId));
+  },
   onClick(user, pet) {
     sendEmail(user, pet);
   },

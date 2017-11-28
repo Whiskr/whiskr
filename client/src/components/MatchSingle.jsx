@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { sendEmail, unMatch } from '../store';
 import { connect } from 'react-redux';
-import SinglePet from './SinglePet';
 import FontAwesome from 'react-fontawesome';
+import { sendEmail, unMatch } from '../store';
+import SinglePet from './SinglePet';
 
 class MatchSingle extends Component {
   render() {
@@ -10,23 +10,36 @@ class MatchSingle extends Component {
     const petDetail = this.props.matchPets.filter(matchPet => matchPet.id.$t === searchPet)[0];
     return (
       <div id="singleMatchContainer">
-        {
-          this.props.matchPets.length ?
-            <div>
-              <SinglePet pet={petDetail} />
-              <button onClick={(event) => {
-              event.preventDefault(); this.props.onUnmatch(petDetail.id.$t, this.props.currentUser.id);
+        {this.props.matchPets.length ? (
+          <div>
+            <button
+              className="unmatch largeIconLeft"
+              onClick={(event) => {
+                event.preventDefault();
+                this.props.onUnmatch(
+                  petDetail.id.$t,
+                  this.props.currentUser.id,
+                );
               }}
-              >UnMatch
-              </button>
-              <button onClick={(event) => {
-                event.preventDefault(); this.props.onClick(this.props.currentUser, petDetail);
-                  }}
-              > <FontAwesome name="envelope-o" />
-              </button>
-            </div>
-          : <p>Loading</p>
-        }
+            >
+              <FontAwesome name="heart" />
+              <FontAwesome name="remove" />
+            </button>
+            <button
+              className="emailEnvelope largeIconRight"
+              onClick={(event) => {
+                event.preventDefault();
+                this.props.onClick(this.props.currentUser, petDetail);
+              }}
+            >
+              {' '}
+              <FontAwesome name="envelope-o" />
+            </button>
+            <SinglePet pet={petDetail} />
+          </div>
+        ) : (
+          <p>Loading</p>
+        )}
       </div>
     );
   }
