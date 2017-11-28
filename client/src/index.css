@@ -694,3 +694,41 @@ h2 {
   .userProfile .userButtons #deleteUser {
     width: 80px;
     background-color: red; }
+
+.email-text {
+  font-size: 11px; }
+
+.email-introduction {
+  font-size: 13px; }
+
+.email-header {
+  font-size: 11px; }
+
+.email-details {
+  font-size: 12px; }
+  .email-details .children {
+    margin: 2px;
+    font-size: 10px;
+    color: teal;
+    font-style: italic; }
+
+.email-signoff {
+  margin: 2px;
+  font-size: 14px; }
+
+.email-button {
+  background-color: teal;
+  color: white;
+  padding: 5px 5px;
+  margin: 5px;
+  display: inline;
+  text-decoration: none; }
+
+.email-greeting {
+  color: teal; }
+
+h5 {
+  margin: 3px; }
+
+h3 {
+  margin: 4px; }
