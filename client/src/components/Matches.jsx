@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { sendEmail } from '../store';
+import FontAwesome from 'react-fontawesome';
+import { sendEmail, unMatch } from '../store';
 import { connect } from 'react-redux';
 import { EmailPreview } from './';
 
@@ -22,10 +23,28 @@ class Matches extends Component {
                       className="petPic rounded"
                       alt="pet profile pic"
                     />
-                    <h1>{pet.name.$t}</h1>
-                    <h2>{pet.animal.$t}</h2>
+                    <button
+                      className="unmatch smallIcon"
+                      onClick={(event) => {
+              event.preventDefault(); this.props.onUnmatch(pet.id.$t, this.props.currentUser.id);
+              }}
+                    >
+                      <FontAwesome name="heart" />
+                      <FontAwesome name="remove" />
+                    </button>
+                    <button
+                      className="emailEnvelope smallIcon"
+                      onClick={(event) => {
+                      event.preventDefault(); this.props.onClick(this.props.currentUser, pet);
+                }}
+                    > <FontAwesome name="envelope-o" />
+                    </button>
+                    <div id="petInfo">
+                      <h1>{pet.name.$t}</h1>
+                      <h2>{pet.animal.$t}</h2>
+                    </div>
                   </Link>
-                  <EmailPreview user={this.props.currentUser} pet={pet} />
+                  <EmailPreview user={this.props.currentUser} pet={pet} name={'matches'} />
                 </div>
                 ))
               : <p>NO MATCHES!</p>
@@ -43,6 +62,9 @@ const mapState = state => ({
 });
 
 const mapDispatch = dispatch => ({
+  onUnmatch(petId, userId) {
+    dispatch(unMatch(petId, userId));
+  },
   onClick(user, pet) {
     sendEmail(user, pet);
   },

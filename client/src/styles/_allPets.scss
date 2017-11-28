@@ -1,3 +1,5 @@
+$use-filters: true;
+
 .master-root {
     background-color: white;
     margin: auto;
@@ -8,12 +10,42 @@
     border: none;
 }
 
+.container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    margin: auto;
+    width: 100vw;
+    height: 100vh;
+}
+
+#card-stack {
+    z-index: 10;
+    position: absolute;
+    background: #fff;
+    border: 1px solid #ccc;
+    color: #555;
+    border-radius: 40px;
+    margin: 23px auto;
+    height: 90vh;
+    width: 85vw;
+    box-shadow: (inset 0 -6px 0 0 #9d9d9d, inset 0 -8px 0 0 rgb(116, 116, 116), inset 0 -14px 0 0 #c1c1c1, inset 0 -15px 0 0 rgb(123, 122, 122),0 4px 10px -4px rgba(0, 0, 0, 0.8));
+
+    // A bit more padding on the bottom to compensate for the box-shadow inset
+    padding: 1em 1em 1.5em 1em;
+}
+
 .card {
+    color: black;
+    background: $secondary-light-color;
+    border: solid 5px $primary-medium-color;
+    border-radius: 40px;
     background-size: cover;
     position: absolute;
-    background: $secondary-light-color;
-    height: 95vh;
-    width: 95vw;
+    height: 90vh;
+    width: 85vw;
     margin: 0 auto;
     transition: box-shadow .3s;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
@@ -31,7 +63,7 @@
 }
 
 .alert {
-    width: 85px;
+    width: 80px;
     position: absolute;
     z-index: 9999;
     opacity: 0;
@@ -42,10 +74,12 @@
 }
 
 .alert-visible {
-    opacity: .6;
+    opacity: .8;
 }
 
 .alert-base {
+    height: 100px;
+    width: 100px;
     margin: 15px;
     padding: 8px 5px 5px 5px;
     top: 0;
@@ -53,18 +87,18 @@
 }
 
 .icon {
-    height: auto;
-    width: 70px;
+    height: 80px;
+    width: 80px;
 }
 
 .alert-right {
     @extend .alert-base;
-    right: 0;
+    right: 2vw;
     background: red;
 }
 
 .alert-left {
     @extend .alert-base;
-    left: 0;
-    background: blue;
+    left: 2vw;
+    background: black;
 }

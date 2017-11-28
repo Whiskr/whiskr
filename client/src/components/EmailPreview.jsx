@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import Modal from 'react-modal';
 import { withRouter } from 'react-router-dom';
 import FontAwesome from 'react-fontawesome';
-import { sendEmail } from '../store';
+import { sendEmail, fetchMatches, removeUnmatchedPets } from '../store';
 
 // const className = {
 //     base: 'myClass',
@@ -56,14 +57,16 @@ export class EmailPreview extends React.Component {
     onSend(user, pet) {
         sendEmail(user, pet);
         this.closeModal();
+        this.props.resetMatches(user);
         this.props.history.push('/matches')
     }
 
     render() {
-        const { user, pet } = this.props;
+        const { user, pet, name } = this.props;
+        const buttonClass = (name === 'matches') ? "emailEnvelope smallIcon" : "emailEnvelope largeIconRight"
         return (
             <div>
-                <button onClick={this.openModal}> <FontAwesome name="envelope-o" /> </button>
+                <button className={buttonClass} onClick={this.openModal}> <FontAwesome name="envelope-o" /> </button>
                 <Modal
                     isOpen={this.state.modalIsOpen}
                     onAfterOpen={this.afterOpenModal}
@@ -124,4 +127,12 @@ export class EmailPreview extends React.Component {
     }
 }
 
-export default withRouter(EmailPreview)
+//CONTAINER
+const mapDispatch = (dispatch) => ({
+    resetMatches(user) {
+        dispatch(removeUnmatchedPets())
+        dispatch(fetchMatches(user.id))
+    }
+})
+
+export default withRouter(connect(null, mapDispatch)(EmailPreview))
