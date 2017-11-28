@@ -21,9 +21,6 @@ const createMatches = match => ({
 
 // THUNK CREATORS
 
-export const sendEmail = (user, pet) => axios.get(`/api/contact?userEmail=${user.email}&userPhoneNumber=${user.phoneNumber}&userZipCode=${user.zipCode}&userHasYoungChildren=${user.hasYoungChildren}&userPetHistory=${user.petHistory}&petName=${pet.name.$t}&petId=${pet.id.$t}&petCity=${pet.contact.city.$t}&petState=${pet.contact.state.$t}&petOptions=${pet.options.option}&to=${pet.contact.email.$t}`)
-  .catch(err => console.log(err));
-
 export const fetchMatches = userId =>
   dispatch =>
     axios.get(`/api/match/${userId}`)
@@ -31,6 +28,17 @@ export const fetchMatches = userId =>
         dispatch(getMatches(res.data)))
         .then(results => results.matches.map( pet => dispatch(fetchPetById(pet.petId))))
       .catch(err => console.log(err));
+
+
+const markContacted = (user, pet) => {
+    axios.put(`/api/match/${user.id}/${pet.id.$t}`)
+}
+  
+export const sendEmail = (user, pet) => {
+    markContacted(user, pet)
+    axios.get(`/api/contact?userEmail=${user.email}&userPhoneNumber=${user.phoneNumber}&userZipCode=${user.zipCode}&userHasYoungChildren=${user.hasYoungChildren}&userPetHistory=${user.petHistory}&petName=${pet.name.$t}&petId=${pet.id.$t}&petCity=${pet.contact.city.$t}&petState=${pet.contact.state.$t}&to=${pet.contact.email.$t}&petOptions=${pet.options.option}`)
+    .catch(err => console.log(err));
+}
 
 export const petWasSeen = (petId, userId) =>
   (dispatch) => {

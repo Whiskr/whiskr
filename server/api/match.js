@@ -29,8 +29,8 @@ router.post('/', (req, res, next) => {
 
 // on Contact set the match.contacted to true
 
-router.put('/:userId/:petId', (req, res, next) =>{
-  Match.update(req.body, {
+router.put('/:userId/:petId', (req, res, next) => {
+  Match.update({contacted : true}, {
     where: {
       userId: req.params.userId,
       petId: req.params.petId,
