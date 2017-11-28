@@ -35,11 +35,9 @@ h2 {
 
 #singleMatchContainer {
   background-size: cover;
-  position: absolute;
-  height: 100vh;
-  width: 100vw;
+  position: relative;
   margin: auto;
-  padding: 5vw;
+  padding: 2vw;
   overflow: hidden; }
 
 #petCard {
@@ -47,11 +45,10 @@ h2 {
   flex-flow: row wrap;
   justify-content: center;
   align-content: center;
-  padding: 5vw; }
+  padding: calc(10px + 1vw); }
   #petCard * {
     transition: all .4s ease; }
   #petCard .petPic {
-    border: dotted 5px white;
     margin: auto;
     border-radius: 100%;
     object-fit: cover;
@@ -65,9 +62,11 @@ h2 {
   .expanded h4,
   .expanded p,
   .expanded div {
-    display: block; }
+    display: block;
+    margin: 2px; }
   .expanded h1 {
-    font-size: 40px; }
+    font-size: 40px;
+    margin: 3px; }
   .expanded h2 {
     font-size: 16px; }
   .expanded .petPic {
@@ -77,26 +76,47 @@ h2 {
   .collapsed h4 {
     transform: translateY(600px); }
   .collapsed .petPic {
-    width: 280px;
-    height: 280px; } }
+    width: 250px;
+    height: 250px; }
+  #singleMatchContainer {
+    height: 100vh;
+    width: 100vw; } }
 
 @media screen and (min-width: 480px) {
-  .collapsed h1, .expanded h1 {
+  .collapsed h1,
+  .expanded h1 {
     font-size: 48px; }
-  .collapsed h2, .expanded h2 {
+  .collapsed h2,
+  .expanded h2 {
     font-size: 24px;
     line-height: 0; }
   .collapsed h3,
   .collapsed h4,
   .collapsed p,
-  .collapsed div, .expanded h3,
+  .collapsed div,
+  .expanded h3,
   .expanded h4,
   .expanded p,
   .expanded div {
     display: block; }
-  .collapsed .petPic, .expanded .petPic {
-    width: calc(300px);
-    height: 300px; } }
+  .collapsed .petPic,
+  .expanded .petPic {
+    width: 300px;
+    height: 300px; }
+  #singleMatchContainer {
+    margin: auto;
+    border-radius: 40px;
+    width: auto;
+    max-width: 800px;
+    border: dotted 5px #041733; } }
+
+.flex {
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
 
 .master-root {
   background-color: white;
@@ -107,10 +127,34 @@ h2 {
   overflow: hidden;
   border: none; }
 
+.container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  margin: auto;
+  width: 100vw;
+  height: 100vh; }
+
+#card-stack {
+  z-index: 10;
+  position: absolute;
+  background: #fff;
+  border: 1px solid #ccc;
+  color: #555;
+  border-radius: 40px;
+  margin: 23px auto;
+  height: 90vh;
+  width: 85vw;
+  box-shadow: inset 0 -6px 0 0 #9d9d9d, inset 0 -8px 0 0 #747474, inset 0 -14px 0 0 #c1c1c1, inset 0 -15px 0 0 #7b7a7a, 0 4px 10px -4px rgba(0, 0, 0, 0.8);
+  padding: 1em 1em 1.5em 1em; }
+
 .card {
-  color: white;
-  background: #063648;
-  border-radius: 30px;
+  color: black;
+  background: #FFF;
+  border: solid 5px #063648;
+  border-radius: 40px;
   background-size: cover;
   position: absolute;
   height: 90vh;
@@ -160,17 +204,6 @@ h2 {
 .alert-left {
   left: 2vw;
   background: black; }
-
-.container {
-  padding: 5vw;
-  padding-top: 10vw;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-evenly;
-  align-content: space-evenly;
-  align-items: flex-start;
-  max-width: 980px;
-  margin: auto; }
 
 .typeIcon {
   border-radius: 100%;
@@ -608,20 +641,20 @@ h2 {
   font-size: 30px; }
 
 .largeIconLeft {
-  top: -75px;
-  left: -75px;
-  padding: 1.5em 0 0 1.5em;
-  width: 4em;
-  height: 4em;
-  font-size: 40px; }
+  top: -1em;
+  left: -1em;
+  padding: .7em 0 0 .7em;
+  width: 2.7em;
+  height: 2.7em;
+  font-size: calc(40px + 2vw); }
 
 .largeIconRight {
-  top: -75px;
-  right: -75px;
-  padding: 1.5em 1.5em 0 0;
-  width: 4em;
-  height: 4em;
-  font-size: 40px; }
+  top: -1em;
+  right: -1em;
+  padding: .7em .7em 0 0;
+  width: 2.7em;
+  height: 2.7em;
+  font-size: calc(40px + 2vw); }
 
 .userProfile {
   padding: 2em;

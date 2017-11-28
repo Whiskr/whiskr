@@ -39,7 +39,7 @@ class Matches extends Component {
                     > <FontAwesome name="envelope-o" />
                     </button>
                     <div id="petInfo">
-                      <h1>{pet.name.$t.length < 16 ? pet.name.$t : `${pet.name.$t.slice(0, 16)}...`}</h1>
+                      <h1>{pet.name.$t}</h1>
                       <h2>{pet.animal.$t}</h2>
                     </div>
                   </Link>

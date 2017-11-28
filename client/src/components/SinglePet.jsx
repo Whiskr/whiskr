@@ -37,7 +37,7 @@ class SinglePet extends Component {
           </div>
         </div>
         <div>
-          <h1>{pet.name.$t.length < 16 ? pet.name.$t : `${pet.name.$t.slice(0, 16)}...`}</h1>
+          <h1>{pet.name.$t}</h1>
           <h2>{`${pet.age.$t}, ${pet.size.$t === 'L' ? 'Large' : pet.size.$t === 'M' ? 'Medium' : 'Small'}-sized ${pet.sex.$t === 'M' ? ' Male' : ' Female'}`}</h2>
           <h3>{(Array.isArray(pet.breeds.breed)
             ? pet.breeds.breed.map(el => el.$t).join(', ')
@@ -46,7 +46,7 @@ class SinglePet extends Component {
           </h3>
         </div>
         <div>
-          <p>{pet.description.$t && pet.description.$t.length > 600 ? `${pet.description.$t.slice(0, 600)}...` : pet.description.$t}</p>
+          <p>{pet.description.$t && pet.description.$t.length > 500 ? `${pet.description.$t.slice(0, 500)}...` : pet.description.$t}</p>
         </div>
       </div>
     );

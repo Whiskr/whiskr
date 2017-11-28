@@ -9,37 +9,39 @@ class MatchSingle extends Component {
     const searchPet = this.props.match.params.petId;
     const petDetail = this.props.matchPets.filter(matchPet => matchPet.id.$t === searchPet)[0];
     return (
-      <div id="singleMatchContainer">
-        {this.props.matchPets.length ? (
-          <div>
-            <button
-              className="unmatch largeIconLeft"
-              onClick={(event) => {
+      <div className="flex">
+        <div id="singleMatchContainer">
+          {this.props.matchPets.length ? (
+            <div>
+              <button
+                className="unmatch largeIconLeft"
+                onClick={(event) => {
                 event.preventDefault();
                 this.props.onUnmatch(
                   petDetail.id.$t,
                   this.props.currentUser.id,
                 );
               }}
-            >
-              <FontAwesome name="heart" />
-              <FontAwesome name="remove" />
-            </button>
-            <button
-              className="emailEnvelope largeIconRight"
-              onClick={(event) => {
+              >
+                <FontAwesome name="heart" />
+                <FontAwesome name="remove" />
+              </button>
+              <button
+                className="emailEnvelope largeIconRight"
+                onClick={(event) => {
                 event.preventDefault();
                 this.props.onClick(this.props.currentUser, petDetail);
               }}
-            >
-              {' '}
-              <FontAwesome name="envelope-o" />
-            </button>
-            <SinglePet pet={petDetail} />
-          </div>
+              >
+                {' '}
+                <FontAwesome name="envelope-o" />
+              </button>
+              <SinglePet pet={petDetail} />
+            </div>
         ) : (
           <p>Loading</p>
         )}
+        </div>
       </div>
     );
   }
