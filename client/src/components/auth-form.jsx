@@ -24,6 +24,7 @@ const AuthForm = (props) => {
         <label htmlFor="tab-2" className="tab">Sign Up</label>
         <div className="login-form">
           <div className="sign-in-htm">
+          {/*login form*/}
             <form onSubmit={event => handleSubmit(event, type)}>
               <div className="group">
                 <label htmlFor="email">
@@ -41,14 +42,15 @@ const AuthForm = (props) => {
                 <button
                   type="submit"
                   onClick={() => {
-                type = 'login';
-              }}
+                    type = 'login';
+                  }}
                 >
-              Log In
+                  Log In
                 </button>
 
               </div>
             </form>
+            {/*login form with google*/}
             <div className="social-container">
               <span>or Log in with </span>
               <a href="/auth/google" >
@@ -60,6 +62,7 @@ const AuthForm = (props) => {
             </div>
           </div>
           <div className="sign-up-htm">
+          {/*signup form */}
             <form onSubmit={event => handleSubmit(event, type)}>
               <div className="group">
                 <label htmlFor="email">
@@ -83,16 +86,14 @@ const AuthForm = (props) => {
                 <button
                   type="submit"
                   onClick={() => {
-                type = 'signup';
-              }}
+                    type = 'signup';
+                  }}
                 >
-              Sign Up
+                  Sign Up
                 </button>
               </div>
               {/* error && error.response && <div> {error.response.data} </div> */}
-            </form>
-
-            <div className="social-container">
+              <div className="social-container">
               <span>or Sign up with </span>
               <a href="/auth/google" >
                 <FontAwesome name="google" className="social google" />
@@ -104,6 +105,7 @@ const AuthForm = (props) => {
                 />
               </a>
             </div>
+            </form>        
           </div>
         </div>
       </div>
@@ -145,8 +147,6 @@ export const Login = withRouter(connect(mapState, mapDispatch)(AuthForm));
  * PROP TYPES
  */
 AuthForm.propTypes = {
-  name: PropTypes.string.isRequired,
-  displayName: PropTypes.string.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   error: PropTypes.object
 };
