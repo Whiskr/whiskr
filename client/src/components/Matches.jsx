@@ -5,7 +5,6 @@ import FontAwesome from 'react-fontawesome';
 import { connect } from 'react-redux';
 
 class Matches extends Component {
-
   render() {
     return (
       <div>
@@ -28,8 +27,10 @@ class Matches extends Component {
                 }}
                     > <FontAwesome name="envelope-o" />
                     </button>
-                    <h1>{pet.name.$t}</h1>
-                    <h2>{pet.animal.$t}</h2>
+                    <div id="petInfo">
+                      <h1>{pet.name.$t}</h1>
+                      <h2>{pet.animal.$t}</h2>
+                    </div>
                   </Link>
                 </div>
                 ))

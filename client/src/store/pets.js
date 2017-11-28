@@ -10,37 +10,37 @@ const CLEAR_PETS = 'CLEAR_PETS';
  * ACTION CREATORS
  */
 const fetchPets = (pets, species) => ({ type: FETCH_PETS, pets, species });
-export const clearPets = (species) => ({ type: CLEAR_PETS, species });
+export const clearPets = species => ({ type: CLEAR_PETS, species });
 /**
  * THUNK CREATORS
  */
 
 
 // Had to add in extra https to get cors to work
-const wasItSeen = (petId, userId) => 
+const wasItSeen = (petId, userId) =>
   axios.get(`/api/seen/${userId}/${petId}`)
-    .then(res => res.data.length)
+    .then(res => res.data.length);
 
 
-const axiosCall = (type, currentUser) => 
-axios.get(`/api/pets?animal=${type}&location=${currentUser.zipCode || 11226}&key=01e0c19609326eb33ed70df84f870392`)
-  .then(res => res.data)
+const axiosCall = (type, currentUser) =>
+  axios.get(`/api/pets?animal=${type}&location=${currentUser.zipCode || 11226}&key=01e0c19609326eb33ed70df84f870392`)
+    .then(res => res.data);
 
 
 export const fetchAllPets = (type, currentUser) =>
   async (dispatch) => {
-    while(true){
-      const pet = await axiosCall(type, currentUser)
+    while (true) {
+      const pet = await axiosCall(type, currentUser);
       if (!await wasItSeen(pet.id.$t, currentUser.id))
-        return dispatch(fetchPets(pet, type))
+        {return dispatch(fetchPets(pet, type))};
     }
-  }
+  };
 
 /**
  * REDUCER
  */
 export default function (state = {
-  bird: [], dog: [], horse: [], cat: [], smallFurry: [], reptile: [], barnyard: [], rabbit: [],
+  bird: [], dog: [], horse: [], cat: [], smallfurry: [], reptile: [], barnyard: [], rabbit: [],
 }, action) {
   switch (action.type) {
     case FETCH_PETS: {
