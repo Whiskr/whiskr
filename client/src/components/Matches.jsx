@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { sendEmail } from '../store';
-import FontAwesome from 'react-fontawesome';
 import { connect } from 'react-redux';
+import { EmailPreview } from './';
 
 class Matches extends Component {
   render() {
@@ -22,24 +22,10 @@ class Matches extends Component {
                       className="petPic rounded"
                       alt="pet profile pic"
                     />
-<<<<<<< HEAD
-                    <Link to={'./emailPreview'}>
-                    <button> <FontAwesome name="envelope-o" /> </button>
                     <h1>{pet.name.$t}</h1>
                     <h2>{pet.animal.$t}</h2>
-                    </Link>
-=======
-                    <button onClick={(event) => {
-                      event.preventDefault(); this.props.onClick(this.props.currentUser, pet);
-                }}
-                    > <FontAwesome name="envelope-o" />
-                    </button>
-                    <div id="petInfo">
-                      <h1>{pet.name.$t}</h1>
-                      <h2>{pet.animal.$t}</h2>
-                    </div>
->>>>>>> master
                   </Link>
+                  <EmailPreview user={this.props.currentUser} pet={pet} />
                 </div>
                 ))
               : <p>NO MATCHES!</p>

@@ -21,8 +21,15 @@ const createMatches = match => ({
 
 // THUNK CREATORS
 
-export const sendEmail = (user, pet) => axios.get(`/api/contact?userEmail=${user.email}&userPhoneNumber=${user.phoneNumber}&userZipCode=${user.zipCode}&userHasYoungChildren=${user.hasYoungChildren}&userPetHistory=${user.petHistory}&petName=${pet.name.$t}&petId=${pet.id.$t}&petCity=${pet.contact.city.$t}&petState=${pet.contact.state.$t}&petOptions=${pet.options.option}&to=${pet.contact.email.$t}`)
+const markContacted = (user, pet) => {
+    axios.put(`/api/match/${user.id}/${pet.id.$t}`)
+  }
+  
+export const sendEmail = (user, pet) => {
+  markContacted(user, pet)
+  axios.get(`/api/contact?userEmail=${user.email}&userPhoneNumber=${user.phoneNumber}&userZipCode=${user.zipCode}&userHasYoungChildren=${user.hasYoungChildren}&userPetHistory=${user.petHistory}&petName=${pet.name.$t}&petId=${pet.id.$t}&petCity=${pet.contact.city.$t}&petState=${pet.contact.state.$t}&to=${pet.contact.email.$t}&petOptions=${pet.options.option}`)
   .catch(err => console.log(err));
+}
 
 export const fetchMatches = userId =>
   dispatch =>

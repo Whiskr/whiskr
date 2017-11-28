@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { sendEmail, unMatch } from '../store';
 import { connect } from 'react-redux';
 import SinglePet from './SinglePet';
-import FontAwesome from 'react-fontawesome';
+import EmailPreview from './EmailPreview';
 
 class MatchSingle extends Component {
   render() {
@@ -19,11 +19,7 @@ class MatchSingle extends Component {
               }}
               >UnMatch
               </button>
-              <button onClick={(event) => {
-                event.preventDefault(); this.props.onClick(this.props.currentUser, petDetail);
-                  }}
-              > <FontAwesome name="envelope-o" />
-              </button>
+              <EmailPreview user={this.props.currentUser} pet={petDetail} />
             </div>
           : <p>Loading</p>
         }
