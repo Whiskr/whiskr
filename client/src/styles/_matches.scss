@@ -3,7 +3,9 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    align-content: center;
     padding: 20px;
+    margin-bottom: 100px;
     .petCard {
         img {
             border-radius: 100%;
@@ -27,30 +29,10 @@
             font-family: $primary-font-family;
             line-height: 0;
         }
-        button {
-            position: absolute;
-            right: 15px;
-            top: 120px;
-            background-color: $primary-light-color;
-            border:none;
-            border-radius: 5em;
-            width: 2.1em;
-            height: 2.1em;
-            padding: .4em;
-            font-size: 1.8em;
-            color: white;
-            transition: all .5s ease;
-            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-            &:hover {
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25), 0 2px 2px rgba(0, 0, 0, 0.22);
-                background-color: white;
-                color: $primary-light-color;
-            }
-        }
         border-radius: 20px;
         position: relative;
         background-color: $primary-medium-color;
-        padding: 1.5em;
+        padding: 2em;
         transition: all .5s cubic-bezier(.25, .8, .25, 1);
         &:hover {
             box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
@@ -61,7 +43,7 @@
 @media screen and (max-width: 480px) {
     .petCard {
         width: 90%;
-        margin: 15px 0 15px 0;
+        margin: 25px 0 25px 0;
         text-align: right;
     #petInfo {
         position: absolute;
@@ -73,8 +55,75 @@
 
 @media screen and (min-width: 480px) {
     .petCard {
-        width: 200px;
-        margin: 15px 10px 15px 10px;
+        width: 216px;
+        margin: 25px 10px 25px 10px;
         text-align: left;
     }
+}
+
+.icons {
+    position: absolute;
+    color: white;
+    border-radius: 5em;
+    transition: all .5s ease;
+    &:hover {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25), 0 2px 2px rgba(0, 0, 0, 0.22);
+        background-color: white;
+}
+}
+
+.emailEnvelope {
+    @extend .icons;
+    border: solid 3px $primary-light-color;
+    right: 25px;
+    background-color: $primary-light-color;
+    &:hover{
+        color: $primary-light-color;
+        border: solid 3px $primary-light-color;
+    }
+}
+
+.unmatch {
+    @extend .icons;
+    border: solid 3px red;
+    left: 25px;
+    background-color: red;
+    &:hover {
+        color: black;
+        border: solid 3px black;
+    }
+}
+
+.unmatch > .fa + .fa,
+.unmatch:hover > .fa {
+    display:none;
+
+}
+
+.unmatch:hover > .fa + .fa {
+    display:inherit;
+}
+
+.smallIcon {
+    bottom: -35px;
+    width: 2.2em;
+    height: 2.2em;
+    font-size: 30px;
+}
+
+.largeIconLeft {
+    top: -1em;
+    left: -1em;
+    padding: .7em 0 0 .7em;
+    width: 2.7em;
+    height: 2.7em;
+    font-size: calc(40px + 2vw);
+}
+.largeIconRight {
+    top: -1em;
+    right: -1em;
+    padding: .7em .7em 0 0;
+    width: 2.7em;
+    height: 2.7em;
+    font-size: calc(40px + 2vw);
 }

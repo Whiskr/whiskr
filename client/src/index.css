@@ -35,11 +35,9 @@ h2 {
 
 #singleMatchContainer {
   background-size: cover;
-  position: absolute;
-  height: 100vh;
-  width: 100vw;
-  margin: 0 auto;
-  padding: 5vw;
+  position: relative;
+  margin: auto;
+  padding: 2vw;
   overflow: hidden; }
 
 #petCard {
@@ -47,7 +45,7 @@ h2 {
   flex-flow: row wrap;
   justify-content: center;
   align-content: center;
-  padding: 5vw; }
+  padding: calc(10px + 1vw); }
   #petCard * {
     transition: all .4s ease; }
   #petCard .petPic {
@@ -64,9 +62,11 @@ h2 {
   .expanded h4,
   .expanded p,
   .expanded div {
-    display: block; }
+    display: block;
+    margin: 2px; }
   .expanded h1 {
-    font-size: 40px; }
+    font-size: 40px;
+    margin: 3px; }
   .expanded h2 {
     font-size: 16px; }
   .expanded .petPic {
@@ -76,26 +76,47 @@ h2 {
   .collapsed h4 {
     transform: translateY(600px); }
   .collapsed .petPic {
-    width: 280px;
-    height: 280px; } }
+    width: 250px;
+    height: 250px; }
+  #singleMatchContainer {
+    height: 100vh;
+    width: 100vw; } }
 
 @media screen and (min-width: 480px) {
-  .collapsed h1, .expanded h1 {
+  .collapsed h1,
+  .expanded h1 {
     font-size: 48px; }
-  .collapsed h2, .expanded h2 {
+  .collapsed h2,
+  .expanded h2 {
     font-size: 24px;
     line-height: 0; }
   .collapsed h3,
   .collapsed h4,
   .collapsed p,
-  .collapsed div, .expanded h3,
+  .collapsed div,
+  .expanded h3,
   .expanded h4,
   .expanded p,
   .expanded div {
     display: block; }
-  .collapsed .petPic, .expanded .petPic {
-    width: calc(300px);
-    height: 300px; } }
+  .collapsed .petPic,
+  .expanded .petPic {
+    width: 300px;
+    height: 300px; }
+  #singleMatchContainer {
+    margin: auto;
+    border-radius: 40px;
+    width: auto;
+    max-width: 800px;
+    border: dotted 5px #041733; } }
+
+.flex {
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
 
 .master-root {
   background-color: white;
@@ -106,12 +127,38 @@ h2 {
   overflow: hidden;
   border: none; }
 
+.container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  margin: auto;
+  width: 100vw;
+  height: 100vh; }
+
+#card-stack {
+  z-index: 10;
+  position: absolute;
+  background: #fff;
+  border: 1px solid #ccc;
+  color: #555;
+  border-radius: 40px;
+  margin: 23px auto;
+  height: 90vh;
+  width: 85vw;
+  box-shadow: inset 0 -6px 0 0 #9d9d9d, inset 0 -8px 0 0 #747474, inset 0 -14px 0 0 #c1c1c1, inset 0 -15px 0 0 #7b7a7a, 0 4px 10px -4px rgba(0, 0, 0, 0.8);
+  padding: 1em 1em 1.5em 1em; }
+
 .card {
+  color: black;
+  background: #FFF;
+  border: solid 5px #063648;
+  border-radius: 40px;
   background-size: cover;
   position: absolute;
-  background: #FFF;
-  height: 95vh;
-  width: 95vw;
+  height: 90vh;
+  width: 85vw;
   margin: 0 auto;
   transition: box-shadow .3s;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
@@ -126,7 +173,7 @@ h2 {
   box-shadow: none; }
 
 .alert {
-  width: 85px;
+  width: 80px;
   position: absolute;
   z-index: 9999;
   opacity: 0;
@@ -136,36 +183,27 @@ h2 {
   line-height: 1rem; }
 
 .alert-visible {
-  opacity: .6; }
+  opacity: .8; }
 
 .alert-base, .alert-right, .alert-left {
+  height: 100px;
+  width: 100px;
   margin: 15px;
   padding: 8px 5px 5px 5px;
   top: 0;
   border-radius: 100%; }
 
 .icon {
-  height: auto;
-  width: 70px; }
+  height: 80px;
+  width: 80px; }
 
 .alert-right {
-  right: 0;
+  right: 2vw;
   background: red; }
 
 .alert-left {
-  left: 0;
-  background: blue; }
-
-.container {
-  padding: 5vw;
-  padding-top: 10vw;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-evenly;
-  align-content: space-evenly;
-  align-items: flex-start;
-  max-width: 980px;
-  margin: auto; }
+  left: 2vw;
+  background: black; }
 
 .typeIcon {
   border-radius: 100%;
@@ -518,12 +556,14 @@ h2 {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  padding: 20px; }
+  align-content: center;
+  padding: 20px;
+  margin-bottom: 100px; }
   .matchesList .petCard {
     border-radius: 20px;
     position: relative;
     background-color: #063648;
-    padding: 1.5em;
+    padding: 2em;
     transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1); }
     .matchesList .petCard img {
       border-radius: 100%;
@@ -543,31 +583,13 @@ h2 {
       font-size: 16px;
       font-family: "Roboto";
       line-height: 0; }
-    .matchesList .petCard button {
-      position: absolute;
-      right: 15px;
-      top: 120px;
-      background-color: #0E6463;
-      border: none;
-      border-radius: 5em;
-      width: 2.1em;
-      height: 2.1em;
-      padding: .4em;
-      font-size: 1.8em;
-      color: white;
-      transition: all .5s ease;
-      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22); }
-      .matchesList .petCard button:hover {
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25), 0 2px 2px rgba(0, 0, 0, 0.22);
-        background-color: white;
-        color: #0E6463; }
     .matchesList .petCard:hover {
       box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22); }
 
 @media screen and (max-width: 480px) {
   .petCard {
     width: 90%;
-    margin: 15px 0 15px 0;
+    margin: 25px 0 25px 0;
     text-align: right; }
     .petCard #petInfo {
       position: absolute;
@@ -576,9 +598,63 @@ h2 {
 
 @media screen and (min-width: 480px) {
   .petCard {
-    width: 200px;
-    margin: 15px 10px 15px 10px;
+    width: 216px;
+    margin: 25px 10px 25px 10px;
     text-align: left; } }
+
+.icons, .emailEnvelope, .unmatch {
+  position: absolute;
+  color: white;
+  border-radius: 5em;
+  transition: all .5s ease; }
+  .icons:hover, .emailEnvelope:hover, .unmatch:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25), 0 2px 2px rgba(0, 0, 0, 0.22);
+    background-color: white; }
+
+.emailEnvelope {
+  border: solid 3px #0E6463;
+  right: 25px;
+  background-color: #0E6463; }
+  .emailEnvelope:hover {
+    color: #0E6463;
+    border: solid 3px #0E6463; }
+
+.unmatch {
+  border: solid 3px red;
+  left: 25px;
+  background-color: red; }
+  .unmatch:hover {
+    color: black;
+    border: solid 3px black; }
+
+.unmatch > .fa + .fa,
+.unmatch:hover > .fa {
+  display: none; }
+
+.unmatch:hover > .fa + .fa {
+  display: inherit; }
+
+.smallIcon {
+  bottom: -35px;
+  width: 2.2em;
+  height: 2.2em;
+  font-size: 30px; }
+
+.largeIconLeft {
+  top: -1em;
+  left: -1em;
+  padding: .7em 0 0 .7em;
+  width: 2.7em;
+  height: 2.7em;
+  font-size: calc(40px + 2vw); }
+
+.largeIconRight {
+  top: -1em;
+  right: -1em;
+  padding: .7em .7em 0 0;
+  width: 2.7em;
+  height: 2.7em;
+  font-size: calc(40px + 2vw); }
 
 .userProfile {
   padding: 2em;
