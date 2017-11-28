@@ -45,14 +45,24 @@ if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
 
   passport.use(strategy)
 
-  router.get('/', (req, res, next) => {
-    console.log('will get google auth')
-    next()
-  }, passport.authenticate('google', {scope: 'email'}))
+  router.get('/', passport.authenticate('google', {scope: 'email'}))
 
-  router.get('/callback', passport.authenticate('google', {
-    successRedirect: '/home',
-    failureRedirect: '/login'
-  }))
 
+
+router.get('/callback', function(req, res, next) {
+  passport.authenticate('google', function(err, user, info) {
+    
+    if (err) { return next(err); }
+  
+    req.logIn(user, function(err) {
+      if (err) { return next(err); }
+
+      if(user._options.isNewRecord){
+        return res.redirect('/createProfile')
+      }
+
+      return res.redirect('/pets');
+    });
+  })(req, res, next);
+})
 }
