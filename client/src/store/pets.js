@@ -23,7 +23,7 @@ const wasItSeen = (petId, userId) =>
 
 
 const axiosCall = (type, currentUser) =>
-  axios.get(`/api/pets?animal=${type}&location=${currentUser.zipCode || 11226}&key=01e0c19609326eb33ed70df84f870392`)
+  axios.get(`/api/pets?animal=${type}&location=${currentUser.zipCode || 11226}`)
     .then(res => res.data);
 
 
