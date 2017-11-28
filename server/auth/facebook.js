@@ -23,7 +23,7 @@ if (!process.env.FACEBOOK_APP_ID || !process.env.FACEBOOK_APP_SECRET) {
       const name = profile.displayName;
       const email = profile.emails[0].value;
 
-      User.find({ where: { facebookId } })
+      User.find({ where: {facebookId} })
         .then(
           foundUser =>
             foundUser
@@ -40,11 +40,22 @@ if (!process.env.FACEBOOK_APP_ID || !process.env.FACEBOOK_APP_SECRET) {
 
   router.get('/', passport.authenticate('facebook', { scope: ['email'] }));
 
-  router.get(
-    '/verify',
-    passport.authenticate('facebook', {
-      successRedirect: '/home',
-      failureRedirect: '/login'
-    })
-  );
+
+
+router.get('/callback', function(req, res, next) {
+  passport.authenticate('facebook', function(err, user, info) {
+    
+    if (err) { return next(err); }
+  
+    req.logIn(user, function(err) {
+      if (err) { return next(err); }
+
+      if(user._options.isNewRecord){
+        return res.redirect('/createProfile')
+      }
+
+      return res.redirect('/pets');
+    });
+  })(req, res, next);
+})
 }

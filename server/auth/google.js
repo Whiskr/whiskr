@@ -45,17 +45,9 @@ if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
 
   passport.use(strategy)
 
-  router.get('/', (req, res, next) => {
-    console.log('will get google auth')
-    next()
-  }, passport.authenticate('google', {scope: 'email'}))
+  router.get('/', passport.authenticate('google', {scope: 'email'}))
 
-//   router.get('/callback', passport.authenticate('google', {
-//     successRedirect: '/pets',
-//     failureRedirect: '/login'
-//   }))
 
-// }
 
 router.get('/callback', function(req, res, next) {
   passport.authenticate('google', function(err, user, info) {
@@ -66,7 +58,6 @@ router.get('/callback', function(req, res, next) {
       if (err) { return next(err); }
 
       if(user._options.isNewRecord){
-        console.log("USSERRRRRRRRR in profile")
         return res.redirect('/createProfile')
       }
 
