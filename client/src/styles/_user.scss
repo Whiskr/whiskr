@@ -1,0 +1,47 @@
+.userProfile {
+    padding: 2em;
+    width: 100%;
+    h4 {
+        text-align: left;
+        font-family: $secondary-font-family;
+        font-size: 36px;
+        margin: 15px 0 4px 0;
+        line-height: 36px;
+    }
+    p {
+        text-align: right;
+        margin: 0 0 0 40px;
+    }
+    .userInfo {
+        max-width: 600px;
+        margin: auto;
+        text-align: right;
+        font-family: $primary-font-family;
+        font-size: 22px;
+    }
+    .userButtons {
+        button {
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            background: $primary-light-color;
+            width: 50%;
+            max-width: 200px;
+            margin: 2em 1em 2em 1em;
+            padding: 12px 15px;
+            color: #fff;
+            font-family: "Roboto";
+            font-size: 18px;
+            font-weight: 400;
+            transition: all .5s ease;
+            transition: all .2s ease-in-out;
+            &:hover {
+                box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+            }
+        }
+        #deleteUser {
+            width: 80px;
+            background-color: red;
+        }
+    }
+}

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
+import { Redirect, Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Login, UserHome, AllPets, SinglePet, CreateProfile, UpdateProfile } from './components';
+import { Login, UserHome, AllPets, CreateProfile, UpdateProfile, PetTypes, Matches, MatchSingle } from './components';
 import App from './App';
 import { me } from './store';
 
@@ -21,10 +21,13 @@ class Routes extends Component {
       <Router>
         <App>
           <Switch>
-            {/* Routes placed here are available to all visitors */}
-            <Route exact path="/pets/:type" component={AllPets} />
-            <Route exact path="/pets/:type/:id" component={SinglePet} />
-            <Route path="/login" component={Login} />
+            {/* Root route renders Login when not logged in already, and pets when logged in */}
+            <Route exact path="/" render={() => ( isLoggedIn ? ( <Redirect to="/pets" />) : (
+                <Login />
+              )
+            )}
+            />
+            <Route exact path="/login" component={Login} />
             <Route path="/createProfile" component={CreateProfile} />
             {
               isLoggedIn &&
@@ -32,6 +35,10 @@ class Routes extends Component {
                   {/* Routes placed here are only available after logging in */}
                   <Route path="/home" component={UserHome} />
                   <Route path="/updateProfile" component={UpdateProfile} />
+                  <Route exact path="/pets" component={PetTypes} />
+                  <Route exact path="/pets/:type" component={AllPets} />
+                  <Route exact path="/matches" component={Matches} />
+                  <Route exact path="/matches/:petId" component={MatchSingle}/>
                 </Switch>
             }
             {/* Displays our Login component as a fallback */}
@@ -56,8 +63,8 @@ const mapState = state => ({
 
 const mapDispatch = dispatch => ({
   loadInitialData() {
-    dispatch(me());
-  },
+    dispatch(me())
+  }
 });
 
 export default connect(mapState, mapDispatch)(Routes);

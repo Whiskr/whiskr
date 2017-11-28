@@ -1,17 +1,19 @@
-const router = require('express').Router()
-const statusCat = require('http-status-cats')
-module.exports = router
+const router = require('express').Router();
+const statusCat = require('http-status-cats');
 
-router.use('/userAccount', require('./userAccount'))
+module.exports = router;
 
-router.use('/match', require('./match'))
+router.use('/userAccount', require('./userAccount'));
 
+router.use('/match', require('./match'));
+router.use('/pets', require('./pets'));
+router.use('/seen', require('./seen'));
+router.use('/contact', require('./contact'));
 
-
-router.use(statusCat())
+router.use(statusCat());
 
 router.use((req, res, next) => {
-  const error = new Error('Not Found')
-  error.status = 404
-  next(error)
-})
+  const error = new Error('Not Found');
+  error.status = 404;
+  next(error);
+});

@@ -1,90 +1,104 @@
+#singleMatchContainer {
+    background-size: cover;
+    position: relative;
+    margin: auto;
+    padding: 2vw;
+    overflow: hidden;
+}
+
 #petCard {
-
-    * {
-        transition: all .7s ease;
-    }
-
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-around;
-    align-content: stretch;
-    height: 100%;
-    .flex {
-        margin: auto;
+    justify-content: center;
+    align-content: center;
+    padding: calc(10px + 1vw);
+    * {
+        transition: all .4s ease;
     }
-    #more {
-        background-color: $secondary-medium-color;
-        padding: 10px;
-        font-size: 30px;
-        position: fixed;
-        margin: 10px;
-        right: 0;
-        top: 0;
+    .petPic {
+        margin: auto;
+        border-radius: 100%;
+        object-fit: cover;
+        display: block;
+    }
+    #picContainer {
+        width: 100vw;
     }
 }
 
 @media screen and (max-width: 480px) {
-.expanded {
-    h2,
-    h3,
-    h4,
-    p,
-    div {
-        display: block;
-    }
-
-    h1 {
-        font-size: 26px;
-    }
-    h2 {
-        font-size: 18px;
-        line-height: 0;
+    .expanded {
+        h2,
+        h3,
+        h4,
+        p,
+        div {
+            display: block;
+            margin: 2px;
         }
-
-    .petPic {
-        border-radius: 100%;
-        object-fit: cover;
-        display: block;
-        width: 100px;
-        height: 100px;
+        h1 {
+            font-size: 40px;
+            margin: 3px;
+        }
+        h2 {
+            font-size: 16px;
+        }
+        .petPic {
+            width: 150px;
+            height: 150px;
+        }
     }
-}
-
-.collapsed {
-    p,
-    h3,
-    h4 {
-        display: none;
+    .collapsed {
+        p,
+        h4 {
+            transform: translateY(600px);
+        }
+        .petPic {
+            width: 250px;
+            height: 250px;
+        }
     }
-    .petPic {
-        border-radius: 100%;
-        object-fit: cover;
-        display: block;
-        width: 70vw;
-        height: 70vw;
+    #singleMatchContainer {
+        height: 100vh;
+        width: 100vw;
     }
-}
-}
-
-.rounded {
-    border-radius: 10px;
 }
 
 @media screen and (min-width: 480px) {
-    .collapsed, .expanded {
-            h2,
-            h3,
-            h4,
-            p,
-            div {
-                display: block;
-            }
-            .petPic {
-                border-radius: 100%;
-                object-fit: cover;
-                display: block;
-                width: 300px;
-                height: 300px;
+    .collapsed,
+    .expanded {
+        h1 {
+            font-size: 48px;
+        }
+        h2 {
+            font-size: 24px;
+            line-height: 0;
+        }
+        h3,
+        h4,
+        p,
+        div {
+            display: block;
+        }
+        .petPic {
+            width: 300px;
+            height: 300px;
         }
     }
+    #singleMatchContainer {
+        margin: auto;
+        border-radius: 40px;
+        width: auto;
+        max-width: 800px;
+        border: dotted 5px $primary-dark-color;
+    }
+}
+
+.flex {
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

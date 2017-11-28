@@ -8,6 +8,7 @@
     "node-sass-chokidar": "^0.0.3",
     "react": "15.4.2",
     "react-dom": "15.4.2",
+    "react-fontawesome": "^1.6.1",
     "react-redux": "^5.0.6",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
@@ -27,5 +28,12 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://localhost:8080"
+  "proxy": {
+    "/api": {
+      "target": "http://localhost:8080/"
+    },
+    "/auth": {
+      "target": "http://localhost:8080/"
+    }
+  }
 }

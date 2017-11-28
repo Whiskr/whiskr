@@ -25,14 +25,16 @@ class SinglePet extends Component {
         onClick={this.onClick.bind(this)}
       >
         <div>
-          <img
-            src={
+          <div id="picContainer">
+            <img
+              src={
       pet.media.photos
       ? pet.media.photos.photo[3].$t
       : 'http://biorem.org/wp-content/uploads/2016/07/not-available.png'}
-            className="petPic rounded"
-            alt="pet profile pic"
-          />
+              className="petPic rounded"
+              alt="pet profile pic"
+            />
+          </div>
         </div>
         <div>
           <h1>{pet.name.$t}</h1>
@@ -44,7 +46,7 @@ class SinglePet extends Component {
           </h3>
         </div>
         <div>
-          <p>{pet.description.$t.length > 600 ? `${pet.description.$t.slice(0, 600)}...` : pet.description.$t}</p>
+          <p>{pet.description.$t && pet.description.$t.length > 500 ? `${pet.description.$t.slice(0, 500)}...` : pet.description.$t}</p>
         </div>
       </div>
     );

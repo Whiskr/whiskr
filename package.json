@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/Whiskr/whiskr#readme",
   "dependencies": {
+    "axios": "^0.17.1",
     "compression": "^1.7.1",
     "concurrently": "^3.5.0",
     "connect-session-sequelize": "^5.0.1",
@@ -29,7 +30,9 @@
     "http-status-cats": "^1.0.0",
     "lodash": "^4.17.4",
     "morgan": "^1.9.0",
+    "nodemailer": "^4.4.0",
     "passport": "^0.4.0",
+    "passport-facebook": "^2.1.1",
     "passport-google-oauth": "^1.0.0",
     "pg": "6.4.1",
     "react": "15.4.2",
