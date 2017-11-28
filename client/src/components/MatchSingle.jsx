@@ -1,32 +1,47 @@
 import React, { Component } from 'react';
-import { sendEmail, unMatch } from '../store';
 import { connect } from 'react-redux';
-import SinglePet from './SinglePet';
 import FontAwesome from 'react-fontawesome';
+import { sendEmail, unMatch } from '../store';
+import SinglePet from './SinglePet';
 
 class MatchSingle extends Component {
   render() {
     const searchPet = this.props.match.params.petId;
     const petDetail = this.props.matchPets.filter(matchPet => matchPet.id.$t === searchPet)[0];
     return (
-      <div id="singleMatchContainer">
-        {
-          this.props.matchPets.length ?
+      <div className="flex">
+        <div id="singleMatchContainer">
+          {this.props.matchPets.length ? (
             <div>
-              <SinglePet pet={petDetail} />
-              <button onClick={(event) => {
-              event.preventDefault(); this.props.onUnmatch(petDetail.id.$t, this.props.currentUser.id);
+              <button
+                className="unmatch largeIconLeft"
+                onClick={(event) => {
+                event.preventDefault();
+                this.props.onUnmatch(
+                  petDetail.id.$t,
+                  this.props.currentUser.id,
+                );
               }}
-              >UnMatch
+              >
+                <FontAwesome name="heart" />
+                <FontAwesome name="remove" />
               </button>
-              <button onClick={(event) => {
-                event.preventDefault(); this.props.onClick(this.props.currentUser, petDetail);
-                  }}
-              > <FontAwesome name="envelope-o" />
+              <button
+                className="emailEnvelope largeIconRight"
+                onClick={(event) => {
+                event.preventDefault();
+                this.props.onClick(this.props.currentUser, petDetail);
+              }}
+              >
+                {' '}
+                <FontAwesome name="envelope-o" />
               </button>
+              <SinglePet pet={petDetail} />
             </div>
-          : <p>Loading</p>
-        }
+        ) : (
+          <p>Loading</p>
+        )}
+        </div>
       </div>
     );
   }

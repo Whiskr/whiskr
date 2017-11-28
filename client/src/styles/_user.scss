@@ -11,14 +11,14 @@
     p {
         text-align: right;
         margin: 0 0 0 40px;
-
     }
     .userInfo {
-      max-width: 600px;
-      margin: auto;
+        max-width: 600px;
+        margin: auto;
         text-align: right;
         font-family: $primary-font-family;
-        font-size: 22px;    }
+        font-size: 22px;
+    }
     .userButtons {
         button {
             border: none;
@@ -35,9 +35,9 @@
             font-weight: 400;
             transition: all .5s ease;
             transition: all .2s ease-in-out;
-                    &:hover {
-                        box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-                    }
+            &:hover {
+                box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+            }
         }
         #deleteUser {
             width: 80px;
