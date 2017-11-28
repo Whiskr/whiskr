@@ -27,6 +27,18 @@ router.post('/', (req, res, next) => {
     .catch(err => console.log(err))
 })
 
+// on Contact set the match.contacted to true
+
+router.put('/:userId/:petId', (req, res, next) =>{
+  Match.update(req.body, {
+    where: {
+      userId: req.params.userId,
+      petId: req.params.petId,
+    }
+  })
+  .then(result => res.json(result))
+})
+
 //Delete a match
 router.delete('/', (req, res, next) => {
   Match.destroy({
