@@ -8,8 +8,7 @@
     "seed": "node ./seed",
     "build": "npm run build-css && cd client && yarn build",
     "build-css": "node-sass-chokidar client/src/styles -o client/src/",
-    "watch-css": "concurrently \"npm run build-css \" \" node-sass-chokidar client/src/styles -o client/src/ --watch --recursive\"",
-    "dev-start": "concurrently \"nodemon server\" \"yarn watch-css\"",
+    "watch-css": "concurrently \" npm run build-css \" \" node-sass-chokidar client/src/styles -o client/src/ --watch --recursive\"",
     "sync": "concurrently \"yarn \" \"cd client && yarn \"",
     "dev": "concurrently \"nodemon server\" \"cd client && yarn start\" ",
     "deploy": "scripts/deploy"
