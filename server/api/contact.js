@@ -70,7 +70,6 @@ router.get('/', (req, res) => {
       </div>
     `,
   };
-  console.log(mailOptions);
   smtpTransport.sendMail(mailOptions, (error, response) => {
     if (error) {
       console.log(error);
