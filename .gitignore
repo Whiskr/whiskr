@@ -7,7 +7,6 @@
 /coverage
 
 
-/client/build
 /client/node_modules
 
 # production
@@ -29,3 +28,6 @@ secrets.js
 .eslintrc.json
 
 client/src/**/*.css
+
+package-lock.json
+client/package-lock.json
