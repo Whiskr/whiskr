@@ -9,6 +9,8 @@ class MatchSingle extends Component {
   render() {
     const searchPet = this.props.match.params.petId;
     const petDetail = this.props.matchPets.filter(matchPet => matchPet.id.$t === searchPet)[0];
+    const contacted = this.props.matches.filter(match => match.petId === Number(searchPet))[0].contacted
+    console.log('contacted?', contacted)
     return (
       <div className="flex">
         <div id="singleMatchContainer">
@@ -27,7 +29,7 @@ class MatchSingle extends Component {
                 <FontAwesome name="heart" />
                 <FontAwesome name="remove" />
               </button>
-              <EmailPreview user={this.props.currentUser} pet={petDetail} name={'matchSingle'}/>
+              <EmailPreview user={this.props.currentUser} pet={petDetail} name={'matchSingle'} contacted={contacted} />
               <SinglePet pet={petDetail} />
             </div>
         ) : (
@@ -42,6 +44,7 @@ class MatchSingle extends Component {
 const mapState = state => ({
   currentUser: state.currentUser,
   matchPets: state.matchPets,
+  matches: state.matches
 });
 
 const mapDispatch = (dispatch, ownProps) => ({
