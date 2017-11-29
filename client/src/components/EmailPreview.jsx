@@ -47,7 +47,7 @@ export class EmailPreview extends React.Component {
 
     afterOpenModal() {
         // references are now sync'd and can be accessed.
-        this.subtitle.style.color = '#f00';
+        //this.subtitle.style.color = '#f00';
     }
 
     closeModal() {
@@ -74,11 +74,11 @@ export class EmailPreview extends React.Component {
                     style={customStyles}
                     contentLabel="Example Modal"
                 >
-                    <div>to: {pet.contact.email.$t}</div>
-                    <div>subject: An Inquiry About One of Your Pets</div>
+                    <div className="email-header">to: {pet.contact.email.$t}</div>
+                    <div className="email-header">subject: An Inquiry About One of Your Pets</div>
                     <div>
-                        <h1 ref={subtitle => this.subtitle = subtitle}>Greetings from Whiskr!</h1>
-                        <p>
+                        <h3 className="email-greeting">Greetings from Whiskr!</h3>
+                        <p className="email-introduction">
                             We’re reaching out to you because one of our users has shown interest
                         in adopting a pet in your care. This letter is a courtesy our service
                         provides to connect users with potential pets, so that caregivers may
@@ -86,40 +86,41 @@ export class EmailPreview extends React.Component {
                         the following information, and reach out to the user directly if you
                         would like to pursue further communication.
                         </p>
-                        <h2>User Profile:</h2>
-                        <div>
-                            <strong>Email: </strong>{user.email}
+                        <h5>User Profile:</h5>
+                        <div className="email-details">
+                            <strong>Email: </strong><a href={user.email}>{user.email}</a>
                         </div>
-                        <div>
+                        <div className="email-details">
                             <strong>Phone Number: </strong>{user.phoneNumber}
                         </div>
-                        <div>
+                        <div className="email-details">
                             <strong>Location: </strong>{user.zipCode}
                         </div>
-                        <div>
-                            <strong>Young Children In the Home: </strong>{user.hasYoungChildren}
+                        <div className="email-details" hidden={!user.hasYoungChildren}>
+                            <p className="children">The User has Young Children In the Home</p>
                         </div>
-                        <div>
-                            <strong>Pet Owning History: </strong>{user.petHistory}
+                        <div className="email-details">
+                            <strong>Pet Owning History: </strong>
+                                <div className="email-text plain">{user.petHistory}</div>
                         </div>
-                        <h2>This user is interested in {pet.name.$t}: </h2>
-                        <div>
+                        <h5>This user is interested in {pet.name.$t}: </h5>
+                        <div className="email-details">
                             <strong>Id: </strong>{pet.id.$t}
                         </div>
-                        <div>
+                        <div className="email-details">
                             <strong>Location: </strong>{pet.contact.city.$t}, {pet.contact.state.$t}
                         </div>
                         <div>
-                            <p>
+                            <p className="email-text plain">
                                 Thank you for all that you do to help these animals find their
                             furrever homes.
                         </p>
-                            <p>Sincerely,</p>
-                            <div>The Whiskr Team</div>
+                            <p className="email-signoff">Sincerely,</p>
+                            <div className="email-signoff">The Whiskr Team</div>
                         </div>
-    <button type="button" onClick={this.closeModal}>Cancel</button>
-    <button type="button" onClick={() => this.onSend(user, pet) }>Yes! Send it!</button>
-    <Link to={'/updateProfile'}><button onClick={this.closeModal} type="button">Update Profile First</button></Link>
+                        <button className="email-button" type="button" onClick={this.closeModal}>Cancel</button>
+                        <button className="email-button" type="button" onClick={() => this.onSend(user, pet) }>Yes! Send it!</button>
+                        <Link to={'/updateProfile'}><button className="email-button" onClick={this.closeModal} type="button">Update Profile First</button></Link>
                     </div>
             </Modal>        
         </div>
