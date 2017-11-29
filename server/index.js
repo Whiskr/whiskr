@@ -1,4 +1,3 @@
-const debug = require('debug')('server');
 const path = require('path');
 const express = require('express');
 const morgan = require('morgan');
@@ -39,7 +38,6 @@ const PUBLIC = path.join(
     ? '/client/build'
     : '/client/public',
 );
-debug(`Static path: "${PUBLIC}"`);
 
 const createApp = () => {
   // logging middleware
