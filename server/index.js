@@ -36,7 +36,7 @@ const PUBLIC = path.join(
   __dirname, '..',
   process.env.NODE_ENV === 'production'
     ? '/client/build'
-    : '/client/public',
+    : '/client/public'
 );
 
 const createApp = () => {
