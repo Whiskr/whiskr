@@ -11,3 +11,4 @@ export { default as MatchSingle} from './MatchSingle';
 export { CreateProfile, UpdateProfile } from './forms/ProfileForm';
 export { default as SinglePet } from './SinglePet';
 export { default as PetTypes } from './PetTypes';
+export { default as EmailPreview } from './EmailPreview';

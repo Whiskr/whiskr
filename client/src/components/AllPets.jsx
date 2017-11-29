@@ -29,20 +29,22 @@ class AllPets extends Component {
 
   componentWillUnmount() {
     const species = this.props.match.params.type;
-    this.props.onDismount(species)
+    this.props.onDismount(species);
   }
 
   render() {
-    //this is the object of pets held by the species' key in state
+    // this is the object of pets held by the species' key in state
     const species = this.props.pets[this.props.match.params.type];
     return (
-      <Cards
-        alertRight={<CustomAlertRight />}
-        alertLeft={<CustomAlertLeft />}
-        onEnd={() => this.props.onLoad(this.props.currentUser)}
-        className="master-root"
-      >
-        {species && Object.keys(species).map((el, i) =>
+      <div className="container">
+        <div id="card-stack" />
+        <Cards
+          alertRight={<CustomAlertRight />}
+          alertLeft={<CustomAlertLeft />}
+          onEnd={() => this.props.onLoad(this.props.currentUser)}
+          className="master-root"
+        >
+          {species && Object.keys(species).map((el, i) =>
       (
         <Card
           key={i}
@@ -52,7 +54,8 @@ class AllPets extends Component {
           <SinglePet pet={species[el]} expand={false} />
         </Card>
     ))}
-      </Cards>
+        </Cards>
+      </div>
     );
   }
 }
@@ -64,8 +67,8 @@ const mapState = state => ({
 
 const mapDispatch = (dispatch, ownProps) => ({
   onLoad(user) {
-    let i= 0
-    for (;i < 25; i++){
+    let i = 0;
+    for (;i < 25; i++) {
       dispatch(fetchAllPets(ownProps.match.params.type, user));
     }
   },
@@ -80,7 +83,7 @@ const mapDispatch = (dispatch, ownProps) => ({
   },
   onDismount(petSpecies) {
     dispatch(clearPets(petSpecies));
-  }
+  },
 });
 
 export default connect(mapState, mapDispatch)(AllPets);

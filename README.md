@@ -42,8 +42,3 @@ From there, you will be redirected to the PetTypes page. Choose the type of pet 
 Swipe left to dismiss a pet and swipe right to add it to your matches.
 
 On mobile view, you can click the pet card to expand the profile.
-
-
-## baby master
-
-working master over thanksgiving

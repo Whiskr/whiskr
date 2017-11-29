@@ -49,7 +49,7 @@ router.get('/', (req, res) => {
         </div>
         <div>
           <strong>Pet Owning History: </strong>
-          ${userPetHistory}
+          ${userPetHistory || 'No pet history provided'}
         </div>
         <h2>This user is interested in ${petName}: </h2>
         <div>
@@ -70,13 +70,12 @@ router.get('/', (req, res) => {
       </div>
     `,
   };
-  console.log(mailOptions);
   smtpTransport.sendMail(mailOptions, (error, response) => {
     if (error) {
       console.log(error);
       res.end('error');
     } else {
-      console.log(`Message sent: ${response.message}`);
+      console.log(`Message sent: ${response}`);
       res.end('sent');
     }
   });

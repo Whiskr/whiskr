@@ -9,6 +9,9 @@ $secondary-font-family: 'Just Another Hand';
 
 * {
     box-sizing: border-box;
+    &:focus {
+        outline: none;
+    }
 }
 
 html {
@@ -54,3 +57,4 @@ h2 {
 @import "_forms";
 @import "_matches";
 @import "_user";
+@import "_emailPreview";
