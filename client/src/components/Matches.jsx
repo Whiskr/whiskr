@@ -12,7 +12,10 @@ class Matches extends Component {
         <h1>Matches</h1>
         <div className="matchesList">
           {this.props.matches.length ?
-              this.props.matchPets.map(pet => (
+              this.props.matchPets.map(pet => { 
+                const contacted = this.props.matches.filter(match => match.petId === Number(pet.id.$t))[0].contacted
+                console.log(contacted)
+                return (
                 <div key={pet.id.$t} className="matches petCard">
                   <Link to={`matches/${pet.id.$t}`}>
                     <img
@@ -44,9 +47,9 @@ class Matches extends Component {
                       <h2>{pet.animal.$t}</h2>
                     </div>
                   </Link>
-                  <EmailPreview user={this.props.currentUser} pet={pet} name="matches" />
+                  <EmailPreview user={this.props.currentUser} pet={pet} name="matches" contacted={contacted} />
                 </div>
-                ))
+                )})
               : <p>NO MATCHES!</p>
           }
         </div>
