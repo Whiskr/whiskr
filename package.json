@@ -6,7 +6,7 @@
   "scripts": {
     "start": "NODE_ENV=production node server",
     "seed": "node ./seed",
-    "build": "npm run build-css && cd client && react-scripts build",
+    "build": "npm run build-css && cd client && yarn build",
     "build-css": "node-sass-chokidar client/src/styles -o client/src/",
     "watch-css": "concurrently \"npm run build-css \" \" node-sass-chokidar client/src/styles -o client/src/ --watch --recursive\"",
     "dev-start": "concurrently \"nodemon server\" \"yarn watch-css\"",
