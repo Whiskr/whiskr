@@ -976,6 +976,14 @@
     "build": "react-scripts build",
     "start": "react-scripts start"
   },
+  "proxy": {
+    "/api": {
+      "target": "http://localhost:8080/"
+    },
+    "/auth": {
+      "target": "http://localhost:8080/"
+    }
+  },
   "keywords": [],
   "author": "",
   "license": "ISC"
