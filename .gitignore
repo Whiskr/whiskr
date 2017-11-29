@@ -28,3 +28,6 @@ secrets.js
 .eslintrc.json
 
 client/src/**/*.css
+
+package-lock.json
+client/package-lock.json
