@@ -45,7 +45,7 @@ class Matches extends Component {
                       <h2>{pet.animal.$t}</h2>
                     </div>
                   </Link>
-                  <EmailPreview user={this.props.currentUser} pet={pet} name={'matches'} />
+                  <EmailPreview user={this.props.currentUser} pet={pet} name="matches" />
                 </div>
                 ))
               : <p>NO MATCHES!</p>

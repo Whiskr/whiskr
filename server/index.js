@@ -9,7 +9,7 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const db = require('./db');
 
 const sessionStore = new SequelizeStore({ db });
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 const app = express();
 
 module.exports = app;
@@ -30,6 +30,14 @@ passport.deserializeUser((id, done) =>
   db.models.user.findById(id)
     .then(user => done(null, user))
     .catch(done));
+
+
+const PUBLIC = path.join(
+  __dirname, '..',
+  process.env.NODE_ENV === 'production'
+    ? '/client/build'
+    : '/client/public',
+);
 
 const createApp = () => {
   // logging middleware
@@ -57,7 +65,7 @@ const createApp = () => {
   app.use('/api', require('./api'));
 
   // static file-serving middleware
-  app.use(express.static(path.join(__dirname, '..', '/client/build')))
+  app.use(express.static(PUBLIC))
 
   // any remaining requests with an extension (.js, .css, etc.) send 404
     .use((req, res, next) => {
@@ -72,7 +80,7 @@ const createApp = () => {
 
   // sends index.html
   app.use('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'client/build/index.html'));
+    res.sendFile(path.join(PUBLIC, 'index.html'));
   });
 
   // error handling endware

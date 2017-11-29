@@ -22,15 +22,13 @@ set -e
 
 function cleanup_at_exit {
   # return to your master branch
-  git checkout master
-
-  # remove the deploy branch
-  git branch -D deploy
+  git checkout -
 }
 trap cleanup_at_exit EXIT
 echo hello
 # checks out a new branch called "deploy". Note that the name "deploy" here isn't magical,
 # but it needs to match the name of the branch we specify when we push to our heroku remote.
+git branch -D deploy || true
 git checkout -b deploy
 echo after checkout
 # webpack will run in "production mode"
