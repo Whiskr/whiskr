@@ -7,6 +7,7 @@ import { EmailPreview } from './';
 
 class Matches extends Component {
   render() {
+    console.log('did it update?')
     return (
       <div>
         <h1>Matches</h1>
