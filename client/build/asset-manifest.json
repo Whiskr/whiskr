@@ -1,8 +1,8 @@
 {
-  "main.css": "static/css/main.998f2fe7.css",
-  "main.css.map": "static/css/main.998f2fe7.css.map",
-  "main.js": "static/js/main.b963d66c.js",
-  "main.js.map": "static/js/main.b963d66c.js.map",
+  "main.css": "static/css/main.8c30e823.css",
+  "main.css.map": "static/css/main.8c30e823.css.map",
+  "main.js": "static/js/main.be30fbcb.js",
+  "main.js.map": "static/js/main.be30fbcb.js.map",
   "static/media/birdSquare.png": "static/media/birdSquare.701a63e6.png",
   "static/media/bunnySquare.png": "static/media/bunnySquare.4e05177b.png",
   "static/media/catSquare.png": "static/media/catSquare.fc453673.png",
@@ -10,5 +10,6 @@
   "static/media/horseSquare.png": "static/media/horseSquare.399da343.png",
   "static/media/mouseSquare.png": "static/media/mouseSquare.7a8c3860.png",
   "static/media/pigSquare.png": "static/media/pigSquare.2cdd416d.png",
-  "static/media/reptileSquare.png": "static/media/reptileSquare.b8754ca9.png"
+  "static/media/reptileSquare.png": "static/media/reptileSquare.b8754ca9.png",
+  "static/media/splash.jpg": "static/media/splash.895933cf.jpg"
 }

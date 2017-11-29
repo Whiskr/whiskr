@@ -22,7 +22,7 @@ $use-filters: true;
 }
 
 #card-stack {
-    z-index: 10;
+    z-index: 1;
     position: absolute;
     background: #fff;
     border: 1px solid #ccc;
@@ -51,6 +51,7 @@ $use-filters: true;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
     cursor: pointer;
     overflow: hidden;
+    z-index: 5;
 }
 
 .animate {

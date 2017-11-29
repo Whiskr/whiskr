@@ -7,7 +7,6 @@ import { EmailPreview } from './';
 
 class Matches extends Component {
   render() {
-    console.log('did it update?')
     return (
       <div>
         <h1>Matches</h1>
@@ -27,7 +26,7 @@ class Matches extends Component {
                     <button
                       className="unmatch smallIcon"
                       onClick={(event) => {
-              event.preventDefault(); this.props.onUnmatch(pet.id.$t, this.props.currentUser.id);
+              event.preventDefault(); this.props.onUnmatch(pet, this.props.currentUser.id);
               }}
                     >
                       <FontAwesome name="heart" />
@@ -63,8 +62,9 @@ const mapState = state => ({
 });
 
 const mapDispatch = dispatch => ({
-  onUnmatch(petId, userId) {
-    dispatch(unMatch(petId, userId));
+  onUnmatch(pet, userId) {
+    if (window.confirm(`Are you sure you want to delete your match with ${pet.name.$t}?`))
+      dispatch(unMatch(pet.id.$t, userId));
   },
   onClick(user, pet) {
     sendEmail(user, pet);
