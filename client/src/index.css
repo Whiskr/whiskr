@@ -406,7 +406,7 @@ h2 {
 .splash,
 .splash::before {
   text-align: left;
-  background: linear-gradient(rgba(14, 100, 99, 0.8), rgba(14, 100, 99, 0.8)), "./styles/splash.jpg" no-repeat center center fixed;
+  background: linear-gradient(rgba(14, 100, 99, 0.8), rgba(14, 100, 99, 0.8)), url("./styles/splash.jpg") no-repeat center center fixed;
   background-size: cover;
   font-family: "Roboto";
   display: flex;
