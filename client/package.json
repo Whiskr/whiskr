@@ -974,7 +974,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "react-scripts build",
-    "start": "react-scripts start"
+    "start": "concurrently \" react-scripts start \" \" yarn watch-css \"",
+    "build-css": "node-sass-chokidar src/styles -o src/",
+    "watch-css": "concurrently \"npm run build-css \" \" node-sass-chokidar src/styles -o src/ --watch --recursive\""
   },
   "proxy": {
     "/api": {
