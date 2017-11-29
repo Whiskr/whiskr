@@ -5,10 +5,11 @@
   "main": "secrets.js",
   "scripts": {
     "start": "node server",
-    "test": "echo \"Error: no test specified\" && exit 1",
     "seed": "node ./seed",
-    "deploy": "scripts/deploy",
-    "build": "cd client && react-scripts build"
+    "build": "npm run build-css && cd client && react-scripts build",
+    "build-css": "node-sass-chokidar client/src/styles -o client/src/",
+    "watch-css": "concurrently \"npm run build-css \" \" node-sass-chokidar client/src/styles -o client/src/ --watch --recursive\"",
+    "dev-start": "concurrently \"nodemon server\" \"yarn watch-css\""
   },
   "repository": {
     "type": "git",
@@ -25,6 +26,7 @@
     "axios": "^0.17.1",
     "body-parser": "^1.18.2",
     "compression": "^1.7.1",
+    "concurrently": "^3.5.1",
     "connect-session-sequelize": "^5.0.1",
     "express": "^4.16.2",
     "express-session": "^1.15.6",
