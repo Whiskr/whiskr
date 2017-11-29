@@ -4,12 +4,15 @@
   "description": "A Tinder-like progressive web application for pairing local adoptable pets with potential owners",
   "main": "secrets.js",
   "scripts": {
-    "start": "node server",
+    "start": "NODE_ENV=production node server",
     "seed": "node ./seed",
     "build": "npm run build-css && cd client && react-scripts build",
     "build-css": "node-sass-chokidar client/src/styles -o client/src/",
     "watch-css": "concurrently \"npm run build-css \" \" node-sass-chokidar client/src/styles -o client/src/ --watch --recursive\"",
-    "dev-start": "concurrently \"nodemon server\" \"yarn watch-css\""
+    "dev-start": "concurrently \"nodemon server\" \"yarn watch-css\"",
+    "sync": "concurrently \"yarn \" \"cd client && yarn \"",
+    "dev": "concurrently \"nodemon server\" \"cd client && yarn start\" ",
+    "deploy": "scripts/deploy"
   },
   "repository": {
     "type": "git",
