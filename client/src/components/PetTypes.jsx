@@ -65,6 +65,7 @@ const PetTypes = () => (
         <h2 className="petTypesText">Barnyard</h2>
       </Link>
     </div>
+    <CurrentLocation />
   </div>
 );
 
