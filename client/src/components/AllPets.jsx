@@ -25,24 +25,23 @@ class AllPets extends Component {
   }
 
   render() {
-    //const { pets, currentUser, onReject, onLove } = this.props
-    // this is the object of pets held by the species' key in state
-    const petTypeArray = this.props.pets[this.props.match.params.type];
+    const { pets, currentUser, onReject, onLove, onLoad, match  } = this.props
+    const petTypeArray = pets[match.params.type];
     return (
       <div className="container">
         <div id="card-stack" />
         <Cards
           alertRight={<CustomAlertRight />}
           alertLeft={<CustomAlertLeft />}
-          onEnd={() => this.props.onLoad(this.props.currentUser)}
+          onEnd={() => onLoad(currentUser)}
           className="master-root"
         >
           {petTypeArray && petTypeArray.map((pet) => {
       return (
         <Card
           key={pet.id.$t}
-          onSwipeLeft={() => { this.props.onReject(pet.id.$t, this.props.currentUser.id, this.props.match.params.type); }}
-          onSwipeRight={() => { this.props.onLove(pet.id.$t, this.props.currentUser.id, this.props.match.params.type); }}
+          onSwipeLeft={() => { onReject(pet.id.$t, currentUser.id, match.params.type); }}
+          onSwipeRight={() => { onLove(pet.id.$t, currentUser.id, match.params.type); }}
         >
           <SinglePet pet={pet} expand={false} />
         </Card>
