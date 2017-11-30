@@ -92,7 +92,11 @@
         justify-content: space-between;
         align-items: stretch;
         div {
-            padding: 5px;
+            padding: 6px;
+            label {
+                font-family: $secondary-font-family;
+                font-size: 36px;
+            }
         }
     }
 

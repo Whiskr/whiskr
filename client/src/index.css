@@ -491,7 +491,10 @@ h2 {
     justify-content: space-between;
     align-items: stretch; }
     .form .checkboxes div {
-      padding: 5px; }
+      padding: 6px; }
+      .form .checkboxes div label {
+        font-family: "Just Another Hand";
+        font-size: 36px; }
   .form textarea {
     width: 100%;
     min-height: 100px; }
