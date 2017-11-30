@@ -1,19 +1,17 @@
 import React, { Component } from 'react';
 import Cards, { Card } from 'react-swipe-card';
 import { connect } from 'react-redux';
-import Fav from '../styles/favorite-icon.png';
-import Reject from '../styles/reject-icon.png';
 import { fetchMatches, addMatches, fetchAllPets, clearPets, rejectPet } from '../store';
 import SinglePet from './SinglePet';
 
 
 const CustomAlertLeft = () => (
   <span>
-    <img alt="reject pet icon" src={Reject} className="icon" />
+    <img alt="reject pet icon" src="../styles/favorite-icon.png" className="icon" />
   </span>);
 const CustomAlertRight = () => (
   <span>
-    <img alt="accept pet icon" src={Fav} className="icon" />
+    <img alt="accept pet icon" src="../styles/reject-icon.png" className="icon" />
   </span>);
 
 class AllPets extends Component {
