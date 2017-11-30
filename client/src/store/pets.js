@@ -22,10 +22,14 @@ const wasItSeen = (petId, userId) =>
     .then(res => res.data.length);
 
 
+let callCount = 0
 const axiosCall = (type, currentUser) =>
-  axios.get(`/api/pets?animal=${type}&location=${currentUser.zipCode || 11226}`)
-    .then(res => res.data);
-
+  axios.get(`/api/pets?animal=${type}&location=${currentUser.zipCode || 11226}&_ts=${Date.now()}&_call=${callCount++}`, {
+    'Cache-Control': 'no-cache', pragma: 'no-cache',
+  })
+    .then(res => {
+      return res.data;
+    } )
 
 export const fetchAllPets = (type, currentUser) =>
   async (dispatch) => {

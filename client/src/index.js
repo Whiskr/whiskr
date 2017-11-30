@@ -11,4 +11,4 @@ ReactDOM.render(
   <Routes />
 </Provider>,
 document.getElementById('root'));
-registerServiceWorker();
+//registerServiceWorker();

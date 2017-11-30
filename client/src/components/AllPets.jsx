@@ -1,31 +1,23 @@
 import React, { Component } from 'react';
 import Cards, { Card } from 'react-swipe-card';
 import { connect } from 'react-redux';
-import Fav from '../styles/favorite-icon.png';
-import Reject from '../styles/reject-icon.png';
 import { fetchMatches, addMatches, fetchAllPets, clearPets, rejectPet } from '../store';
 import SinglePet from './SinglePet';
 
 
 const CustomAlertLeft = () => (
   <span>
-    <img alt="reject pet icon" src={Reject} className="icon" />
+    <img alt="reject pet icon" src="../styles/favorite-icon.png" className="icon" />
   </span>);
 const CustomAlertRight = () => (
   <span>
-    <img alt="accept pet icon" src={Fav} className="icon" />
+    <img alt="accept pet icon" src="../styles/reject-icon.png" className="icon" />
   </span>);
 
 class AllPets extends Component {
   componentDidMount() {
     this.props.onLoad(this.props.currentUser);
   }
-  // there is a lag with getting the currentUser on state so this is needed to work fetch matches:
-  // componentWillReceiveProps(nextProps) {
-  //   if (nextProps.currentUser && nextProps.currentUser.id !== this.props.currentUser.id) {
-  //     this.props.loadMatches(nextProps.currentUser.id);
-  //   }
-  // }
 
   componentWillUnmount() {
     const species = this.props.match.params.type;
@@ -33,8 +25,10 @@ class AllPets extends Component {
   }
 
   render() {
+    //const { pets, currentUser, onReject, onLove } = this.props
     // this is the object of pets held by the species' key in state
-    const species = this.props.pets[this.props.match.params.type];
+    const petTypeArray = this.props.pets[this.props.match.params.type];
+    console.log('petTypeArray', petTypeArray)
     return (
       <div className="container">
         <div id="card-stack" />
@@ -44,16 +38,16 @@ class AllPets extends Component {
           onEnd={() => this.props.onLoad(this.props.currentUser)}
           className="master-root"
         >
-          {species && Object.keys(species).map((el, i) =>
-      (
+          {petTypeArray && petTypeArray.map((pet) => {
+      return (
         <Card
-          key={i}
-          onSwipeLeft={() => { this.props.onReject(species[el].id.$t, this.props.currentUser.id, this.props.match.params.type); }}
-          onSwipeRight={() => { this.props.onLove(species[el].id.$t, this.props.currentUser.id, this.props.match.params.type); }}
+          key={pet.id.$t}
+          onSwipeLeft={() => { this.props.onReject(pet.id.$t, this.props.currentUser.id, this.props.match.params.type); }}
+          onSwipeRight={() => { this.props.onLove(pet.id.$t, this.props.currentUser.id, this.props.match.params.type); }}
         >
-          <SinglePet pet={species[el]} expand={false} />
+          <SinglePet pet={pet} expand={false} />
         </Card>
-    ))}
+    )})}
         </Cards>
       </div>
     );
@@ -67,8 +61,9 @@ const mapState = state => ({
 
 const mapDispatch = (dispatch, ownProps) => ({
   onLoad(user) {
-    let i = 0;
-    for (;i < 25; i++) {
+    console.log('PUT THIS BACK TO 25 BEFORE MERGING')
+    //PUT THIS BACK TO 25 BEFORE MERGING
+    for (let i = 0; i < 4; i++) {
       dispatch(fetchAllPets(ownProps.match.params.type, user));
     }
   },
