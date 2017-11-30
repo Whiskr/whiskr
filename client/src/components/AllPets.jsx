@@ -7,11 +7,11 @@ import SinglePet from './SinglePet';
 
 const CustomAlertLeft = () => (
   <span>
-    <img alt="reject pet icon" src="../styles/favorite-icon.png" className="icon" />
+    <img alt="reject pet icon" src="../reject-icon.png" className="icon" />
   </span>);
 const CustomAlertRight = () => (
   <span>
-    <img alt="accept pet icon" src="../styles/reject-icon.png" className="icon" />
+    <img alt="accept pet icon" src="../favorite-icon.png" className="icon" />
   </span>);
 
 class AllPets extends Component {
@@ -28,7 +28,6 @@ class AllPets extends Component {
     //const { pets, currentUser, onReject, onLove } = this.props
     // this is the object of pets held by the species' key in state
     const petTypeArray = this.props.pets[this.props.match.params.type];
-    console.log('petTypeArray', petTypeArray)
     return (
       <div className="container">
         <div id="card-stack" />
@@ -61,9 +60,7 @@ const mapState = state => ({
 
 const mapDispatch = (dispatch, ownProps) => ({
   onLoad(user) {
-    console.log('PUT THIS BACK TO 25 BEFORE MERGING')
-    //PUT THIS BACK TO 25 BEFORE MERGING
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < 25; i++) {
       dispatch(fetchAllPets(ownProps.match.params.type, user));
     }
   },

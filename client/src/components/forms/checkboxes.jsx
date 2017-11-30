@@ -40,7 +40,7 @@ class Checkbox extends React.Component {
             <input name="rabbit" type="checkbox" value="rabbit" checked={this.state.rabbits} onChange={this.handleChange} />
           </div>
           <div>
-            <label htmlFor={name}><small>Small Mammals</small></label>
+            <label htmlFor={name}><small>Small Furry</small></label>
             <input name="smallFurry" type="checkbox" value="smallFurry" checked={this.state.smallFurry} onChange={this.handleChange} />
           </div>
           <div>
@@ -52,7 +52,7 @@ class Checkbox extends React.Component {
             <input name="horse" type="checkbox" value="horse" checked={this.state.horses} onChange={this.handleChange} />
           </div>
           <div>
-            <label htmlFor={name}><small>Barnyard Animals</small></label>
+            <label htmlFor={name}><small>Barnyard</small></label>
             <input name="barnyardAnimal" type="checkbox" value="barnyardAnimal" checked={this.state.barnyardAnimals} onChange={this.handleChange} />
           </div>
         </div>

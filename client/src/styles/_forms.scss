@@ -88,10 +88,17 @@
 
     .checkboxes {
         display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
+        flex-flow: row wrap;
+        justify-content: space-between;
+        align-items: stretch;
         div {
-            padding: 5px;
+            text-align: center;
+            align-items: center;
+            padding: 6px;
+            label {
+                font-family: $secondary-font-family;
+                font-size: calc(22px + 1.5vw);
+            }
         }
     }
 
@@ -183,4 +190,12 @@
 .sign-up:checked + .tab + .login-form .sign-up-htm {
     transform: rotate(0);
 }
+}
+
+input[type="checkbox"]{
+    height: 15px;
+    width: 15px;
+    &:checked {
+        background-color: $primary-light-color;
+    }
 }
