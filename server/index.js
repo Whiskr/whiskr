@@ -6,6 +6,7 @@ const compression = require('compression');
 const session = require('express-session');
 const passport = require('passport');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
+const sslRedirect = require('heroku-ssl-redirect');
 const db = require('./db');
 
 const sessionStore = new SequelizeStore({ db });
@@ -36,7 +37,7 @@ const PUBLIC = path.join(
   __dirname, '..',
   process.env.NODE_ENV === 'production'
     ? '/client/build'
-    : '/client/public'
+    : '/client/public',
 );
 
 const createApp = () => {
@@ -46,6 +47,9 @@ const createApp = () => {
   // body parsing middleware
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
+
+  // enable ssl redirect
+  app.use(sslRedirect());
 
   // compression middleware
   app.use(compression());
