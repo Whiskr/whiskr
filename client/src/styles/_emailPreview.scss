@@ -1,3 +1,13 @@
+#email {
+    max-width: 800px;
+    border-radius: 30px;
+    border: dotted 5px $primary-dark-color;
+    padding: 5px;
+    div {
+        padding: 1vw;
+    }
+}
+
 .email-text {
     font-size: 11px;
 }
@@ -7,17 +17,17 @@
 }
 
 .email-header {
+    text-align: left;
     font-size: 11px;
 }
 
 .email-details {
+    max-width: 300px;
+    text-align: left;
     font-size: 12px;
-
-    .children {
-        margin: 2px;
-        font-size: 10px;
-        color: teal;
-        font-style: italic;
+    line-height: 5px;
+    .email-text {
+        line-height: 14px;
     }
 }
 
@@ -26,24 +36,44 @@
     font-size: 14px;
 }
 
+.email-signature {
+    font-family: $secondary-font-family;
+    font-size: 38px;
+}
+
 .email-button {
-    background-color: teal;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    font-size: calc(10px + .5vw);
+    border: none;
+    background-color:$primary-light-color;
     color: white;
-    padding: 5px 5px;
+    padding: calc(2px + 1vw);
+    border-radius: 40px;
     margin: 5px;
     display: inline;
     text-decoration: none;
+    transition: all .5s ease;
+    &:hover {
+        box-shadow: 0 6px 6px rgba(0, 0, 0, 0.25), 0 4px 4px rgba(0, 0, 0, 0.22);
+    }
+}
+
+#cancel {
+    background: red;
 }
 
 .email-greeting {
-    color: teal;
+    color: $primary-light-color;
+    font-family: $secondary-font-family;
+    font-size: 40px;
 }
 
 h5 {
     margin: 3px;
+    font-family: $secondary-font-family;
+    font-size: 30px;
 }
 
 h3 {
     margin: 4px;
 }
-
