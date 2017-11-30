@@ -13,9 +13,10 @@ class Matches extends Component {
         <div className="matchesList">
           {this.props.matches.length ?
               this.props.matchPets.map(pet => { 
-                const contacted = this.props.matches.filter(match => match.petId === Number(pet.id.$t))[0].contacted
+                const contacted = pet.id && this.props.matches.filter(match => match.petId === Number(pet.id.$t))[0].contacted
                 console.log(contacted)
-                return (
+                return ( 
+                pet.id &&
                 <div key={pet.id.$t} className="matches petCard">
                   <Link to={`matches/${pet.id.$t}`}>
                     <img
