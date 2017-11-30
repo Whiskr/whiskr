@@ -8,9 +8,8 @@ import SinglePet from './SinglePet';
 class MatchSingle extends Component {
   render() {
     const searchPet = this.props.match.params.petId;
-    const petDetail = this.props.matchPets.filter(matchPet => matchPet.id.$t === searchPet)[0];
+    const petDetail = this.props.matchPets.filter(matchPet => { if (matchPet.id !== undefined) return matchPet.id.$t === searchPet })[0];
     const contacted = this.props.matches.filter(match => match.petId === Number(searchPet))[0].contacted
-    console.log('contacted?', contacted)
     return (
       <div className="flex">
         <div id="singleMatchContainer">

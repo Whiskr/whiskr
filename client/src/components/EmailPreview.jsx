@@ -65,7 +65,6 @@ export class EmailPreview extends React.Component {
         const { user, pet, name, contacted } = this.props;
         const buttonClass = (name === 'matches') ? "emailEnvelope smallIcon" : "emailEnvelope largeIconRight"
         const wasContacted = contacted ? "check" : "envelope-o"
-        console.log(contacted)
         return (
             <div>
                 <button className={buttonClass} onClick={this.openModal}> <FontAwesome name={wasContacted} /> </button>
