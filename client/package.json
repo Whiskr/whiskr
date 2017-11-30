@@ -972,7 +972,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "build": "react-scripts build",
     "build-css": "node-sass-chokidar src/styles -o src/",
     "watch-css": "concurrently \"npm run build-css \" \" node-sass-chokidar src/styles -o src/ --watch --recursive\"",
