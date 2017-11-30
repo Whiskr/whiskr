@@ -92,10 +92,12 @@
         justify-content: space-between;
         align-items: stretch;
         div {
+            text-align: center;
+            align-items: center;
             padding: 6px;
             label {
                 font-family: $secondary-font-family;
-                font-size: 36px;
+                font-size: calc(22px + 1.5vw);
             }
         }
     }
