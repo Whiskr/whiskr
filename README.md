@@ -14,7 +14,7 @@ This is a tinder styled app that makes pet adoption an easier process. Using rea
 * Keri Miller 
 
 ---
-### For Developers:
+## For Developers:
 
 ### PetFinder API
 Our app requires the PetFinder API. You need to register as a developer to get a key. [Petfinder](https://www.petfinder.com/developers/api-docs)
