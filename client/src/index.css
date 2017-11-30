@@ -138,7 +138,7 @@ h2 {
   height: 100vh; }
 
 #card-stack {
-  z-index: 10;
+  z-index: 1;
   position: absolute;
   background: #fff;
   border: 1px solid #ccc;
@@ -163,7 +163,8 @@ h2 {
   transition: box-shadow .3s;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   cursor: pointer;
-  overflow: hidden; }
+  overflow: hidden;
+  z-index: 5; }
 
 .animate {
   transition: transform .3s;
@@ -204,6 +205,17 @@ h2 {
 .alert-left {
   left: 2vw;
   background: black; }
+
+.allPetTypes {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  margin: auto;
+  width: 100vw;
+  height: 100vh;
+  max-width: 900px; }
 
 .typeIcon {
   border-radius: 100%;
