@@ -718,6 +718,14 @@ input[type="checkbox"] {
     width: 80px;
     background-color: red; }
 
+#email {
+  max-width: 800px;
+  border-radius: 30px;
+  border: dotted 5px #041733;
+  padding: 5px; }
+  #email div {
+    padding: 1vw; }
+
 .email-text {
   font-size: 11px; }
 
@@ -725,33 +733,52 @@ input[type="checkbox"] {
   font-size: 13px; }
 
 .email-header {
+  text-align: left;
   font-size: 11px; }
 
 .email-details {
-  font-size: 12px; }
-  .email-details .children {
-    margin: 2px;
-    font-size: 10px;
-    color: teal;
-    font-style: italic; }
+  max-width: 300px;
+  text-align: left;
+  font-size: 12px;
+  line-height: 5px; }
+  .email-details .email-text {
+    line-height: 14px; }
 
 .email-signoff {
   margin: 2px;
   font-size: 14px; }
 
+.email-signature {
+  font-family: "Just Another Hand";
+  font-size: 38px; }
+
 .email-button {
-  background-color: teal;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  font-size: calc(10px + .5vw);
+  border: none;
+  background-color: #0E6463;
   color: white;
-  padding: 5px 5px;
+  padding: calc(2px + 1vw);
+  border-radius: 40px;
   margin: 5px;
   display: inline;
-  text-decoration: none; }
+  text-decoration: none;
+  transition: all .5s ease; }
+  .email-button:hover {
+    box-shadow: 0 6px 6px rgba(0, 0, 0, 0.25), 0 4px 4px rgba(0, 0, 0, 0.22); }
+
+#cancel {
+  background: red; }
 
 .email-greeting {
-  color: teal; }
+  color: #0E6463;
+  font-family: "Just Another Hand";
+  font-size: 40px; }
 
 h5 {
-  margin: 3px; }
+  margin: 3px;
+  font-family: "Just Another Hand";
+  font-size: 30px; }
 
 h3 {
   margin: 4px; }
