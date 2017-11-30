@@ -1,15 +1,7 @@
 {
-  "main.css": "static/css/main.366c3909.css",
-  "main.css.map": "static/css/main.366c3909.css.map",
-  "main.js": "static/js/main.ab815a59.js",
-  "main.js.map": "static/js/main.ab815a59.js.map",
-  "static/media/birdSquare.png": "static/media/birdSquare.701a63e6.png",
-  "static/media/bunnySquare.png": "static/media/bunnySquare.4e05177b.png",
-  "static/media/catSquare.png": "static/media/catSquare.fc453673.png",
-  "static/media/dogSquare.png": "static/media/dogSquare.de174608.png",
-  "static/media/horseSquare.png": "static/media/horseSquare.399da343.png",
-  "static/media/mouseSquare.png": "static/media/mouseSquare.7a8c3860.png",
-  "static/media/pigSquare.png": "static/media/pigSquare.2cdd416d.png",
-  "static/media/reptileSquare.png": "static/media/reptileSquare.b8754ca9.png",
-  "static/media/splash.jpg": "static/media/splash.895933cf.jpg"
+  "main.css": "static/css/main.e177eef4.css",
+  "main.css.map": "static/css/main.e177eef4.css.map",
+  "main.js": "static/js/main.766a2cf2.js",
+  "main.js.map": "static/js/main.766a2cf2.js.map",
+  "static/media/splash.webp": "static/media/splash.936e2080.webp"
 }
