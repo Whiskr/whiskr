@@ -7,11 +7,11 @@ import SinglePet from './SinglePet';
 
 const CustomAlertLeft = () => (
   <span>
-    <img alt="reject pet icon" src="../styles/favorite-icon.png" className="icon" />
+    <img alt="reject pet icon" src="../reject-icon.png" className="icon" />
   </span>);
 const CustomAlertRight = () => (
   <span>
-    <img alt="accept pet icon" src="../styles/reject-icon.png" className="icon" />
+    <img alt="accept pet icon" src="../favorite-icon.png" className="icon" />
   </span>);
 
 class AllPets extends Component {
