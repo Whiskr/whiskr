@@ -487,8 +487,9 @@ h2 {
     display: flex; }
   .form .checkboxes {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap; }
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: stretch; }
     .form .checkboxes div {
       padding: 5px; }
   .form textarea {
@@ -562,6 +563,12 @@ h2 {
 
 .login-html .sign-up:checked + .tab + .login-form .sign-up-htm {
   transform: rotate(0); }
+
+input[type="checkbox"] {
+  height: 15px;
+  width: 15px; }
+  input[type="checkbox"]:checked {
+    background-color: #0E6463; }
 
 .matchesList {
   display: flex;
