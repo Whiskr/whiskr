@@ -4,6 +4,8 @@ const FacebookStrategy = require('passport-facebook');
 const { User } = require('../db/models');
 module.exports = router;
 
+const {PUBLIC_URL=''} = process.env
+
 if (!process.env.FACEBOOK_APP_ID || !process.env.FACEBOOK_APP_SECRET) {
   console.log(
     'Facebook client ID / secret not found. Skipping Facebook OAuth.'
@@ -12,7 +14,7 @@ if (!process.env.FACEBOOK_APP_ID || !process.env.FACEBOOK_APP_SECRET) {
   const facebookConfig = {
     clientID: process.env.FACEBOOK_APP_ID,
     clientSecret: process.env.FACEBOOK_APP_SECRET,
-    callbackURL: process.env.FACEBOOK_CALLBACK,
+    callbackURL: `${PUBLIC_URL}/${process.env.FACEBOOK_CALLBACK}`,
     profileFields: ['id', 'displayName', 'email']
   };
 
