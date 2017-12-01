@@ -17,7 +17,6 @@ $icon4-color: #063648;
   box-sizing: border-box;
   font-size: 42px;
 
-
   .menu-open-button {
     background: #EEEEEE;
     border-radius: 100%;
@@ -33,7 +32,6 @@ $icon4-color: #063648;
     -webkit-transition: -webkit-transform ease-out 200ms;
     transition: -webkit-transform ease-out 200ms;
     transition: transform ease-out 200ms;
-    transition: transform ease-out 200ms,
   }
 
   .menu-open { display: none; }
@@ -93,7 +91,8 @@ $icon4-color: #063648;
     -webkit-transform: scale(1.1, 1.1) translate3d(0, 0, 0);
     transform: scale(1.1, 1.1) translate3d(0, 0, 0);
     cursor: pointer;
-    box-shadow: 3px 3px 0 0 rgba(0, 0, 0, 0.14);
+    box-shadow: 3px 3px 0 0 rgba(0, 0, 0, 0.14), 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+
   }
 
   .menu-open-button:hover {

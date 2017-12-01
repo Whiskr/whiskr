@@ -11,7 +11,10 @@ router.get('/', (req, res, next) => {
     if (req.query[variable] && req.query[variable] !== 'undefined') queryStr += `&${variable}=${req.query[variable]}` || '';
   });
 
-  axios.get(`http://api.petfinder.com/pet.getRandom?key=${petfinderKey}&${queryStr}`).then((allPets) => {
+  axios.get(`http://api.petfinder.com/pet.getRandom?key=${petfinderKey}&${queryStr}&_ts=${Date.now()}`, {
+    headers: {pragma: "no-cache", "cache-control": "no-cache"}
+  })
+  .then((allPets) => {
     res.json(allPets.data.petfinder.pet);
     res.end();
   }).catch(next);

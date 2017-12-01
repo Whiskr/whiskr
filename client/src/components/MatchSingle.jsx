@@ -8,7 +8,8 @@ import SinglePet from './SinglePet';
 class MatchSingle extends Component {
   render() {
     const searchPet = this.props.match.params.petId;
-    const petDetail = this.props.matchPets.filter(matchPet => matchPet.id.$t === searchPet)[0];
+    const petDetail = this.props.matchPets.filter(matchPet => { if (matchPet.id !== undefined) return matchPet.id.$t === searchPet })[0];
+    const contacted = this.props.matches.filter(match => match.petId === Number(searchPet))[0].contacted
     return (
       <div className="flex">
         <div id="singleMatchContainer">
@@ -19,7 +20,7 @@ class MatchSingle extends Component {
                 onClick={(event) => {
                 event.preventDefault();
                 this.props.onUnmatch(
-                  petDetail.id.$t,
+                  petDetail,
                   this.props.currentUser.id,
                 );
               }}
@@ -27,7 +28,7 @@ class MatchSingle extends Component {
                 <FontAwesome name="heart" />
                 <FontAwesome name="remove" />
               </button>
-              <EmailPreview user={this.props.currentUser} pet={petDetail} name={'matchSingle'}/>
+              <EmailPreview user={this.props.currentUser} pet={petDetail} name={'matchSingle'} contacted={contacted} />
               <SinglePet pet={petDetail} />
             </div>
         ) : (
@@ -42,14 +43,16 @@ class MatchSingle extends Component {
 const mapState = state => ({
   currentUser: state.currentUser,
   matchPets: state.matchPets,
+  matches: state.matches
 });
 
 const mapDispatch = (dispatch, ownProps) => ({
   onClick(user, pet) {
     sendEmail(user, pet);
   },
-  onUnmatch(petId, userId) {
-    dispatch(unMatch(petId, userId));
+  onUnmatch(pet, userId) {
+    if (window.confirm(`Are you sure you want to delete your match with ${pet.name.$t}?`))
+    dispatch(unMatch(pet.id.$t, userId));
     ownProps.history.push('/matches');
   },
 });

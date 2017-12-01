@@ -4,11 +4,12 @@
   "description": "A Tinder-like progressive web application for pairing local adoptable pets with potential owners",
   "main": "secrets.js",
   "scripts": {
+    "test": "mocha",
     "start": "NODE_ENV=production node server",
     "seed": "node ./seed",
     "build": "npm run build-css && cd client && yarn build",
     "build-css": "node-sass-chokidar client/src/styles -o client/src/",
-    "watch-css": "concurrently \"npm run build-css \" \" node-sass-chokidar client/src/styles -o client/src/ --watch --recursive\"",
+    "watch-css": "concurrently \" npm run build-css \" \" node-sass-chokidar client/src/styles -o client/src/ --watch --recursive\"",
     "sync": "concurrently \"yarn \" \"cd client && yarn \"",
     "dev": "concurrently \"nodemon server\" \"cd client && yarn start\" ",
     "deploy": "scripts/deploy"
@@ -27,14 +28,21 @@
   "dependencies": {
     "axios": "^0.17.1",
     "body-parser": "^1.18.2",
+    "chai": "^4.1.2",
+    "chai-as-promised": "^7.1.1",
     "compression": "^1.7.1",
     "concurrently": "^3.5.1",
     "connect-session-sequelize": "^5.0.1",
     "express": "^4.16.2",
     "express-session": "^1.15.6",
+    "heroku-ssl-redirect": "^0.0.4",
     "http-status-cats": "^1.0.0",
+    "imagemin": "^5.3.1",
+    "imagemin-webp": "^4.0.0",
     "lodash": "^4.17.4",
+    "mocha": "^4.0.1",
     "morgan": "^1.9.0",
+    "node-sass": "^4.7.2",
     "node-sass-chokidar": "^0.0.3",
     "nodemailer": "^4.4.0",
     "passport": "^0.4.0",
@@ -56,7 +64,8 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
     "sass": "^1.0.0-beta.3",
-    "sequelize": "^4.22.6"
+    "sequelize": "^4.22.6",
+    "supertest": "^3.0.0"
   },
   "devDependencies": {
     "eslint": "^4.12.0",
