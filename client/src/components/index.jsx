@@ -12,3 +12,4 @@ export { CreateProfile, UpdateProfile } from './forms/ProfileForm';
 export { default as SinglePet } from './SinglePet';
 export { default as PetTypes } from './PetTypes';
 export { default as EmailPreview } from './EmailPreview';
+export { default as CurrentLocation } from './CurrentLocation';

@@ -8,6 +8,7 @@ class CurrentLocation extends Component {
       location: [],
     }
     this.getLocation = this.getLocation.bind(this);
+    this.showPosition = this.showPosition.bind(this);
   }
   getLocation(){
     console.log('clicked!',navigator)
@@ -21,7 +22,6 @@ class CurrentLocation extends Component {
 
   showPosition(position){
     console.log("POSSSS", position)
-    return
     // let location = <p>{position.coords.latitude + ',' + position.coords.longitude}</p>
     //  console.log(location)
   }
