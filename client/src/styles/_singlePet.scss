@@ -26,7 +26,7 @@
     }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 600px) {
     .expanded {
         h2,
         h3,
@@ -64,7 +64,7 @@
     }
 }
 
-@media screen and (min-width: 480px) {
+@media screen and (min-width: 600px) {
     .collapsed,
     .expanded {
         h1 {
