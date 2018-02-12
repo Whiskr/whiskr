@@ -13,10 +13,47 @@ class ProfileForm extends React.Component {
     super(props);
     this.state = {
       page: 1,
+      validation: {
+        emailValid: false,
+        zipCodeValid: false,
+        formValid: false,
+        formValidations: {email: '', zipCode: ''}
+      }
     };
+    this.validateField = this.validateField.bind(this);
     this.nextPage = this.nextPage.bind(this);
     this.previousPage = this.previousPage.bind(this);
     this.assignValue = this.assignValue.bind(this);
+  }
+
+  validateField(evt) {
+    evt.preventDefault();
+    const fieldName = evt.target.name;
+    const value = evt.target.value;
+    let fieldValidationErrors = this.state.formValidations;
+    let emailValid = this.state.emailValid;
+    let zipCodeValid = this.state.zipCodeValid;
+
+    switch (fieldName) {
+      case 'email':
+        emailValid = (value.search(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i) >= 0);
+        fieldValidationErrors.email = emailValid ? '' : ' is invalid';
+        break;
+      case 'zipCode':
+        zipCodeValid = (value.search(/\d{5}/) >= 0);
+        fieldValidationErrors.zipCode = zipCodeValid ? '' : ' is invalid';
+        break;
+      default:
+        break;
+    }
+    this.setState({formErrors: fieldValidationErrors,
+                    emailValid: emailValid,
+                    zipCodeValid: zipCodeValid
+                  }, this.validateForm);
+  }
+
+    validateForm() {
+      this.setState({formValid: this.state.emailValid && this.state.zipCodeValid});
   }
 
   assignValue(inputName) {
@@ -37,11 +74,12 @@ class ProfileForm extends React.Component {
     this.setState({ page: this.state.page - 1 });
   }
 
+
   render() {
     const {
       handleSubmit, handleChange, handleCheckbox, user, form, name, history,
     } = this.props;
-    const { page } = this.state;
+    const { page, validation } = this.state;
     return (
       <div className="splash">
         <div className="form animated flipInX">
@@ -53,6 +91,8 @@ class ProfileForm extends React.Component {
               defaultValue={this.assignValue}
               user={user}
               form={form}
+              validation={validation}
+              validateFunction={this.validateField}
             />}
             {page === 2 && <PetPreferences
               previousPage={this.previousPage}

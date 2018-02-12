@@ -1,8 +1,8 @@
 import React from 'react';
 import { OtherPetTypes } from './checkboxes'
 
-export class PetHistory extends React.Component {
-    render() {
+export const PetHistory = () => {
+    // render() {
     const { submitForm, previousPage, onCheck, onChange, defaultValue, form } = this.props
     return (
         <form onSubmit={(event) => event.preventDefault()}>        
@@ -47,5 +47,5 @@ export class PetHistory extends React.Component {
             <button onClick={submitForm} type="submit">Submit</button>
         </form>
     )
-  }
+ // }
 }

@@ -1,9 +1,11 @@
 import React from 'react';
+import FormErrors from './FormErrors';
 
 export const PersonalInfo = (props) => {
   const {
-    nextPage, onChange, defaultValue, form,
+    nextPage, onChange, defaultValue, form, validation, validateFunction
   } = props;
+
   return (
     <form>
       <h2>{props.display}</h2>
@@ -15,7 +17,10 @@ export const PersonalInfo = (props) => {
           placeholder={defaultValue('email')}
           value={form.email}
           onChange={event => onChange(event)}
+          onBlur={event => validateFunction(event)}
+          required
         />
+        <FormErrors field={'Email'} error={validation.formValidations.email} />
       </div>
       <div>
         <label htmlFor="phoneNumber">Phone Number</label>
@@ -35,9 +40,12 @@ export const PersonalInfo = (props) => {
           placeholder={defaultValue('zipCode')}
           value={form.zipCode}
           onChange={event => onChange(event)}
+          onBlur={event => validateFunction(event)}
+          required
         />
+        <FormErrors field={'Zip Code'} error={validation.formValidations.zipCode} />
       </div>
-      <button onClick={nextPage} type="submit">Next</button>
+      <button onClick={nextPage} type="submit" disabled={!validation.formValid}>Next</button>
     </form>
   );
 };
