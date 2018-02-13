@@ -12,48 +12,11 @@ class ProfileForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      page: 1,
-      validation: {
-        emailValid: false,
-        zipCodeValid: false,
-        formValid: false,
-        formValidations: {email: '', zipCode: ''}
-      }
+      page: 1
     };
-    this.validateField = this.validateField.bind(this);
     this.nextPage = this.nextPage.bind(this);
     this.previousPage = this.previousPage.bind(this);
     this.assignValue = this.assignValue.bind(this);
-  }
-
-  validateField(evt) {
-    evt.preventDefault();
-    const fieldName = evt.target.name;
-    const value = evt.target.value;
-    let fieldValidationErrors = this.state.formValidations;
-    let emailValid = this.state.emailValid;
-    let zipCodeValid = this.state.zipCodeValid;
-
-    switch (fieldName) {
-      case 'email':
-        emailValid = (value.search(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i) >= 0);
-        fieldValidationErrors.email = emailValid ? '' : ' is invalid';
-        break;
-      case 'zipCode':
-        zipCodeValid = (value.search(/\d{5}/) >= 0);
-        fieldValidationErrors.zipCode = zipCodeValid ? '' : ' is invalid';
-        break;
-      default:
-        break;
-    }
-    this.setState({formErrors: fieldValidationErrors,
-                    emailValid: emailValid,
-                    zipCodeValid: zipCodeValid
-                  }, this.validateForm);
-  }
-
-    validateForm() {
-      this.setState({formValid: this.state.emailValid && this.state.zipCodeValid});
   }
 
   assignValue(inputName) {
@@ -77,7 +40,7 @@ class ProfileForm extends React.Component {
 
   render() {
     const {
-      handleSubmit, handleChange, handleCheckbox, user, form, name, history,
+      handleSubmit, handleChange, handleCheckbox, user, form, name, history, display
     } = this.props;
     const { page, validation } = this.state;
     return (
@@ -85,14 +48,12 @@ class ProfileForm extends React.Component {
         <div className="form animated flipInX">
           <div>
             {page === 1 && <PersonalInfo
-              display={this.props.display}
+              display={display}
               nextPage={this.nextPage}
               onChange={handleChange}
               defaultValue={this.assignValue}
               user={user}
               form={form}
-              validation={validation}
-              validateFunction={this.validateField}
             />}
             {page === 2 && <PetPreferences
               previousPage={this.previousPage}

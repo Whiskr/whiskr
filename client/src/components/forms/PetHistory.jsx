@@ -5,7 +5,7 @@ export const PetHistory = () => {
     // render() {
     const { submitForm, previousPage, onCheck, onChange, defaultValue, form } = this.props
     return (
-        <form onSubmit={(event) => event.preventDefault()}>        
+        <form onSubmit={(event) => event.preventDefault()}>
             <OtherPetTypes onCheck={onCheck} />
             <div>
               <label htmlFor="hasYoungChildren">
@@ -37,8 +37,8 @@ export const PetHistory = () => {
               <textarea
                 name="petHistory"
                 type="textarea"
-                placeholder={defaultValue("petHistory")}
-                onChange={(event) => onChange(event)} 
+                placeholder={defaultValue('petHistory')}
+                onChange={(event) => onChange(event)}
               >
                 {form.petHistory}
               </textarea>
