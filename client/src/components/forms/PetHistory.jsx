@@ -1,11 +1,11 @@
 import React from 'react';
 import { OtherPetTypes } from './checkboxes'
 
-export class PetHistory extends React.Component {
-    render() {
+export const PetHistory = () => {
+    // render() {
     const { submitForm, previousPage, onCheck, onChange, defaultValue, form } = this.props
     return (
-        <form onSubmit={(event) => event.preventDefault()}>        
+        <form onSubmit={(event) => event.preventDefault()}>
             <OtherPetTypes onCheck={onCheck} />
             <div>
               <label htmlFor="hasYoungChildren">
@@ -37,8 +37,8 @@ export class PetHistory extends React.Component {
               <textarea
                 name="petHistory"
                 type="textarea"
-                placeholder={defaultValue("petHistory")}
-                onChange={(event) => onChange(event)} 
+                placeholder={defaultValue('petHistory')}
+                onChange={(event) => onChange(event)}
               >
                 {form.petHistory}
               </textarea>
@@ -47,5 +47,5 @@ export class PetHistory extends React.Component {
             <button onClick={submitForm} type="submit">Submit</button>
         </form>
     )
-  }
+ // }
 }

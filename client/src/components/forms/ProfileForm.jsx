@@ -12,7 +12,7 @@ class ProfileForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      page: 1,
+      page: 1
     };
     this.nextPage = this.nextPage.bind(this);
     this.previousPage = this.previousPage.bind(this);
@@ -37,17 +37,18 @@ class ProfileForm extends React.Component {
     this.setState({ page: this.state.page - 1 });
   }
 
+
   render() {
     const {
-      handleSubmit, handleChange, handleCheckbox, user, form, name, history,
+      handleSubmit, handleChange, handleCheckbox, user, form, name, history, display
     } = this.props;
-    const { page } = this.state;
+    const { page, validation } = this.state;
     return (
       <div className="splash">
         <div className="form animated flipInX">
           <div>
             {page === 1 && <PersonalInfo
-              display={this.props.display}
+              display={display}
               nextPage={this.nextPage}
               onChange={handleChange}
               defaultValue={this.assignValue}

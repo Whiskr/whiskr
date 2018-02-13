@@ -7,11 +7,12 @@ export const addItem = (key, value) => {
     //I hate this, but it prevents a TypeError
     let val = { type: ADD_ITEM, key, value }
     return val
-} 
+}
+
 export const clearForm = () => {
     let val = {type: CLEAR_FORM}
     return val
-} 
+}
 
 //THUNKS
 
@@ -26,7 +27,7 @@ export default function (state = defaultState, action) {
             return Object.assign({}, state, { [key]: value })
         case CLEAR_FORM:
             return defaultState
-        default: 
+        default:
             return state
     }
 }
