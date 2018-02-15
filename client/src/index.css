@@ -56,7 +56,7 @@ h2 {
   #petCard #picContainer {
     width: 100vw; }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 600px) {
   .expanded h2,
   .expanded h3,
   .expanded h4,
@@ -82,7 +82,7 @@ h2 {
     height: 100vh;
     width: 100vw; } }
 
-@media screen and (min-width: 480px) {
+@media screen and (min-width: 600px) {
   .collapsed h1,
   .expanded h1 {
     font-size: 48px; }
@@ -228,7 +228,7 @@ h2 {
   .typeIcon:hover {
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22); }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 600px) {
   .typeIcon {
     width: 16vh;
     margin: 10px; } }
@@ -609,7 +609,7 @@ input[type="checkbox"] {
     .matchesList .petCard:hover {
       box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22); }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 600px) {
   .petCard {
     width: 90%;
     margin: 25px 0 25px 0;
@@ -619,7 +619,7 @@ input[type="checkbox"] {
       top: 10px;
       right: 20px; } }
 
-@media screen and (min-width: 480px) {
+@media screen and (min-width: 600px) {
   .petCard {
     width: 216px;
     margin: 25px 10px 25px 10px;
