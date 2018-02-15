@@ -9,22 +9,27 @@ class CurrentLocation extends Component {
     }
     this.getLocation = this.getLocation.bind(this);
     this.showPosition = this.showPosition.bind(this);
+    this.errorHandler = this.errorHandler.bind(this);
   }
   getLocation(){
     console.log('clicked!',navigator)
     if ("geolocation" in navigator) {
       console.log("available")
-      navigator.geolocation.getCurrentPosition(this.showPosition)
+      navigator.geolocation.getCurrentPosition( this.showPosition, this.errorHandler)
     } else {
        console.log('geolocation IS NOT available')
     }
   }
 
-  showPosition(position){
-    console.log("POSSSS", position)
-    // let location = <p>{position.coords.latitude + ',' + position.coords.longitude}</p>
-    //  console.log(location)
-  }
+  showPosition(position) {
+    var latitude = position.coords.latitude;
+    var longitude = position.coords.longitude;
+    console.log(latitude, longitude)
+ }
+
+ errorHandler(err){
+  console.log(err)
+ }
 
   render(){
     return(
