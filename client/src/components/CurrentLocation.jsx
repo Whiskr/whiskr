@@ -24,11 +24,11 @@ class CurrentLocation extends Component {
   showPosition(position) {
     var latitude = position.coords.latitude;
     var longitude = position.coords.longitude;
-    console.log(latitude, longitude)
+    console.log('lat',latitude,'long', longitude)
  }
 
  errorHandler(err){
-  console.log(err)
+  console.log('getCurrentPosition Error:',err)
  }
 
   render(){
