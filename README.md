@@ -53,11 +53,15 @@ module.exports = {
 
 ```
 
-### Install yarn if you don't have it already
+### Install yarn and if you don't have it already
 `npm install yarn`
 
 ### Sync the two package.json files
 Our project has two package.json files, one on the client side and one on the server side.
+
+we use [concurrently](https://www.npmjs.com/package/concurrently) to run these at the same time.
+
+\*\*_If you don't already have  concurrently globally installed on your machine you can run `yarn install` first to install the server side npm modules. Then you can `yarn sync` normally._
 
 Use `yarn sync` to install the packages simultaneously
 
