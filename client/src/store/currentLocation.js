@@ -39,7 +39,7 @@ export default function(state = [], action) {
     case SET_ZIPCODE:
       return [action.location]
     case REMOVE_LOCATION:
-      return state;
+      return state = [];
     default:
       return state;
   }

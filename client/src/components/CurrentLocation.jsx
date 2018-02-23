@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {getCurrentZipcode, removeCurrentZipcode} from '../store';
+import {getCurrentZipcode, removeCurrentLocation} from '../store';
 
 class CurrentLocation extends Component {
   constructor(props) {
@@ -17,10 +17,10 @@ class CurrentLocation extends Component {
 
   getLocation() {
     if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition(this.showPosition, this.errorHandler)
+      navigator.geolocation.getCurrentPosition(this.showPosition, this.errorHandler);
       this.setState({geolocationOn: true});
     } else {
-      console.log('geolocation IS NOT available')
+      console.log('geolocation IS NOT available');
     }
   }
 
@@ -30,11 +30,11 @@ class CurrentLocation extends Component {
     this.setState({
       latLng: [latitude, longitude]
     });
-    this.props.onLocation(this.state.latLng[0], this.state.latLng[1])
+    this.props.onLocation(this.state.latLng[0], this.state.latLng[1]);
   }
 
   errorHandler(err) {
-    console.log('getCurrentPosition Error:', err)
+    console.log('getCurrentPosition Error:', err);
   }
 
   render() {
@@ -43,8 +43,15 @@ class CurrentLocation extends Component {
     return (<div>
       {
         this.state.geolocationOn
-          ? <button onClick={(e) => {e.preventDefault(); this.props.onTurnOff()}}>Turn Off Current Location</button>
-          : <button onClick={(e) => {e.preventDefault(); this.getLocation()}}>
+          ? <button onClick={(e) => {
+                e.preventDefault();
+                this.setState({geolocationOn: false});
+                this.props.onTurnOff();
+              }}>Turn Off Current Location</button>
+          : <button onClick={(e) => {
+                e.preventDefault();
+                this.getLocation();
+              }}>
               Get Current Location
             </button>
       }
@@ -60,7 +67,7 @@ const mapDispatch = dispatch => ({
     dispatch(getCurrentZipcode(lat, lng));
   },
   onTurnOff() {
-    console.log('Turned off?');
+    dispatch(removeCurrentLocation());
   }
 });
 
