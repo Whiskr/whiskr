@@ -6,17 +6,19 @@ class CurrentLocation extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      latLng: []
+      latLng: [],
+      geolocationOn: false
     }
     // Bindings
     this.getLocation = this.getLocation.bind(this);
     this.showPosition = this.showPosition.bind(this);
     this.errorHandler = this.errorHandler.bind(this);
   }
+
   getLocation() {
-    // console.log('clicked!', navigator)
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(this.showPosition, this.errorHandler)
+      this.setState({geolocationOn: true});
     } else {
       console.log('geolocation IS NOT available')
     }
@@ -28,7 +30,6 @@ class CurrentLocation extends Component {
     this.setState({
       latLng: [latitude, longitude]
     });
-    // console.log(this.state.latLng)
     this.props.onLocation(this.state.latLng[0], this.state.latLng[1])
   }
 
@@ -37,9 +38,17 @@ class CurrentLocation extends Component {
   }
 
   render() {
-    return (<button onClick={this.getLocation}>
-      Get Current Location
-    </button>)
+    console.log(this.state);
+
+    return (<div>
+      {
+        this.state.geolocationOn
+          ? <button onClick={(e) => {e.preventDefault(); this.props.onTurnOff()}}>Turn Off Current Location</button>
+          : <button onClick={(e) => {e.preventDefault(); this.getLocation()}}>
+              Get Current Location
+            </button>
+      }
+    </div>)
   }
 }
 
@@ -49,6 +58,9 @@ const mapDispatch = dispatch => ({
   onLocation(lat, lng) {
     console.log('LAT', lat, 'LNG', lng)
     dispatch(getCurrentZipcode(lat, lng));
+  },
+  onTurnOff() {
+    console.log('Turned off?');
   }
 });
 
