@@ -18,10 +18,8 @@ const removeCurrentZipcode = () => ({
 
 export const getCurrentZipcode = (lat, lng) =>
   dispatch => {
-    console.log("FIRE!")
     axios.get(`/api/zipcode/?lat=${lat}&lng=${lng}`)
       .then(res => {
-        console.log("HELLLOO RES", res.data)
         dispatch(setCurrentLocation(res.data))
       })
       .catch(err => console.log(err));
