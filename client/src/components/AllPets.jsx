@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { fetchMatches, addMatches, fetchAllPets, clearPets, rejectPet } from '../store';
 import SinglePet from './SinglePet';
 
-
 const CustomAlertLeft = () => (
   <span>
     <img alt="reject pet icon" src="../reject-icon.png" className="icon" />

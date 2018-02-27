@@ -10,7 +10,6 @@ router.get('/', (req, res, next) => {
   Object.keys(req.query).forEach((variable) => {
     if (req.query[variable] && req.query[variable] !== 'undefined') queryStr += `&${variable}=${req.query[variable]}` || '';
   });
-
   axios.get(`http://api.petfinder.com/pet.getRandom?key=${petfinderKey}&${queryStr}&_ts=${Date.now()}`, {
     headers: {pragma: "no-cache", "cache-control": "no-cache"}
   })
