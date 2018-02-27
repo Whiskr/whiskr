@@ -17,7 +17,7 @@ class CurrentLocation extends Component {
 
   getLocation() {
     if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition(this.showPosition, this.errorHandler);
+      navigator.geolocation.getCurrentPosition(this.showPosition, this.errorHandler)
       this.setState({geolocationOn: true});
     } else {
       console.log('geolocation IS NOT available');
