@@ -43,12 +43,12 @@ class CurrentLocation extends Component {
     return (<div>
       {
         this.state.geolocationOn
-          ? <button onClick={(e) => {
+          ? <button className='geoLoc' onClick={(e) => {
                 e.preventDefault();
                 this.setState({geolocationOn: false});
                 this.props.onTurnOff();
               }}>Turn Off Current Location</button>
-          : <button onClick={(e) => {
+            : <button className='geoLoc' onClick={(e) => {
                 e.preventDefault();
                 this.getLocation();
               }}>

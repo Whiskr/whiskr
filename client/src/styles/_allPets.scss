@@ -103,3 +103,19 @@ $use-filters: true;
     left: 2vw;
     background: black;
 }
+
+.geoLoc {
+      border-radius: 15px;
+      cursor: pointer;
+      background: $primary-light-color;
+      width: 100%;
+      padding: 10px 15px;
+      color: #fff;
+      font-family: "Roboto";
+      font-size: 16px;
+      font-weight: 400;
+      transition: all .5s ease;
+      &:hover {
+          opacity: .8;
+      }
+}
