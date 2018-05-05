@@ -45,6 +45,9 @@ const User = db.define('user', {
   petHistory: {
     type: Sequelize.TEXT,
     defaultValue: ''
+  },
+  currentLocation: {
+    type: Sequelize.STRING
   }
 })
 
